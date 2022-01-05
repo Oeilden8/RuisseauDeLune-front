@@ -15,12 +15,14 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route exact path="/" component={Home} />
-        <Route path="workshop" component={Workshop} />
-        <Route path="shows" component={Shows} />
-        <Route path="courses" component={Courses} />
-        <Route path="news" component={News} />
-        <Route path="contact" component={Contact} />
+        <Route path="/" element={<Home />} />
+        <Route path="workshop" element={<Workshop />} />
+        <Route path="shows" element={<Shows />} />
+        <Route path="courses" element={<Courses />} />
+        <Route path="news" element={<News />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
     </div>

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Itim&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.Header {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(/src/assets/Header/header-portable-ruisseau.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+#logo {
+  margin: 5px 0 0 5px;
+  padding: 5px;
+  width: 18vw;
+}
+
+.title {
+  padding: 8px;
+  font-family: 'Handlee', cursive;
+  font-size: 1.2em;
+  line-height: 28px;
+  color: #606067;
+}
+
+@media screen and (min-width: 768px) {
+  #logo {
+    width: 12vw;
+  }
+
+  .title {
+    font-size: 2.2em;
+    line-height: 45px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #logo {
+    width: 12vw;
+  }
+
+  .title {
+    font-size: 2.5em;
+    line-height: 50px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  #logo {
+    width: 6vw;
+  }
+
+  .title {
+    font-size: 2.2em;
+    line-height: 40px;
+  }
+}
