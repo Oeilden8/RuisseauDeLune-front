@@ -9,9 +9,14 @@
   src: local('Itim'), url(./assets/Fonts/Itim-Regular.ttf) format('truetype');
 }
 
+:root {
+  --purple-color: #d71494;
+  --grey-color: #606067;
+}
+
 body {
   margin: 0;
   font-family: 'Itim', sans-serif;
-  color: black;
+  color: var(--grey-color);
   text-align: center;
 }
