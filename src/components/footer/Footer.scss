@@ -1,0 +1,139 @@
+$backgroundColor: #d71494;
+$buttonColor: #d71494;
+$textColor: #f1ce64;
+$hoverColor: #fff;
+$caf: #1c4d92;
+$enfance: #61c5ec;
+$alter: #ea4335;
+$sncf: green;
+$pep28: red;
+$lcl: purple;
+$eurelien: brown;
+
+// body {
+//   font-family: 'Roboto';
+//   background-color: $backgroundColor;
+//   text-align: center;
+//   color: $textColor;
+//   font-size: 28px;
+// }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.Footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  box-shadow: 0 1px 10px;
+}
+
+#logo_footer {
+  width: 8vw;
+}
+
+.footer_a {
+  color: $textColor;
+}
+
+.share {
+  display: flex;
+  justify-content: center;
+  border-radius: 80px;
+  text-align: center;
+
+  .button_share {
+    width: 200px;
+    text-align: center;
+    line-height: 80px;
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  .nav_footer {
+    font-size: 0;
+  }
+
+  .footer_a {
+    line-height: 80px;
+    width: 80px;
+    display: inline-block;
+    background-color: $buttonColor;
+    color: $buttonColor;
+    overflow: hidden;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    margin: 0 -40px;
+    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
+
+    &:nth-child(1) {
+      border-top-left-radius: 40px;
+      border-bottom-left-radius: 40px;
+      margin-left: 0;
+
+      &:hover {
+        background-color: $caf;
+      }
+    }
+
+    &:nth-child(2):hover {
+      background-color: $enfance;
+    }
+
+    &:nth-child(3):hover {
+      background-color: $alter;
+    }
+
+    &:nth-child(4):hover {
+      background-color: $sncf;
+    }
+
+    &:nth-child(5):hover {
+      background-color: $pep28;
+    }
+
+    &:nth-child(6):hover {
+      background-color: $lcl;
+    }
+
+    &:nth-child(7) {
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 40px;
+      margin-right: 0;
+
+      &:hover {
+        background-color: $eurelien;
+      }
+    }
+  }
+
+  &:hover,
+  &.hover {
+    .button_share {
+      opacity: 0;
+    }
+
+    .footer_a {
+      border-radius: 50%;
+      margin: 0 10px;
+      color: $textColor;
+      font-size: 28px;
+
+      &:hover {
+        color: $hoverColor;
+      }
+    }
+  }
+}
