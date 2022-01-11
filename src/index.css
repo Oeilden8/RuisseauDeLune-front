@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Handlee';
+  src: local('Handlee'),
+    url(./assets/Fonts/Handlee-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Itim';
+  src: local('Itim'), url(./assets/Fonts/Itim-Regular.ttf) format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'Itim', sans-serif;
+  color: black;
+  text-align: center;
+}

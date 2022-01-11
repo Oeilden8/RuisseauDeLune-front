@@ -7,9 +7,7 @@ function Header() {
   return (
     <div className="Header">
       <img src={logo} alt="logo" id="logo" />
-      <h1 className="title">
-        Compagnie <br /> Ruisseau de Lune
-      </h1>
+      <h1 className="title">Compagnie Ruisseau de Lune</h1>
       <BurgerMenu />
     </div>
   );

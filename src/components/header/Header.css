@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Itim&display=swap');
+@font-face {
+  font-family: 'Handlee';
+  src: local('Handlee'),
+    url(../../assets/Fonts/Handlee-Regular.ttf) format('truetype');
+}
 
 * {
   margin: 0;
