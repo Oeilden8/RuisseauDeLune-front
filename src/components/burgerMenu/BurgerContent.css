@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap%27');
-
 .nav {
   display: flex;
   flex-flow: column;
   list-style: none;
+  margin-right: 15px;
+  margin-top: 15px;
   padding: 15px 0 0 15px;
   background: linear-gradient(179.35deg, #f3acf4 0.56%, #b5d7f8 99.47%);
   border-radius: 15px;
