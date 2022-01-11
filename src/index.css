@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'Handlee';
+  src: local('Handlee'),
+    url(./assets/Fonts/Handlee-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Itim';
+  src: local('Itim'), url(./assets/Fonts/Itim-Regular.ttf) format('truetype');
+}
+
+:root {
+  --purple-color: #d71494;
+  --grey-color: #606067;
+}
+
+body {
+  margin: 0;
+  font-family: 'Itim', sans-serif;
+  color: var(--grey-color);
+  text-align: center;
+}

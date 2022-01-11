@@ -4,7 +4,7 @@ import './BurgerContent.css';
 
 function BurgerContent({ handleClick }) {
   return (
-    <div>
+    <div className="burger">
       <ul className="nav">
         <li>
           <NavLink to="/" className="navLink-burgerMenu" onClick={handleClick}>
