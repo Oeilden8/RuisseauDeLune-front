@@ -34,7 +34,11 @@ function Home() {
           CONTACTEZ-NOUS
         </button>
       </section>
-      <p>Nous intervenons dans les hôpitaux, les écoles, les crêches...</p>
+      <p className="places">
+        Nous intervenons dans les structures Multi-Accueil, les Relais Petite
+        Enfance, les Structures d&#39;Accompagnement pour personnes en situation
+        de handicap, les Centres de loisirs ...
+      </p>
     </div>
   );
 }

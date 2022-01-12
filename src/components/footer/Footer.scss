@@ -24,12 +24,9 @@ $eurelien: brown;
 }
 
 .Footer {
-  // pas besoin normalement il est forcément en dernier donc en dessous
-  // position: absolute;
-  // bottom: 0;
-
-  // ajout d'un margin top pour qu"il soit pas tout collé :)
-  margin-top: 20px;
+  // probleme pour l'instant le footer chevauche parfois le body
+  position: absolute;
+  bottom: 0;
   width: 100%;
   background: linear-gradient(
     91.93deg,
