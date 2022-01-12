@@ -1,25 +1,30 @@
-.titre {
-  margin-top: 2rem;
-  color: #d71494;
+.musical,
+.livre {
+  margin: 25px;
+  padding: 15px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+}
+
+.content {
+  margin-bottom: 25px;
 }
 
 li {
   color: var(--grey-color);
 }
 
-.introForm {
+.introSens {
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 130px;
   background-image: url(../../assets/Accueil/bulles-mobi.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 570px;
 }
-/* 
-.introForm p {
-  width: 90vw;
-  font-size: 20px;
-  margin-top: auto;
-  margin-bottom: auto;
-} */
