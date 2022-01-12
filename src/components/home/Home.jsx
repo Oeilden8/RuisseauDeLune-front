@@ -18,19 +18,19 @@ function Home() {
         </p>
       </div>
       <section className="button-container">
-        <button type="button" className="home-buttons-left">
+        <button type="button" className="home-buttons atelier">
           <NavLink to="/ateliers">ATELIERS</NavLink>
         </button>
-        <button type="button" className="home-buttons-right">
+        <button type="button" className="home-buttons spectacle">
           <NavLink to="/spectacles">SPECTACLES</NavLink>
         </button>
-        <button type="button" className="home-buttons-left">
+        <button type="button" className="home-buttons sensi">
           <NavLink to="/sensibilisation">SENSIBILISATION</NavLink>
         </button>
-        <button type="button" className="home-buttons-right">
+        <button type="button" className="home-buttons actu">
           <NavLink to="/actualites">ACTUALITÉS</NavLink>
         </button>
-        <button type="button" className="home-buttons-left">
+        <button type="button" className="home-buttons contact">
           CONTACTEZ-NOUS
         </button>
       </section>

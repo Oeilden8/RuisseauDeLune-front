@@ -38,26 +38,82 @@
   text-shadow: none;
 }
 
-.home-buttons-left {
-  align-self: flex-start;
+.home-buttons {
   width: 75vw;
   max-width: 320px;
   height: 90px;
+  text-shadow: 3px 3px 1.5px var(--grey-color);
+}
+
+.atelier {
+  align-self: flex-start;
   background-image: url(../../assets/Accueil/ateliers.png);
   background-repeat: no-repeat;
   background-position: right;
   background-size: auto 90px;
-  text-shadow: 3px 3px 1.5px var(--grey-color);
 }
 
-.home-buttons-right {
+.spectacle {
   align-self: flex-end;
-  width: 75vw;
-  max-width: 320px;
-  height: 90px;
-  background-image: url(../../assets/Accueil/ateliers.png);
+  background-image: url(../../assets/Accueil/spectacles.png);
   background-repeat: no-repeat;
   background-position: left;
   background-size: auto 90px;
-  text-shadow: 3px 3px 1.5px var(--grey-color);
+}
+
+.sensi {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/sensibilisation.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+}
+
+.actu {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/actualites.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+}
+
+.contact {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/contact.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+}
+
+@media screen and (min-width: 768px) {
+  .eveil {
+    font-size: 24px;
+  }
+
+  .intro {
+    min-height: 180px;
+    background-image: url(../../assets/Accueil/bulles-pc.png);
+    background-size: 1200px;
+  }
+
+  .intro p {
+    width: 550px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1360px) {
+  .eveil {
+    font-size: 30px;
+  }
+
+  .intro {
+    min-height: 260px;
+    background-size: 1750px;
+  }
+
+  .intro p {
+    width: 680px;
+    font-size: 22px;
+  }
 }

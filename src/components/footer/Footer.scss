@@ -24,8 +24,12 @@ $eurelien: brown;
 }
 
 .Footer {
-  position: absolute;
-  bottom: 0;
+  // pas besoin normalement il est forcément en dernier donc en dessous
+  // position: absolute;
+  // bottom: 0;
+
+  // ajout d'un margin top pour qu"il soit pas tout collé :)
+  margin-top: 20px;
   width: 100%;
   background: linear-gradient(
     91.93deg,
