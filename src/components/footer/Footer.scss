@@ -24,8 +24,6 @@ $eurelien: brown;
 }
 
 .Footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background: linear-gradient(
     91.93deg,
@@ -39,32 +37,27 @@ $eurelien: brown;
   width: 8vw;
 }
 
-.footer_a {
-  color: $textColor;
-}
-
 .share {
   display: flex;
   justify-content: center;
   border-radius: 80px;
-  text-align: center;
 
   .button_share {
-    width: 200px;
+    // width: 200px;
     text-align: center;
-    line-height: 80px;
+    // line-height: 80px;
     display: inline-block;
     font-weight: 700;
     text-transform: uppercase;
     position: absolute;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
+    // pointer-events: none;
   }
 
-  .nav_footer {
-    font-size: 0;
-  }
+  // .nav_footer {
+  //   font-size: 0;
+  // }
 
   .footer_a {
     line-height: 80px;
@@ -79,9 +72,9 @@ $eurelien: brown;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
 
     &:nth-child(1) {
-      border-top-left-radius: 40px;
-      border-bottom-left-radius: 40px;
-      margin-left: 0;
+      // border-top-left-radius: 80px;
+      // border-bottom-left-radius: 80px;
+      // margin-left: 0;
 
       &:hover {
         background-color: $caf;
@@ -109,9 +102,9 @@ $eurelien: brown;
     }
 
     &:nth-child(7) {
-      border-top-right-radius: 40px;
-      border-bottom-right-radius: 40px;
-      margin-right: 0;
+      // border-top-right-radius: 40px;
+      // border-bottom-right-radius: 40px;
+      // margin-right: 0;
 
       &:hover {
         background-color: $eurelien;
@@ -129,7 +122,7 @@ $eurelien: brown;
       border-radius: 50%;
       margin: 0 10px;
       color: $textColor;
-      font-size: 28px;
+      font-size: 25px;
 
       &:hover {
         color: $hoverColor;
