@@ -1,0 +1,22 @@
+.presentation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.presentation p {
+  text-align: start;
+  margin: 10px;
+}
+.picture {
+  margin: 5px;
+  width: 35vw;
+  border-radius: 15px;
+}
+
+.Martine {
+  color: var(--purple-color);
+}
+
+.mail {
+  color: var(--grey-color);
+}
