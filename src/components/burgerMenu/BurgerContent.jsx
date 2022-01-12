@@ -32,7 +32,7 @@ function BurgerContent({ handleClick }) {
         </li>
         <li>
           <NavLink
-            to="/courses"
+            to="/sensibilisation"
             className="navLink-burgerMenu"
             onClick={handleClick}
           >

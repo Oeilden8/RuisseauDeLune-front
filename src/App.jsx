@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Admin from './components/admin/Admin';
 import Contact from './components/contact/Contact';
-import Courses from './components/courses/Courses';
+import Sensibilisation from './components/sensibilisation/Sensibilisation';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="workshop" element={<Workshop />} />
         <Route path="shows" element={<Shows />} />
-        <Route path="courses" element={<Courses />} />
+        <Route path="sensibilisation" element={<Sensibilisation />} />
         <Route path="news" element={<News />} />
         <Route path="contact" element={<Contact />} />
         <Route path="admin" element={<Admin />} />

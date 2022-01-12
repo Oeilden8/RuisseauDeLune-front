@@ -1,0 +1,25 @@
+.titre {
+  margin-top: 2rem;
+  color: #d71494;
+}
+
+li {
+  color: var(--grey-color);
+}
+
+.introForm {
+  display: flex;
+  justify-content: center;
+  min-height: 130px;
+  background-image: url(../../assets/Accueil/bulles-mobi.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 570px;
+}
+/* 
+.introForm p {
+  width: 90vw;
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+} */
