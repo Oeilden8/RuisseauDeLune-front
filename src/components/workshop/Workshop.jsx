@@ -14,14 +14,14 @@ function Workshop() {
         jeu, la liberté d&#39;expression, d&#39;exploration.
         <br /> <br /> Ce sont des moments de plaisir partagé.
       </p>
-      <div className="rectangle">
+      <div className="rectangle_workshop">
         <h3>Éveil Musical</h3>
         <hr />
-        <div className="rectangle_image_description">
-          <div className="image_ateliers">
+        <div className="rectangle_image_description_workshop">
+          <div className="image_workshop">
             <img src={guitare} alt="guitare" className="pictures_workshop" />
           </div>
-          <div className="texte">
+          <div className="text_workshop">
             <p>
               Exploration musicale grâce à de multiples instruments : Guitare,
               Balafon, Petites percussions, métallophone, ukulele, harmonica,
@@ -35,14 +35,14 @@ function Workshop() {
           SUPPRIMER
         </button>
       </div>
-      <div className="rectangle">
+      <div className="rectangle_workshop">
         <h3>Autour du livre</h3>
         <hr />
-        <div className="rectangle_image_description">
-          <div className="image_ateliers">
+        <div className="rectangle_image_description_workshop">
+          <div className="image_workshop">
             <img src={kamishibai} alt="guitare" className="pictures_workshop" />
           </div>
-          <div className="texte">
+          <div className="text_workshop">
             <p>
               Mille et une façons de raconter des histoires : kamishibaî,
               raconte-robe, raconte-tapis, théâtre d&#39;ombres avec de nombreux
@@ -54,11 +54,11 @@ function Workshop() {
           SUPPRIMER
         </button>
       </div>
-      <div className="cercle">
+      <div className="circle_workshop">
         <h3>Nos lieux d&#39;intervention actuels et réguliers</h3>
         <hr />
-        <div className="cercle_image_description">
-          <div className="texte">
+        <div className="circle_image_description_workshop">
+          <div className="text_workshop">
             <p>
               Multi-Accueil, Relais Petite Enfance, Structures
               d&#39;Accompagnement pour personnes en situation de handicap,
