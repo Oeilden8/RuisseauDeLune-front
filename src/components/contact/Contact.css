@@ -20,3 +20,14 @@
 .mail {
   color: var(--grey-color);
 }
+
+.rectangle {
+  margin: 25px;
+  padding: 15px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+}
