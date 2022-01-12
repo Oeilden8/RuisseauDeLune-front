@@ -1,4 +1,4 @@
-.rectangle {
+.rectangle_workshop {
   margin: 25px;
   padding: 15px;
   background: linear-gradient(
@@ -9,14 +9,14 @@
   border-radius: 25px;
 }
 
-.rectangle_image_description {
+.rectangle_image_description_workshop {
   display: flex;
   flex-direction: column;
   margin: 15px;
   padding: 10px;
 }
 
-.cercle {
+.circle_workshop {
   margin: 25px;
   padding: 60px;
   width: 60%;
@@ -33,7 +33,7 @@
   border-radius: 15px;
 }
 
-.texte {
+.text_workshop {
   padding: 15px;
 }
 
