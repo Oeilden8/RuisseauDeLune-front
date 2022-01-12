@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
@@ -16,6 +17,23 @@ function Home() {
           petits...
         </p>
       </div>
+      <section className="button-container">
+        <button type="button" className="home-buttons-left">
+          <NavLink to="/ateliers">ATELIERS</NavLink>
+        </button>
+        <button type="button" className="home-buttons-right">
+          <NavLink to="/spectacles">SPECTACLES</NavLink>
+        </button>
+        <button type="button" className="home-buttons-left">
+          <NavLink to="/sensibilisation">SENSIBILISATION</NavLink>
+        </button>
+        <button type="button" className="home-buttons-right">
+          <NavLink to="/actualites">ACTUALITÉS</NavLink>
+        </button>
+        <button type="button" className="home-buttons-left">
+          CONTACTEZ-NOUS
+        </button>
+      </section>
       <p>Nous intervenons dans les hôpitaux, les écoles, les crêches...</p>
     </div>
   );
