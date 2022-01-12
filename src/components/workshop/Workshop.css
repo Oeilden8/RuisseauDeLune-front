@@ -1,0 +1,85 @@
+.rectangle {
+  margin: 25px;
+  padding: 15px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+}
+
+.rectangle_image_description {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  padding: 10px;
+}
+
+.cercle {
+  margin: 25px;
+  padding: 60px;
+  width: 60%;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 50%;
+}
+
+.pictures_workshop {
+  width: 50vw;
+  border-radius: 15px;
+}
+
+.texte {
+  padding: 15px;
+}
+
+.delete_button {
+  display: flex;
+  justify-content: center;
+  float: right;
+  margin: -25px 20px 0 0;
+  padding: 5px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 30%;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.add_button {
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 30%;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+.edit_button {
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 30%;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+hr {
+  color: white;
+}

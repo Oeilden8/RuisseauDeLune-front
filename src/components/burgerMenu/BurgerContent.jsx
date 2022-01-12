@@ -14,7 +14,7 @@ function BurgerContent({ handleClick }) {
         </li>
         <li>
           <NavLink
-            to="/workshop"
+            to="/ateliers"
             className="navLink-burgerMenu"
             onClick={handleClick}
           >
@@ -23,7 +23,7 @@ function BurgerContent({ handleClick }) {
         </li>
         <li>
           <NavLink
-            to="/shows"
+            to="/spectacles"
             className="navLink-burgerMenu"
             onClick={handleClick}
           >
@@ -41,7 +41,7 @@ function BurgerContent({ handleClick }) {
         </li>
         <li>
           <NavLink
-            to="/news"
+            to="/actualités"
             className="navLink-burgerMenu"
             onClick={handleClick}
           >
