@@ -13,59 +13,64 @@ function Sensibilisation() {
           cognitif, imaginaire, créativité etc...)
         </p>
       </div>
-      <div className="musical">
-        <div className="content">
-          <h3>Sensibilisation Eveil Musical</h3>
-          <hr />
-          <br />
-          <li>
-            Apport théorique : les 5 fondamentaux ( Tempo, Intensité, Rythme,
-            Harmonie, Mélodie).
-          </li>
-          <br />
-          <li>Choix des instruments et leur utilisation.</li>
-          <br />
-          <li>
-            Cadre de Jeu ( Nombre d’enfants, espace sécurisé et approprié etc…).
-          </li>
-          <br />
-          <li>Chansons d’hier et d’aujourd’hui, d’ici et d’ailleurs.</li>
-          <br />
-          <li>Comptines et jeux de doigts.</li>
-          <br />
+      <div className="rectangle">
+        <h3>Sensibilisation Eveil Musical</h3>
+        <hr />
+        <br />
+        <div className="rectangle_image_description">
+          <div className="list_show_sensibilisation">
+            <li>
+              Apport théorique : les 5 fondamentaux ( Tempo, Intensité, Rythme,
+              Harmonie, Mélodie).
+            </li>
+            <br />
+            <li>Choix des instruments et leur utilisation.</li>
+            <br />
+            <li>
+              Cadre de Jeu ( Nombre d’enfants, espace sécurisé et approprié
+              etc…).
+            </li>
+            <br />
+            <li>Chansons d’hier et d’aujourd’hui, d’ici et d’ailleurs.</li>
+            <br />
+            <li>Comptines et jeux de doigts.</li>
+            <br />
+          </div>
         </div>
         <button className="delete_button" type="button">
           SUPPRIMER
         </button>
       </div>
-      <div className="livre">
-        <div className="content">
-          <h3>Sensibilisation Autour du Livre</h3>
-          <hr />
-          <br />
-          <li>
-            Apport théorique : le livre permet à l’enfant une meilleure
-            compréhension du monde qui l’entoure, favorise le langage, stimule
-            son imaginaire, permet un moment de plaisir partagé privilégié
-            (reconnaissance de soi et sécurité affective)
-          </li>
-          <br />
-          <li>
-            Le livre comme support pour aborder un sujet (sommeil, alimentation,
-            séparation, émotions, déménagement, arrivée d’une frère ou d’une
-            sœur…)
-          </li>
-          <br />
-          <li>
-            Le livre à libre disposition et manipulation. Choix des livres
-            (thème, taille, matière…)
-          </li>
-          <br />
-          <li>
-            Différentes façons de raconter une histoire ( kamishibai, théâtre
-            d’ombres, raconte-robe, raconte-tapis etc…)
-          </li>
-          <br />
+      <div className="rectangle">
+        <h3>Sensibilisation Autour du Livre</h3>
+        <hr />
+        <br />
+        <div className="rectangle_image_description">
+          <div className="list_show_sensibilisation">
+            <li>
+              Apport théorique : le livre permet à l’enfant une meilleure
+              compréhension du monde qui l’entoure, favorise le langage, stimule
+              son imaginaire, permet un moment de plaisir partagé privilégié
+              (reconnaissance de soi et sécurité affective)
+            </li>
+            <br />
+            <li>
+              Le livre comme support pour aborder un sujet (sommeil,
+              alimentation, séparation, émotions, déménagement, arrivée d’une
+              frère ou d’une sœur…)
+            </li>
+            <br />
+            <li>
+              Le livre à libre disposition et manipulation. Choix des livres
+              (thème, taille, matière…)
+            </li>
+            <br />
+            <li>
+              Différentes façons de raconter une histoire ( kamishibai, théâtre
+              d’ombres, raconte-robe, raconte-tapis etc…)
+            </li>
+            <br />
+          </div>
         </div>
         <button className="delete_button" type="button">
           SUPPRIMER

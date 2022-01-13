@@ -14,10 +14,10 @@ function Workshop() {
         jeu, la liberté d&#39;expression, d&#39;exploration.
         <br /> <br /> Ce sont des moments de plaisir partagé.
       </p>
-      <div className="rectangle_workshop">
+      <div className="rectangle">
         <h3>Éveil Musical</h3>
         <hr />
-        <div className="rectangle_image_description_workshop">
+        <div className="rectangle_image_description">
           <div className="image_workshop">
             <img src={guitare} alt="guitare" className="pictures_workshop" />
           </div>
@@ -35,10 +35,10 @@ function Workshop() {
           SUPPRIMER
         </button>
       </div>
-      <div className="rectangle_workshop">
+      <div className="rectangle">
         <h3>Autour du livre</h3>
         <hr />
-        <div className="rectangle_image_description_workshop">
+        <div className="rectangle_image_description">
           <div className="image_workshop">
             <img src={kamishibai} alt="guitare" className="pictures_workshop" />
           </div>
@@ -53,20 +53,6 @@ function Workshop() {
         <button className="delete_button" type="button">
           SUPPRIMER
         </button>
-      </div>
-      <div className="circle_workshop">
-        <h3>Nos lieux d&#39;intervention actuels et réguliers</h3>
-        <hr />
-        <div className="circle_image_description_workshop">
-          <div className="text_workshop">
-            <p>
-              Multi-Accueil, Relais Petite Enfance, Structures
-              d&#39;Accompagnement pour personnes en situation de handicap,
-              Centres de loisirs mais aussi Ateliers Enfants-Parents et Ateliers
-              Inter-générationnels.
-            </p>
-          </div>
-        </div>
       </div>
       <div className="buttons">
         <button className="add_button" type="button">
