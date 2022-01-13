@@ -25,8 +25,9 @@ $eurelien: brown;
 
 .Footer {
   // probleme pour l'instant le footer chevauche parfois le body
-  position: absolute;
-  bottom: 0;
+  // position: absolute;
+  // bottom: 0;
+  margin-top: 20px;
   width: 100%;
   background: linear-gradient(
     91.93deg,
