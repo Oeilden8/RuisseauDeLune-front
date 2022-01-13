@@ -1,0 +1,34 @@
+.login {
+  min-height: 70vh;
+  background-image: url(../../assets/Accueil/logo-background.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 40vw;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  width: 90vw;
+  height: 200px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+}
+
+.button-login {
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  font-family: 'Itim', sans-serif;
+  color: white;
+  width: 100px;
+  height: 30px;
+  border-style: none;
+}
