@@ -27,6 +27,6 @@
   color: #606067;
 }
 
-.active {
+.nav li :hover {
   color: white;
 }
