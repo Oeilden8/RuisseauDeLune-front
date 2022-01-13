@@ -29,7 +29,7 @@ function Home() {
             <NavLink to="/sensibilisation">SENSIBILISATION</NavLink>
           </button>
           <button type="button" className="home-buttons actu">
-            <NavLink to="/actualites">ACTUALITÉS</NavLink>
+            <NavLink to="/actualités">ACTUALITÉS</NavLink>
           </button>
           <button type="button" className="home-buttons contact">
             CONTACTEZ-NOUS
