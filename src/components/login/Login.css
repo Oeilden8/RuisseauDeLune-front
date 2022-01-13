@@ -1,5 +1,5 @@
 .login {
-  min-height: 70vh;
+  min-height: 75vh;
   background-image: url(../../assets/Accueil/logo-background.png);
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -11,10 +11,10 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-right: auto;
-  margin-left: auto;
-  width: 90vw;
-  height: 200px;
+  margin: 50px auto 0px auto;
+  width: 80vw;
+  max-width: 400px;
+  height: 250px;
   background: linear-gradient(
     91.93deg,
     rgba(243, 172, 244, 0.7) 7.44%,
@@ -23,12 +23,41 @@
   border-radius: 25px;
 }
 
+.login-form input {
+  width: 70vw;
+  max-width: 350px;
+  height: 40px;
+  font-family: 'Itim', sans-serif;
+  border-radius: 25px;
+  border-style: none;
+  margin-top: 20px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.login-form input:focus {
+  outline: none;
+  border: 2px solid var(--purple-color);
+}
+
 .button-login {
   background-color: var(--purple-color);
   border-radius: 25px;
   font-family: 'Itim', sans-serif;
   color: white;
   width: 100px;
-  height: 30px;
+  height: 40px;
   border-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+    background-size: 60vw;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .login {
+    background-size: 30vw;
+  }
 }
