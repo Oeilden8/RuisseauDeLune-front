@@ -22,3 +22,172 @@
   margin-bottom: auto;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 600px;
+  font-size: 24px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button-container :hover {
+  color: var(--purple-color);
+  text-shadow: none;
+}
+
+.home-buttons {
+  width: 75vw;
+  max-width: 320px;
+  height: 90px;
+  text-shadow: 3px 3px 1.5px var(--grey-color);
+}
+
+.atelier {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/ateliers.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+}
+
+.spectacle {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/spectacles.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+}
+
+.sensi {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/sensibilisation.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+}
+
+.actu {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/actualites.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+}
+
+.contact {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/contact.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+}
+
+.places {
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .home {
+    min-height: 80vh;
+    background-image: url(../../assets/Accueil/logo-background.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 40vw;
+  }
+
+  .eveil {
+    font-size: 24px;
+  }
+
+  .intro {
+    min-height: 180px;
+    background-image: url(../../assets/Accueil/bulles-pc.png);
+    background-size: 1200px;
+  }
+
+  .intro p {
+    width: 550px;
+    font-size: 18px;
+  }
+
+  .button-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 95vw;
+    height: 400px;
+    font-size: 24px;
+    color: white;
+    margin: 20px auto 20px auto;
+  }
+
+  .home-buttons {
+    max-width: 350px;
+    height: 110px;
+    align-self: center;
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .eveil {
+    font-size: 30px;
+  }
+
+  .intro {
+    min-height: 260px;
+    background-size: 1750px;
+  }
+
+  .intro p {
+    width: 680px;
+    font-size: 22px;
+  }
+
+  .button-container {
+    height: 600px;
+    font-size: 40px;
+    color: white;
+  }
+
+  .home-buttons {
+    max-width: 600px;
+    height: 180px;
+  }
+
+  .atelier {
+    background-image: url(../../assets/Accueil/ateliers-pc.png);
+  }
+
+  .spectacle {
+    background-image: url(../../assets/Accueil/spectales-pc.png);
+  }
+
+  .sensi {
+    background-image: url(../../assets/Accueil/sensibilisation-pc.png);
+  }
+
+  .actu {
+    background-image: url(../../assets/Accueil/actualites-pc.png);
+  }
+
+  .contact {
+    background-image: url(../../assets/Accueil/contact-pc.png);
+  }
+
+  .places {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .button-container {
+    width: 75vw;
+    height: 600px;
+  }
+}
