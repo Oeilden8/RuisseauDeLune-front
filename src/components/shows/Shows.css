@@ -1,81 +1,31 @@
-.rectangle_show {
-  margin: 25px;
-  padding: 15px;
-  background: linear-gradient(
-    91.93deg,
-    rgba(243, 172, 244, 0.7) 7.44%,
-    rgba(181, 215, 248, 0.7) 94.63%
-  );
-  border-radius: 25px;
-}
-
-.rectangle_image_description_show {
-  display: flex;
-  flex-direction: column;
-  margin: 15px;
-  padding: 10px;
-}
-
-.circle_show {
-  margin: 25px;
-  padding: 60px;
-  width: 60%;
-  background: linear-gradient(
-    91.93deg,
-    rgba(243, 172, 244, 0.7) 7.44%,
-    rgba(181, 215, 248, 0.7) 94.63%
-  );
-  border-radius: 50%;
-}
-
 .pictures_show {
-  width: 65vw;
+  width: 45vw;
   border-radius: 15px;
+  overflow: auto;
 }
 
 .text_show {
   margin: 10px;
 }
 
-.delete_button {
-  display: flex;
-  justify-content: center;
-  float: right;
-  margin: -25px 20px 0 0;
-  padding: 5px;
-  background-color: var(--purple-color);
-  border-radius: 25px;
-  color: white;
-  width: 30%;
-  border-style: none;
-  cursor: pointer;
-  font-family: 'Itim';
+.list_show li {
+  padding: 10px;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px;
+@media screen and (min-width: 768px) {
+  .text_show {
+    margin-top: 5px;
+  }
 }
 
-.add_button {
-  padding: 8px;
-  background-color: var(--purple-color);
-  border-radius: 25px;
-  color: white;
-  width: 30%;
-  border-style: none;
-  cursor: pointer;
-  font-family: 'Itim';
+@media screen and (min-width: 1024px) {
+  .list_show li {
+    padding: 15px;
+  }
 }
 
-.edit_button {
-  padding: 8px;
-  background-color: var(--purple-color);
-  border-radius: 25px;
-  color: white;
-  width: 30%;
-  border-style: none;
-  cursor: pointer;
-  font-family: 'Itim';
+@media screen and (min-width: 1440px) {
+  .text_show {
+    margin-top: 10px;
+  }
 }

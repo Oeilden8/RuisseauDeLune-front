@@ -6,10 +6,10 @@ function Shows() {
   return (
     <div className="Shows">
       <h2>SPECTACLES</h2>
-      <div className="rectangle_show">
+      <div className="rectangle">
         <h3>Goutte d&#39;eau</h3>
         <hr />
-        <div className="rectangle_image_description_show">
+        <div className="rectangle_image_description">
           <div className="image_show">
             <img src={ribambelle} alt="guitare" className="pictures_show" />
           </div>
@@ -30,11 +30,11 @@ function Shows() {
           SUPPRIMER
         </button>
       </div>
-      <div className="circle_show">
+      <div className="rectangle">
         <h3>Précédents spectacles</h3>
         <hr />
-        <div className="circle_image_description_show">
-          <div className="text_show">
+        <div className="rectangle_image_description">
+          <div className="list_show">
             <ul>
               <li>
                 Association d&#39;Assistantes Maternelles ADAMAC à la Salle de
@@ -47,15 +47,7 @@ function Shows() {
                 Salle des fêtes du Poinçonnet (36) pour l&#39;association &#34;
                 le chat botté &#34; Association d&#39;assistantes maternelles.
               </li>
-              ...
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="circle_show">
-        <div className="circle_image_description_show">
-          <div className="text_show">
-            <ul>
+              <hr />
               <li>
                 Salle de la micro-crèche Briance Roselle à St Hilaire Bonneval
                 (87).
