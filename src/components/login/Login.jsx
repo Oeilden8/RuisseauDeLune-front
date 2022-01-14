@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
-function Login() {
+function Login(props) {
+  const { adminID, setAdminID } = props;
+  const navigate = useNavigate();
   // state avec un objet prédéfini
   const [login, setLogin] = useState({
     email: '',
@@ -19,17 +22,25 @@ function Login() {
     } else {
       console.log(login);
       try {
-        const resp = await axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/api/login`,
-          login,
-          { withCredentials: true }
-        );
-        console.log(resp);
-        console.log(resp.data);
+        await axios
+          .post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, login, {
+            withCredentials: true,
+          })
+          .then((resp) => {
+            setAdminID(resp.data.id);
+            console.log(adminID);
+            console.log(resp.data);
+          })
+          .then(() => {
+            navigate('../admin', { replace: true });
+          });
       } catch (err) {
         console.log(err.message);
+        // alert('Veuillez fournir un email et un mot de passe valide');
       }
     }
+    // .then useNavigate
+    // stocker id admin dans state ds app, if (id) accès ok
   };
 
   return (
