@@ -27,6 +27,8 @@ function App() {
         />
         <Route path="actualités" element={<News adminID={adminID} />} />
         <Route path="contact" element={<Contact adminID={adminID} />} />
+
+        {/* pour le moment admin accessible sans login pendant le developpement */}
         <Route path="admin" element={<Admin adminID={adminID} />} />
         {/* si adminId existe tu peux monter le composant admin */}
         {/* {adminID ? (
@@ -42,7 +44,6 @@ function App() {
             }
           />
         )} */}
-
         <Route
           path="login"
           element={<Login adminID={adminID} setAdminID={setAdminID} />}
