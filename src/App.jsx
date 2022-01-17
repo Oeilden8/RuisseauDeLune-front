@@ -27,9 +27,9 @@ function App() {
         />
         <Route path="actualités" element={<News adminID={adminID} />} />
         <Route path="contact" element={<Contact adminID={adminID} />} />
-
+        <Route path="admin" element={<Admin adminID={adminID} />} />
         {/* si adminId existe tu peux monter le composant admin */}
-        {adminID ? (
+        {/* {adminID ? (
           <Route path="admin" element={<Admin adminID={adminID} />} />
         ) : (
           <Route
@@ -41,7 +41,7 @@ function App() {
               </h2>
             }
           />
-        )}
+        )} */}
 
         <Route
           path="login"

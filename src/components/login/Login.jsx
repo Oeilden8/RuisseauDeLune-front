@@ -50,7 +50,7 @@ function Login(props) {
         <form className="login-form" onSubmit={handleLoginSubmit}>
           <label htmlFor="mail">
             <input
-              type="text"
+              type="email"
               placeholder="MAIL"
               value={login.email}
               // on rempli uniquement la valeur email en destructurant login
@@ -59,7 +59,7 @@ function Login(props) {
           </label>
           <label htmlFor="password">
             <input
-              type="text"
+              type="password"
               placeholder="MOT DE PASSE"
               value={login.password}
               onChange={(e) => setLogin({ ...login, password: e.target.value })}
