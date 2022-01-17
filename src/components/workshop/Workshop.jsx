@@ -3,7 +3,7 @@ import './Workshop.css';
 import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
 import kamishibai from '../../assets/Atelier-litterature-jeunesse/kamishibai.jpg';
 
-function Workshop() {
+function Workshop({ adminID }) {
   return (
     <div className="Workshop">
       <h2>ATELIERS</h2>
@@ -31,9 +31,11 @@ function Workshop() {
             </p>
           </div>
         </div>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
+        {adminID ? (
+          <button className="delete_button" type="button">
+            SUPPRIMER
+          </button>
+        ) : null}
       </div>
       <div className="rectangle">
         <h3>Autour du livre</h3>
