@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Admin.css';
 
 function Admin({ adminId }) {
+  const [type, setType] = useState('atelier');
   return (
     <div>
       {/* partie gestion admin */}
@@ -43,14 +44,41 @@ function Admin({ adminId }) {
         <form className="add-form">
           <label htmlFor="select-type">
             <select name="type">
-              <option value="spectacle">ATELIER</option>
-              <option value="atelier">SPECTACLE</option>
-              <option value="actualite">ACTUALITE</option>
+              <option value={type} onClick={(e) => setType('atelier')}>
+                ATELIER
+              </option>
+              <option value={type} onClick={(e) => setType('spectacle')}>
+                SPECTACLE
+              </option>
+              <option value={type} onClick={(e) => setType('news')}>
+                ACTUALITE
+              </option>
             </select>
           </label>
           <label htmlFor="title">
             <input type="text" placeholder="TITRE" />
           </label>
+
+          {/* le formulaire change suivant le type selectionné plus haut */}
+          {type === 'spectacle' || type === 'news' ? (
+            <label htmlFor="places">
+              <input type="text" placeholder="LIEU" />
+            </label>
+          ) : null}
+
+          {type === 'news' ? (
+            <section className="dates">
+              <label htmlFor="date-first">
+                DATE DE DEBUT :
+                <input type="date" />
+              </label>
+              <label htmlFor="date-last">
+                DATE DE FIN :
+                <input type="date" />
+              </label>
+            </section>
+          ) : null}
+
           <label htmlFor="description">
             <textarea name="description" placeholder="DESCRIPTION" />
           </label>
