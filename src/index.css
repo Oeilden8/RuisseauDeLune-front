@@ -20,12 +20,13 @@ body {
   font-family: 'Itim', sans-serif;
   color: var(--grey-color);
   text-align: center;
-  background-color: #fffcf5;
+  background-color: #ffffff;
 }
 
 h2 {
   padding: 5px;
   font-weight: lighter;
+  font-size: 1.6em;
   color: var(--purple-color);
   margin: 20px 5px 20px 5px;
 }
@@ -39,14 +40,145 @@ hr {
   color: white;
 }
 
+p,
+li {
+  font-size: 0.9em;
+}
+
+/* RECTANGLE BASIQUE */
+.rectangle {
+  margin: 25px;
+  padding: 15px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* CONTENU DU RECTANGLE IMAGE + TEXTE */
+.rectangle_image_description {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 10px 10px 10px;
+  padding: 8px;
+}
+
+/* BOUTON SUPPRIMER AVEC PLACEMENT POUR RECTANGLE  */
+.delete_button {
+  display: flex;
+  justify-content: center;
+  float: right;
+  margin: -20px 15px 0 0;
+  padding: 5px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 80px;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+/* BOUTON AJOUTER */
+.add_button {
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+/* BOUTON MODIFIER */
+.edit_button {
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+/* DIV BOUTONS AJOUTER ET MODIFIER PLACEMENT */
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
 
 @media screen and (min-width: 768px) {
+  h2 {
+    font-size: 1.8em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  p,
+  li {
+    font-size: 1.1em;
+    color: var(--grey-color);
+  }
+
+  .rectangle {
+    margin: 40px 80px 40px 80px;
+    padding: 30px;
+  }
+
+  .rectangle_image_description {
+    margin: 5px 20px 20px 20px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  p,
+  li {
+    font-size: 1.2em;
+  }
+
+  .rectangle {
+    margin: 50px 100px 50px 100px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
+  h2 {
+    font-size: 2.2em;
+  }
+
+  h3 {
+    font-size: 1.8em;
+  }
+
+  p,
+  li {
+    font-size: 1.4em;
+  }
+
+  .rectangle {
+    margin: 50px 300px 50px 300px;
+    padding: 25px;
+  }
+
+  .rectangle_image_description {
+    padding: 15px;
+  }
 }
 
 button {
