@@ -32,8 +32,14 @@ h2 {
 }
 
 h3 {
+  margin: 5px 0 5px 0;
   color: var(--purple-color);
   font-size: 1.4em;
+}
+
+h4 {
+  color: var(--purple-color);
+  font-size: 1.2em;
 }
 
 hr {
@@ -43,6 +49,39 @@ hr {
 p,
 li {
   font-size: 0.9em;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* INTRO DEBUT DE PAGE + BACKGROUND */
+.intro {
+  display: flex;
+  justify-content: center;
+  min-height: 130px;
+  background-image: url(assets/Accueil/bulles-mobi.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 570px;
+}
+
+/* TEXTE INTRO DEBUT DE PAGE */
+.intro p {
+  width: 90vw;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 /* RECTANGLE BASIQUE */
@@ -62,8 +101,7 @@ li {
 .rectangle_image_description {
   display: flex;
   flex-direction: column;
-  margin: 5px 10px 10px 10px;
-  padding: 8px;
+  padding: 12px;
 }
 
 /* BOUTON SUPPRIMER AVEC PLACEMENT POUR RECTANGLE  */
@@ -72,11 +110,11 @@ li {
   justify-content: center;
   float: right;
   margin: -20px 15px 0 0;
-  padding: 5px;
+  padding: 8px;
   background-color: var(--purple-color);
   border-radius: 25px;
   color: white;
-  width: 80px;
+  width: 110px;
   border-style: none;
   cursor: pointer;
   font-family: 'Itim';
@@ -122,10 +160,24 @@ li {
     font-size: 1.5em;
   }
 
+  h4 {
+    font-size: 1.4em;
+  }
+
   p,
   li {
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: var(--grey-color);
+  }
+
+  .intro {
+    background-image: url(assets/Accueil/bulles-pc.png);
+    min-height: 180px;
+    background-size: 900px;
+  }
+
+  .intro p {
+    width: 550px;
   }
 
   .rectangle {
@@ -147,9 +199,19 @@ li {
     font-size: 1.5em;
   }
 
+  h4 {
+    font-size: 1.6em;
+  }
+
   p,
   li {
-    font-size: 1.2em;
+    font-size: 1.3em;
+  }
+
+  .intro {
+    background-image: url(assets/Accueil/bulles-pc.png);
+    min-height: 180px;
+    background-size: 1200px;
   }
 
   .rectangle {
@@ -171,27 +233,21 @@ li {
     font-size: 1.4em;
   }
 
+  .intro {
+    min-height: 350px;
+    background-size: 2200px;
+  }
+
+  .intro p {
+    width: 900px;
+  }
+
   .rectangle {
-    margin: 50px 300px 50px 300px;
+    margin: 50px 400px 50px 400px;
     padding: 25px;
   }
 
   .rectangle_image_description {
     padding: 15px;
   }
-}
-
-button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }

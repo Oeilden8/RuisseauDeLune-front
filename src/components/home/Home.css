@@ -5,23 +5,6 @@
   margin: 20px 5px 20px 5px;
 }
 
-.intro {
-  display: flex;
-  justify-content: center;
-  min-height: 130px;
-  background-image: url(../../assets/Accueil/bulles-mobi.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 570px;
-}
-
-.intro p {
-  width: 90vw;
-  font-size: 14px;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
 .button-container {
   display: flex;
   flex-direction: column;
@@ -86,7 +69,6 @@
 }
 
 .places {
-  font-size: 14px;
   margin-top: 30px;
 }
 
@@ -101,17 +83,6 @@
 
   .eveil {
     font-size: 24px;
-  }
-
-  .intro {
-    min-height: 180px;
-    background-image: url(../../assets/Accueil/bulles-pc.png);
-    background-size: 1200px;
-  }
-
-  .intro p {
-    width: 550px;
-    font-size: 18px;
   }
 
   .button-container {
@@ -139,14 +110,8 @@
     font-size: 30px;
   }
 
-  .intro {
-    min-height: 260px;
-    background-size: 1750px;
-  }
-
   .intro p {
     width: 680px;
-    font-size: 22px;
   }
 
   .button-container {

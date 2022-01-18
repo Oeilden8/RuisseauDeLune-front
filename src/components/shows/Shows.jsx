@@ -35,37 +35,35 @@ function Shows() {
         <hr />
         <div className="rectangle_image_description">
           <div className="list_show">
-            <ul>
-              <li>
-                Association d&#39;Assistantes Maternelles ADAMAC à la Salle de
-                spectacle Doussineau à Chartres (28). <br /> 2 séances : la
-                première pour les 0-3 ans la seconde pour les 3-5 ans (école
-                maternelle).
-              </li>
-              <hr />
-              <li>
-                Salle des fêtes du Poinçonnet (36) pour l&#39;association &#34;
-                le chat botté &#34; Association d&#39;assistantes maternelles.
-              </li>
-              <hr />
-              <li>
-                Salle de la micro-crèche Briance Roselle à St Hilaire Bonneval
-                (87).
-              </li>
-              <hr />
-              <li>Esperem Crèche Paris 6ème.</li>
-              <hr />
-              <li>
-                Association Ribambelle des assistantes maternelles de
-                Mainvilliers (28).
-              </li>
-              <hr />
-              <li>Centre de Loisirs de de Mainvilliers (28).</li>
-              <hr />
-              <li>
-                Brezolles (28) dans le cadre de la journée sur la parentalité.
-              </li>
-            </ul>
+            <li>
+              Association d&#39;Assistantes Maternelles ADAMAC à la Salle de
+              spectacle Doussineau à Chartres (28). <br /> 2 séances : la
+              première pour les 0-3 ans la seconde pour les 3-5 ans (école
+              maternelle).
+            </li>
+            <hr />
+            <li>
+              Salle des fêtes du Poinçonnet (36) pour l&#39;association &#34; le
+              chat botté &#34; Association d&#39;assistantes maternelles.
+            </li>
+            <hr />
+            <li>
+              Salle de la micro-crèche Briance Roselle à St Hilaire Bonneval
+              (87).
+            </li>
+            <hr />
+            <li>Esperem Crèche Paris 6ème.</li>
+            <hr />
+            <li>
+              Association Ribambelle des assistantes maternelles de Mainvilliers
+              (28).
+            </li>
+            <hr />
+            <li>Centre de Loisirs de de Mainvilliers (28).</li>
+            <hr />
+            <li>
+              Brezolles (28) dans le cadre de la journée sur la parentalité.
+            </li>
           </div>
         </div>
       </div>

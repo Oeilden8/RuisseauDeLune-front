@@ -29,10 +29,10 @@ function Home() {
             <NavLink to="/sensibilisation">SENSIBILISATION</NavLink>
           </button>
           <button type="button" className="home-buttons actu">
-            <NavLink to="/actualités">ACTUALITÉS</NavLink>
+            <NavLink to="/actualites">ACTUALITÉS</NavLink>
           </button>
           <button type="button" className="home-buttons contact">
-            CONTACTEZ-NOUS
+            <NavLink to="/contact">CONTACTEZ-NOUS</NavLink>
           </button>
         </section>
       </div>

@@ -9,7 +9,7 @@
   border-radius: 15px;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -15px;
 }
 
 .nav li {

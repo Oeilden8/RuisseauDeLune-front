@@ -18,10 +18,10 @@ $eurelien: brown;
 //   font-size: 28px;
 // }
 
-* {
-  margin: 0;
-  padding: 0;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+// }
 
 .Footer {
   // probleme pour l'instant le footer chevauche parfois le body
@@ -48,16 +48,20 @@ $eurelien: brown;
 
   .button_share {
     // width: 200px;
-    text-align: center;
     // line-height: 80px;
     display: inline-block;
-    font-weight: 700;
-    text-transform: uppercase;
+    // font-weight: 700;
+    // text-transform: uppercase;
     position: absolute;
+    margin: 25px 25px 25px 25px;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
-    // pointer-events: none;
+    pointer-events: none;
   }
+
+  // .footer_a:hover {
+  //   background-image: url(/home/sidney/projets/p3/front/public/caf.png) no-repeat;
+  // }
 
   // .nav_footer {
   //   font-size: 0;
@@ -69,16 +73,15 @@ $eurelien: brown;
     display: inline-block;
     background-color: $buttonColor;
     color: $buttonColor;
-    overflow: hidden;
+    // overflow: hidden;
     opacity: 1;
     transition: all 0.3s ease-in-out;
     margin: 0 -40px;
     box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
 
     &:nth-child(1) {
-      // border-top-left-radius: 80px;
-      // border-bottom-left-radius: 80px;
-      // margin-left: 0;
+      border-radius: 80px;
+      margin-left: 0;
 
       &:hover {
         background-color: $caf;
@@ -106,9 +109,7 @@ $eurelien: brown;
     }
 
     &:nth-child(7) {
-      // border-top-right-radius: 40px;
-      // border-bottom-right-radius: 40px;
-      // margin-right: 0;
+      margin-right: 0;
 
       &:hover {
         background-color: $eurelien;

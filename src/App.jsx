@@ -16,10 +16,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="actualites" element={<News />} />
         <Route path="ateliers" element={<Workshop />} />
         <Route path="spectacles" element={<Shows />} />
         <Route path="sensibilisation" element={<Sensibilisation />} />
-        <Route path="actualités" element={<News />} />
         <Route path="contact" element={<Contact />} />
         <Route path="admin" element={<Admin />} />
         <Route path="login" element={<Login />} />

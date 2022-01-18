@@ -1,7 +1,6 @@
 .pictures_show {
-  width: 45vw;
+  max-width: 80%;
   border-radius: 15px;
-  overflow: auto;
 }
 
 .text_show {

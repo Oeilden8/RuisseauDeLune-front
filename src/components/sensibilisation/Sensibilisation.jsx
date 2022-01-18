@@ -5,7 +5,7 @@ function Sensibilisation() {
   return (
     <div className="Sensibilisation">
       <h2 className="titre">SENSIBILISATION</h2>
-      <div className="introSens">
+      <div className="intro">
         <p>
           Nous proposons aux professionnels de la Petite Enfance, ou du domaine
           artistique une sensibilisation à l&#39;apport de l&#39;Art et de la
