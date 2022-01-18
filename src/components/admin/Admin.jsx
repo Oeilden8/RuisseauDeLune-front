@@ -1,8 +1,38 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './Admin.css';
 
 function Admin({ adminId }) {
   const [type, setType] = useState('atelier');
+  const [admins, setAdmins] = useState([]);
+  const [adminDelete, setAdminDelete] = useState();
+  const [alertDelete, setAlertDelete] = useState(false);
+
+  // get all admins
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/admins`)
+      .then((resp) => {
+        console.log(resp.data);
+        return setAdmins(resp.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleDeleteAdmin = async () => {
+    try {
+      await axios
+        .delete(
+          `${process.env.REACT_APP_BACKEND_URL}/api/admins/${adminDelete}`
+        )
+        .then((resp) => {
+          console.log(resp);
+        });
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <div>
       {/* partie gestion admin */}
@@ -21,21 +51,61 @@ function Admin({ adminId }) {
           </button>
         </form>
 
-        {/* liste admin */}
-        <div className="admin-container">
-          <section className="admin-list">
-            Mail
-            <button className="button-admin" type="button">
-              SUPPRIMER
-            </button>
-          </section>
-          <section className="admin-list">
-            Mail 2
-            <button className="button-admin" type="button">
-              SUPPRIMER
-            </button>
-          </section>
-        </div>
+        {/* pop up alerte suppression */}
+        {alertDelete ? (
+          <div className="delete">
+            <section className="delete-alert">
+              Voulez vous supprimer cet admin?
+              <button
+                type="button"
+                className="button-add"
+                onClick={handleDeleteAdmin}
+              >
+                VALIDER
+              </button>
+              <button
+                type="button"
+                className="button-add"
+                onClick={() => {
+                  setAlertDelete(false);
+                }}
+              >
+                ANNULER
+              </button>
+            </section>
+          </div>
+        ) : null}
+
+        {/* liste admin recupérée avec axios et décomposée avec .map */}
+        {admins.map((admin) => (
+          <div className="admin-container">
+            <section className="admin-list">
+              {admin.email}
+              {/* si admin id recupérée par axios = adminID recupérée lors du login pas de bouton supprimer (car c'est l'admin actif) */}
+              {admin.id === adminId ? (
+                <p>Vous êtes connecté</p>
+              ) : (
+                <button
+                  className="button-admin"
+                  type="button"
+                  onClick={() => {
+                    setAdminDelete(admin.id);
+                    console.log(`idAdmin recupérée ${adminDelete}`);
+                    setAlertDelete(true);
+                  }}
+                >
+                  SUPPRIMER
+                </button>
+              )}
+            </section>
+            {/* <section className="admin-list">
+              Mail 2
+              <button className="button-admin" type="button">
+                SUPPRIMER
+              </button>
+            </section> */}
+          </div>
+        ))}
       </div>
 
       {/* partie ajouter articles */}
@@ -44,13 +114,13 @@ function Admin({ adminId }) {
         <form className="add-form">
           <label htmlFor="select-type">
             <select name="type">
-              <option value={type} onClick={(e) => setType('atelier')}>
+              <option value={type} onClick={() => setType('atelier')}>
                 ATELIER
               </option>
-              <option value={type} onClick={(e) => setType('spectacle')}>
+              <option value={type} onClick={() => setType('spectacle')}>
                 SPECTACLE
               </option>
-              <option value={type} onClick={(e) => setType('news')}>
+              <option value={type} onClick={() => setType('news')}>
                 ACTUALITE
               </option>
             </select>
