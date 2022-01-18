@@ -1,0 +1,174 @@
+/* container partie admin */
+.Admin {
+  display: flex;
+  flex-flow: wrap;
+  width: 100vw;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* formulaire nouvel admin */
+.new-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  width: 250px;
+  height: 220px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.new-admin input {
+  width: 180px;
+  height: 40px;
+  font-family: 'Itim', sans-serif;
+  border-radius: 25px;
+  border-style: none;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+/* container liste admins */
+.admin-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.admin-list {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 180px;
+  height: 100px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+.button-admin {
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  font-family: 'Itim', sans-serif;
+  color: white;
+  width: 100px;
+  height: 30px;
+  border-style: none;
+  margin: 0;
+  padding: 5px;
+}
+
+/* container formulaire ajout */
+.add-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px auto 0px auto;
+  width: 85vw;
+  height: 720px;
+  max-width: 800px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.add-form input {
+  width: 70vw;
+  max-width: 750px;
+  height: 40px;
+  font-family: 'Itim', sans-serif;
+  border-radius: 25px;
+  border-style: none;
+  margin-top: 20px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.add-form textarea {
+  width: 70vw;
+  max-width: 750px;
+  height: 50vh;
+  max-height: 350px;
+  font-family: 'Itim', sans-serif;
+  border-radius: 25px;
+  border-style: none;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+/* partie dates */
+
+.dates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 70vw;
+  max-width: 750px;
+}
+
+.dates input {
+  width: 120px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* partie ajout image */
+.add-form p {
+  text-align: left;
+  width: 70vw;
+  max-width: 750px;
+}
+
+.add-form select {
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  font-family: 'Itim', sans-serif;
+  color: white;
+  width: 130px;
+  height: 30px;
+  border-style: none;
+  margin: 0;
+  padding: 5px;
+}
+
+.add-assets {
+  display: flex;
+  width: 70vw;
+  max-width: 750px;
+  justify-content: space-between;
+}
+
+.button-add {
+  background-color: var(--grey-color);
+  border-radius: 25px;
+  font-family: 'Itim', sans-serif;
+  color: white;
+  width: 130px;
+  height: 40px;
+  border-style: none;
+  margin: 0;
+  padding: 5px;
+}

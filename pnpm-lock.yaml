@@ -8,6 +8,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.14.1
   '@testing-library/react': ^12.1.2
   '@testing-library/user-event': ^13.3.0
+  axios: ^0.24.0
   eslint: ^7.32.0
   eslint-config-airbnb: ^18.2.1
   eslint-config-prettier: ^8.3.0
@@ -33,6 +34,7 @@ dependencies:
   '@testing-library/jest-dom': 5.16.1
   '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
   '@testing-library/user-event': 13.5.0
+  axios: 0.24.0
   nodemon: 2.0.15
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -2998,6 +3000,14 @@ packages:
   /axe-core/4.3.5:
     resolution: {integrity: sha512-WKTW1+xAzhMS5dJsxWkliixlO/PqC4VhmO9T4juNYcaTg9jzWiJsou6m5pxWYGfigWbwzJWeFY6z47a+4neRXA==}
     engines: {node: '>=4'}
+
+  /axios/0.24.0:
+    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
+    dependencies:
+      follow-redirects: 1.14.6_debug@4.3.3
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /axobject-query/2.2.0:
     resolution: {integrity: sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==}
