@@ -41,7 +41,7 @@ function BurgerContent({ handleClick }) {
         </li>
         <li>
           <NavLink
-            to="/actualités"
+            to="/actualites"
             className="navLink-burgerMenu"
             onClick={handleClick}
           >

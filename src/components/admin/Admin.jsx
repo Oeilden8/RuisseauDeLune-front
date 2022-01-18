@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './Admin.css';
 
-function Admin({ adminId }) {
+function Admin({ adminId, news, setNews, event, setEvent }) {
   // type d'evenements
   const [type, setType] = useState('atelier');
   // get admins
   const [admins, setAdmins] = useState([]);
+  // get assets
+  const [assets, setAssets] = useState([]);
   // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
   // popup alerte suppression
@@ -18,6 +20,7 @@ function Admin({ adminId }) {
   });
   // message de confirmation pour delete-create
   const [status, setStatus] = useState('');
+  const [assetId, setAssetId] = useState();
 
   // get all admins
   const getAdmins = () => {
@@ -30,8 +33,19 @@ function Admin({ adminId }) {
       .catch((err) => console.log(err.response.data));
   };
 
+  // get all assets
+  const getAllAssets = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/assets`)
+      .then((resp) => {
+        console.log(resp.data);
+        return setAssets(resp.data);
+      });
+  };
+
   useEffect(() => {
     getAdmins();
+    getAllAssets();
   }, []);
 
   // delete one admin => penser a ajouter le withcredentials pour obtenir req.cookies dans le back à chaque requete admin
@@ -185,13 +199,32 @@ function Admin({ adminId }) {
             </select>
           </label>
           <label htmlFor="title">
-            <input type="text" placeholder="TITRE" />
+            {/* suivant le type selectionné on envoie les infos dans des state différents */}
+            <input
+              type="text"
+              placeholder="TITRE"
+              value={type === 'news' ? news.title : event.title}
+              onChange={
+                type === 'news'
+                  ? (e) => setNews({ ...news, title: e.target.value })
+                  : (e) => setEvent({ ...event, title: e.target.value })
+              }
+            />
           </label>
 
           {/* le formulaire change suivant le type selectionné plus haut */}
           {type === 'spectacle' || type === 'news' ? (
             <label htmlFor="places">
-              <input type="text" placeholder="LIEU" />
+              <input
+                type="text"
+                placeholder="LIEU"
+                value={type === 'news' ? news.places : event.places}
+                onChange={
+                  type === 'news'
+                    ? (e) => setNews({ ...news, places: e.target.value })
+                    : (e) => setEvent({ ...event, places: e.target.value })
+                }
+              />
             </label>
           ) : null}
 
@@ -199,17 +232,38 @@ function Admin({ adminId }) {
             <section className="dates">
               <label htmlFor="date-first">
                 DATE DE DEBUT :
-                <input type="date" />
+                <input
+                  type="date"
+                  value={news.date_first}
+                  onChange={(e) =>
+                    setNews({ ...news, date_first: e.target.value })
+                  }
+                />
               </label>
               <label htmlFor="date-last">
                 DATE DE FIN :
-                <input type="date" />
+                <input
+                  type="date"
+                  value={news.date_last}
+                  onChange={(e) =>
+                    setNews({ ...news, date_last: e.target.value })
+                  }
+                />
               </label>
             </section>
           ) : null}
 
           <label htmlFor="description">
-            <textarea name="description" placeholder="DESCRIPTION" />
+            <textarea
+              name="description"
+              placeholder="DESCRIPTION"
+              value={type === 'news' ? news.description : event.description}
+              onChange={
+                type === 'news'
+                  ? (e) => setNews({ ...news, description: e.target.value })
+                  : (e) => setEvent({ ...event, description: e.target.value })
+              }
+            />
           </label>
           <p>Ajouter une image ou une vidéo</p>
           <section className="add-assets">
@@ -218,9 +272,11 @@ function Admin({ adminId }) {
             </button>
             <label htmlFor="select-asset">
               <select name="asset">
-                <option value="asset1">IMAGE</option>
-                <option value="asset2">Image2</option>
-                <option value="asset3">Vidéo</option>
+                {assets.map((asset) => (
+                  <option value={asset.id} onClick={() => setAssetId(asset.id)}>
+                    {asset.source}
+                  </option>
+                ))}
               </select>
             </label>
           </section>
