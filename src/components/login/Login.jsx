@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
-function Login(props) {
-  const { adminID, setAdminID } = props;
+function Login({ adminID, setAdminID }) {
   const navigate = useNavigate();
   // state avec un objet prédéfini
   const [login, setLogin] = useState({
@@ -20,7 +19,6 @@ function Login(props) {
     } else if (!login.password) {
       alert('Veuillez remplir le champ mot de passe');
     } else {
-      console.log(login);
       try {
         await axios
           .post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, login, {
@@ -35,8 +33,8 @@ function Login(props) {
             navigate('../admin', { replace: true });
           });
       } catch (err) {
-        console.log(err.message);
-        // alert('Veuillez fournir un email et un mot de passe valide');
+        console.log(err.response.data);
+        alert(err.response.data);
       }
     }
     // .then useNavigate

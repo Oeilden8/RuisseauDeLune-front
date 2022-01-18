@@ -3,33 +3,86 @@ import React, { useState, useEffect } from 'react';
 import './Admin.css';
 
 function Admin({ adminId }) {
+  // type d'evenements
   const [type, setType] = useState('atelier');
+  // get admins
   const [admins, setAdmins] = useState([]);
+  // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
+  // popup alerte suppression
   const [alertDelete, setAlertDelete] = useState(false);
+  // state formulaire create admin
+  const [newAdmin, setNewAdmin] = useState({
+    email: '',
+    password: '',
+  });
+  // message de confirmation pour delete-create
+  const [status, setStatus] = useState('');
 
   // get all admins
-  useEffect(() => {
+  const getAdmins = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/admins`)
       .then((resp) => {
         console.log(resp.data);
         return setAdmins(resp.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response.data));
+  };
+
+  useEffect(() => {
+    getAdmins();
   }, []);
 
+  // delete one admin => penser a ajouter le withcredentials pour obtenir req.cookies dans le back à chaque requete admin
   const handleDeleteAdmin = async () => {
-    try {
-      await axios
-        .delete(
-          `${process.env.REACT_APP_BACKEND_URL}/api/admins/${adminDelete}`
-        )
-        .then((resp) => {
-          console.log(resp);
-        });
-    } catch (err) {
-      console.log(err.message);
+    // si admin.id recupérée par axios.get = adminId recupérée lors du login pas supprimer (car c'est l'admin actif)
+    if (adminDelete.id === adminId) {
+      alert(
+        "Vous ne pouvez pas supprimer l'administrateur actuellement connecté"
+      );
+    } else {
+      try {
+        await axios
+          .delete(
+            `${process.env.REACT_APP_BACKEND_URL}/api/admins/${adminDelete}`,
+            {
+              withCredentials: true,
+            }
+          )
+          .then((resp) => {
+            console.log(resp);
+            setAlertDelete(false);
+            getAdmins();
+            setStatus('Admin supprimé');
+          });
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+  };
+
+  // create admin
+  const handleNewAdminSubmit = async (e) => {
+    e.preventDefault();
+    if (!newAdmin.email) {
+      alert('Veuillez remplir le champ mail');
+    } else if (!newAdmin.password) {
+      alert('Veuillez remplir le champ mot de passe');
+    } else {
+      try {
+        await axios
+          .post(`${process.env.REACT_APP_BACKEND_URL}/api/admins`, newAdmin, {
+            withCredentials: true,
+          })
+          .then((resp) => {
+            console.log(resp);
+            getAdmins();
+            setStatus('Admin créé');
+          });
+      } catch (err) {
+        console.log(err.response.data);
+      }
     }
   };
 
@@ -37,14 +90,31 @@ function Admin({ adminId }) {
     <div>
       {/* partie gestion admin */}
       <h2>Administrateurs</h2>
+      {status ? <h3>{status}</h3> : null}
       <div className="Admin">
-        <form className="new-admin">
+        {/* formulaire create admin */}
+        <form className="new-admin" onSubmit={handleNewAdminSubmit}>
           Créer un nouveau
           <label htmlFor="email">
-            <input type="email" placeholder="MAIL" />
+            <input
+              type="email"
+              placeholder="MAIL"
+              value={newAdmin.email}
+              // on rempli uniquement la valeur email en destructurant newAdmin
+              onChange={(e) =>
+                setNewAdmin({ ...newAdmin, email: e.target.value })
+              }
+            />
           </label>
           <label htmlFor="password">
-            <input type="password" placeholder="MOT DE PASSE" />
+            <input
+              type="password"
+              placeholder="MOT DE PASSE"
+              value={newAdmin.password}
+              onChange={(e) =>
+                setNewAdmin({ ...newAdmin, password: e.target.value })
+              }
+            />
           </label>
           <button type="submit" className="button-add">
             VALIDER
@@ -81,29 +151,18 @@ function Admin({ adminId }) {
           <div className="admin-container">
             <section className="admin-list">
               {admin.email}
-              {/* si admin id recupérée par axios = adminID recupérée lors du login pas de bouton supprimer (car c'est l'admin actif) */}
-              {admin.id === adminId ? (
-                <p>Vous êtes connecté</p>
-              ) : (
-                <button
-                  className="button-admin"
-                  type="button"
-                  onClick={() => {
-                    setAdminDelete(admin.id);
-                    console.log(`idAdmin recupérée ${adminDelete}`);
-                    setAlertDelete(true);
-                  }}
-                >
-                  SUPPRIMER
-                </button>
-              )}
-            </section>
-            {/* <section className="admin-list">
-              Mail 2
-              <button className="button-admin" type="button">
+              <button
+                className="button-admin"
+                type="button"
+                onClick={() => {
+                  setAdminDelete(admin.id);
+                  console.log(`idAdmin recupérée ${adminDelete}`);
+                  setAlertDelete(true);
+                }}
+              >
                 SUPPRIMER
               </button>
-            </section> */}
+            </section>
           </div>
         ))}
       </div>
