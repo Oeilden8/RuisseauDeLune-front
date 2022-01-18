@@ -7,13 +7,15 @@ function Workshop({ adminID }) {
   return (
     <div className="Workshop">
       <h2>ATELIERS</h2>
-      <p>
-        La musique et le livre sont deux supports qui favorisent le langage, la
-        communication, la socialisation, la concentration, l&#39;imaginaire et
-        la créativité. <br /> <br /> Nous animons les séances avant tout par le
-        jeu, la liberté d&#39;expression, d&#39;exploration.
-        <br /> <br /> Ce sont des moments de plaisir partagé.
-      </p>
+      <div className="intro">
+        <p>
+          La musique et le livre sont deux supports qui favorisent le langage,
+          la communication, la socialisation, la concentration, l&#39;imaginaire
+          et la créativité. <br /> <br /> Nous animons les séances avant tout
+          par le jeu, la liberté d&#39;expression, d&#39;exploration.
+          <br /> <br /> Ce sont des moments de plaisir partagé.
+        </p>
+      </div>
       <div className="rectangle">
         <h3>Éveil Musical</h3>
         <hr />

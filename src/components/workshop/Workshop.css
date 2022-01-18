@@ -1,10 +1,10 @@
 .pictures_workshop {
-  width: 30vw;
+  max-width: 60%;
   border-radius: 15px;
 }
 
 .text_workshop {
-  padding: 15px;
+  padding: 5px;
 }
 
 hr {

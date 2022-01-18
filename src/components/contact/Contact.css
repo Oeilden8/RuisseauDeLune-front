@@ -1,33 +1,38 @@
+.Contact h2 {
+  margin: 0;
+}
+
 .presentation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .presentation p {
   text-align: start;
-  margin: 10px;
 }
+
 .picture {
-  margin: 5px;
-  width: 35vw;
+  margin: 8px;
+  height: 15vh;
   border-radius: 15px;
 }
 
-.Martine {
-  color: var(--purple-color);
-}
-
 .mail {
+  display: flex;
+  align-items: center;
+  margin: 0;
   color: var(--grey-color);
 }
 
-.rectangle {
-  margin: 25px;
-  padding: 15px;
-  background: linear-gradient(
-    91.93deg,
-    rgba(243, 172, 244, 0.7) 7.44%,
-    rgba(181, 215, 248, 0.7) 94.63%
-  );
-  border-radius: 25px;
+@media screen and (min-width: 768px) {
+  .picture {
+    height: 18vh;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .picture {
+    height: 25vh;
+  }
 }

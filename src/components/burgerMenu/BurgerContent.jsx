@@ -14,6 +14,15 @@ function BurgerContent({ handleClick }) {
         </li>
         <li>
           <NavLink
+            to="/actualites"
+            className="navLink-burgerMenu"
+            onClick={handleClick}
+          >
+            Actualités
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/ateliers"
             className="navLink-burgerMenu"
             onClick={handleClick}
@@ -39,15 +48,7 @@ function BurgerContent({ handleClick }) {
             Sensibilisation
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/actualités"
-            className="navLink-burgerMenu"
-            onClick={handleClick}
-          >
-            Actualités
-          </NavLink>
-        </li>
+
         <li>
           <NavLink
             to="/contact"
