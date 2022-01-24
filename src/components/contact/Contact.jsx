@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from '../../context/context';
 import './Contact.css';
 import Bruno from '../../assets/Contact/Bruno.jpeg';
 import Martine from '../../assets/Contact/Martine.jpeg';
 
 function Contact() {
+  const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
+  console.log(adminID, setAlert, setAlertMsg);
+
   return (
     <div className="Contact">
       <h2>CONTACTS</h2>

@@ -1,16 +1,11 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import GlobalContext from '../../context/context';
 import './Admin.css';
 
-function Admin({
-  adminID,
-  news,
-  setNews,
-  event,
-  setEvent,
-  setAlertMsg,
-  setAlert,
-}) {
+function Admin() {
+  const { adminID, news, setNews, event, setEvent, setAlertMsg, setAlert } =
+    useContext(GlobalContext);
   // type d'evenements
   const [type, setType] = useState('atelier');
   // get admins

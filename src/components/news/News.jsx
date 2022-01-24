@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from '../../context/context';
 import './News.css';
 import kamishibai from '../../assets/Atelier-litterature-jeunesse/kamishibai.jpg';
 import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
 
 function News() {
+  const { adminID, news, setNews, setAlert, setAlertMsg } =
+    useContext(GlobalContext);
+  console.log(adminID, news, setNews, setAlert, setAlertMsg);
+
   return (
     <div className="News">
       <h2>ACTUALITÉS</h2>

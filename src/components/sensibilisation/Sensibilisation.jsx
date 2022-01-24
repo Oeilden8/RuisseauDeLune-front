@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from '../../context/context';
 import './Sensibilisation.css';
 
 function Sensibilisation() {
+  const { adminID } = useContext(GlobalContext);
+  console.log(adminID);
+
   return (
     <div className="Sensibilisation">
       <h2 className="titre">SENSIBILISATION</h2>

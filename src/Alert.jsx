@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from './context/context';
 import './index.css';
 
-function Alert(props) {
-  const { alertMsg, setAlert } = props;
+function Alert() {
+  const { alertMsg, setAlert } = useContext(GlobalContext);
   const handleAlert = () => {
     setAlert(false);
   };

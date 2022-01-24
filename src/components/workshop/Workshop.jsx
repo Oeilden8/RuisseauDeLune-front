@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from '../../context/context';
 import './Workshop.css';
 import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
 import kamishibai from '../../assets/Atelier-litterature-jeunesse/kamishibai.jpg';
 
-function Workshop({ adminID }) {
+function Workshop() {
+  // const { adminID, event, setEvent, setAlert, setAlertMsg } = useContext(GlobalContext);
+  const { adminID } = useContext(GlobalContext);
+
   return (
     <div className="Workshop">
       <h2>ATELIERS</h2>

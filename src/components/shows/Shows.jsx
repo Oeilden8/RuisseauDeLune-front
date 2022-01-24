@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from '../../context/context';
 import './Shows.css';
 import ribambelle from '../../assets/Spectacle/Ribambelle.jpg';
 
 function Shows() {
+  const { adminID, event, setEvent, setAlert, setAlertMsg } =
+    useContext(GlobalContext);
+  console.log(adminID, event, setEvent, setAlert, setAlertMsg);
   return (
     <div className="Shows">
       <h2>SPECTACLES</h2>
