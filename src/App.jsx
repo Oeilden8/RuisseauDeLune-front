@@ -10,29 +10,111 @@ import Login from './components/login/Login';
 import News from './components/news/News';
 import Shows from './components/shows/Shows';
 import Workshop from './components/workshop/Workshop';
+import Alert from './Alert';
 
 function App() {
   // on crée le state qui recupère l'admin ID si elle existe et on le passe a tous les composants qui ont un accès admin
   const [adminID, setAdminID] = useState();
+  // state pour l'ouverture des alertes et le message
+  const [alert, setAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState(
+    'Oups... Un message dalerte doit safficher'
+  );
+  // state formulaire evenements
+  const [event, setEvent] = useState({
+    title: '',
+    places: '',
+    description: '',
+    asset_id: '',
+  });
+  // state formulaire si type actu
+  const [news, setNews] = useState({
+    title: '',
+    places: '',
+    date_first: '',
+    date_last: '',
+    description: '',
+    asset_id: '',
+  });
+
   return (
     <div className="App">
       <Header />
+      {alert ? <Alert alertMsg={alertMsg} setAlert={setAlert} /> : null}
+      {/* <Alert alertMsg={alertMsg} setAlert={setAlert} /> */}
       <Routes>
         <Route path="/" element={<Home adminID={adminID} />} />
-        <Route path="ateliers" element={<Workshop adminID={adminID} />} />
-        <Route path="spectacles" element={<Shows adminID={adminID} />} />
+        <Route
+          path="ateliers"
+          element={
+            <Workshop
+              adminID={adminID}
+              event={event}
+              setEvent={setEvent}
+              alert={alert}
+              setAlert={setAlert}
+            />
+          }
+        />
+        <Route
+          path="spectacles"
+          element={
+            <Shows
+              adminID={adminID}
+              event={event}
+              setEvent={setEvent}
+              alert={alert}
+              setAlert={setAlert}
+            />
+          }
+        />
         <Route
           path="sensibilisation"
           element={<Sensibilisation adminID={adminID} />}
         />
-        <Route path="actualités" element={<News adminID={adminID} />} />
-        <Route path="contact" element={<Contact adminID={adminID} />} />
+        <Route
+          path="actualites"
+          element={
+            <News
+              adminID={adminID}
+              news={news}
+              setNews={setNews}
+              alert={alert}
+              setAlert={setAlert}
+            />
+          }
+        />
+        <Route
+          path="contact"
+          element={
+            <Contact adminID={adminID} alert={alert} setAlert={setAlert} />
+          }
+        />
 
         {/* pour le moment admin accessible sans login pendant le developpement */}
-        <Route path="admin" element={<Admin adminID={adminID} />} />
+        <Route
+          path="admin"
+          element={
+            <Admin
+              adminID={adminID}
+              event={event}
+              setEvent={setEvent}
+              news={news}
+              setNews={setNews}
+              alert={alert}
+              setAlert={setAlert}
+              setAlertMsg={setAlertMsg}
+            />
+          }
+        />
         {/* si adminId existe tu peux monter le composant admin */}
         {/* {adminID ? (
-          <Route path="admin" element={<Admin adminID={adminID} />} />
+          <Route path="admin" element={<Admin adminID={adminID} event={event}
+              setEvent={setEvent}
+              news={news}
+              setNews={setNews}/>}
+              alert={alert}
+              setAlert={setAlert} />
         ) : (
           <Route
             path="admin"
@@ -46,7 +128,14 @@ function App() {
         )} */}
         <Route
           path="login"
-          element={<Login adminID={adminID} setAdminID={setAdminID} />}
+          element={
+            <Login
+              adminID={adminID}
+              setAdminID={setAdminID}
+              alert={alert}
+              setAlert={setAlert}
+            />
+          }
         />
       </Routes>
       <Footer />
