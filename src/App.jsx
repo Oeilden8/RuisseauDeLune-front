@@ -43,17 +43,7 @@ function App() {
             }
           />
         )} */}
-        <Route
-          path="login"
-          element={
-            <Login
-              adminID={adminID}
-              setAdminID={setAdminID}
-              alert={alert}
-              setAlert={setAlert}
-            />
-          }
-        />
+        <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
     </div>

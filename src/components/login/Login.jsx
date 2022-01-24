@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import GlobalContext from '../../context/context';
 import './Login.css';
 
-function Login({ adminID, setAdminID }) {
+function Login() {
+  const { adminID, setAdminID, setAlert, setAlertMsg } =
+    useContext(GlobalContext);
   const navigate = useNavigate();
   // state avec un objet prédéfini
   const [login, setLogin] = useState({
@@ -15,9 +18,11 @@ function Login({ adminID, setAdminID }) {
     e.preventDefault();
     // on vérifie que les champs sont remplis
     if (!login.email) {
-      alert('Veuillez remplir le champ mail');
+      setAlertMsg('Veuillez remplir le champ mail');
+      setAlert(true);
     } else if (!login.password) {
-      alert('Veuillez remplir le champ mot de passe');
+      setAlertMsg('Veuillez remplir le champ mot de passe');
+      setAlert(true);
     } else {
       try {
         await axios
