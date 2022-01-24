@@ -4,10 +4,18 @@ import GlobalContext from '../../context/context';
 import './Admin.css';
 
 function Admin() {
-  const { adminID, news, setNews, event, setEvent, setAlertMsg, setAlert } =
-    useContext(GlobalContext);
-  // type d'evenements
-  const [type, setType] = useState('atelier');
+  const {
+    adminID,
+    news,
+    setNews,
+    event,
+    setEvent,
+    setAlertMsg,
+    setAlert,
+    eventType,
+    setEventType,
+  } = useContext(GlobalContext);
+
   // get admins
   const [admins, setAdmins] = useState([]);
   // get assets
@@ -23,7 +31,7 @@ function Admin() {
   });
   // message de confirmation pour delete-create
   const [status, setStatus] = useState('');
-  const [assetId, setAssetId] = useState();
+  // const [assetId, setAssetId] = useState();
 
   // get all admins
   const getAdmins = () => {
@@ -42,7 +50,6 @@ function Admin() {
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/assets`)
       .then((resp) => {
         console.log(resp.data);
-        console.log(assetId);
         return setAssets(resp.data);
       });
   };
@@ -56,9 +63,10 @@ function Admin() {
   const handleDeleteAdmin = async () => {
     // si admin.id recupérée par axios.get = adminId recupérée lors du login pas supprimer (car c'est l'admin actif)
     if (adminDelete === adminID) {
-      alert(
+      setAlertMsg(
         "Vous ne pouvez pas supprimer l'administrateur actuellement connecté"
       );
+      setAlert(true);
     } else {
       try {
         await axios
@@ -86,9 +94,9 @@ function Admin() {
     if (!newAdmin.email) {
       setAlertMsg('Veuillez remplir le champ mail');
       setAlert(true);
-      // alert('Veuillez remplir le champ mail');
     } else if (!newAdmin.password) {
-      alert('Veuillez remplir le champ mot de passe');
+      setAlertMsg('Veuillez remplir le champ mot de passe');
+      setAlert(true);
     } else {
       try {
         await axios
@@ -102,6 +110,59 @@ function Admin() {
           });
       } catch (err) {
         console.log(err.response.data);
+        setStatus('Erreur lors de la création de Admin');
+      }
+    }
+  };
+
+  // create event
+  const handleEventSubmit = async (e) => {
+    e.preventDefault();
+    console.log(eventType);
+    setEvent({ ...event, type: eventType });
+    console.log(event);
+    if (!event.title) {
+      setAlertMsg("Veuillez fournir un titre d'évènement");
+      setAlert(true);
+    } else if (eventType !== 'spectacle' && eventType !== 'atelier') {
+      setAlertMsg("Le type d'évènement n'est pas bien renseigné");
+      setAlert(true);
+    } else {
+      try {
+        await axios
+          .post(`${process.env.REACT_APP_BACKEND_URL}/api/events`, event, {
+            withCredentials: true,
+          })
+          .then((resp) => {
+            console.log(resp);
+            setStatus('Evènement créé');
+          });
+      } catch (err) {
+        console.log(err.response.data);
+        setStatus('Erreur lors de la création de évènement');
+      }
+    }
+  };
+
+  const handleNewsSubmit = async (e) => {
+    e.preventDefault();
+    console.log(news);
+    if (!news.title) {
+      setAlertMsg("Veuillez fournir un titre d'évènement");
+      setAlert(true);
+    } else {
+      try {
+        await axios
+          .post(`${process.env.REACT_APP_BACKEND_URL}/api/news`, news, {
+            withCredentials: true,
+          })
+          .then((resp) => {
+            console.log(resp);
+            setStatus('Actualité créée');
+          });
+      } catch (err) {
+        console.log(err.response.data);
+        setStatus('Erreur lors de la création de évènement');
       }
     }
   };
@@ -190,16 +251,23 @@ function Admin() {
       {/* partie ajouter articles */}
       <h2>AJOUTER</h2>
       <div>
-        <form className="add-form">
+        {/* si le type est news on fait la fonction post news, sinon on fait la fonction post event */}
+        <form
+          className="add-form"
+          onSubmit={eventType === 'news' ? handleNewsSubmit : handleEventSubmit}
+        >
           <label htmlFor="select-type">
             <select name="type">
-              <option value={type} onClick={() => setType('atelier')}>
+              <option value={eventType} onClick={() => setEventType('atelier')}>
                 ATELIER
               </option>
-              <option value={type} onClick={() => setType('spectacle')}>
+              <option
+                value={eventType}
+                onClick={() => setEventType('spectacle')}
+              >
                 SPECTACLE
               </option>
-              <option value={type} onClick={() => setType('news')}>
+              <option value={eventType} onClick={() => setEventType('news')}>
                 ACTUALITE
               </option>
             </select>
@@ -209,9 +277,9 @@ function Admin() {
             <input
               type="text"
               placeholder="TITRE"
-              value={type === 'news' ? news.title : event.title}
+              value={eventType === 'news' ? news.title : event.title}
               onChange={
-                type === 'news'
+                eventType === 'news'
                   ? (e) => setNews({ ...news, title: e.target.value })
                   : (e) => setEvent({ ...event, title: e.target.value })
               }
@@ -219,14 +287,14 @@ function Admin() {
           </label>
 
           {/* le formulaire change suivant le type selectionné plus haut */}
-          {type === 'spectacle' || type === 'news' ? (
+          {eventType === 'spectacle' || eventType === 'news' ? (
             <label htmlFor="places">
               <input
                 type="text"
                 placeholder="LIEU"
-                value={type === 'news' ? news.places : event.places}
+                value={eventType === 'news' ? news.places : event.places}
                 onChange={
-                  type === 'news'
+                  eventType === 'news'
                     ? (e) => setNews({ ...news, places: e.target.value })
                     : (e) => setEvent({ ...event, places: e.target.value })
                 }
@@ -234,7 +302,7 @@ function Admin() {
             </label>
           ) : null}
 
-          {type === 'news' ? (
+          {eventType === 'news' ? (
             <section className="dates">
               <label htmlFor="date-first">
                 DATE DE DEBUT :
@@ -263,9 +331,11 @@ function Admin() {
             <textarea
               name="description"
               placeholder="DESCRIPTION"
-              value={type === 'news' ? news.description : event.description}
+              value={
+                eventType === 'news' ? news.description : event.description
+              }
               onChange={
-                type === 'news'
+                eventType === 'news'
                   ? (e) => setNews({ ...news, description: e.target.value })
                   : (e) => setEvent({ ...event, description: e.target.value })
               }
@@ -278,8 +348,16 @@ function Admin() {
             </button>
             <label htmlFor="select-asset">
               <select name="asset">
+                <option>Choisir une image</option>
                 {assets.map((asset) => (
-                  <option value={asset.id} onClick={() => setAssetId(asset.id)}>
+                  <option
+                    value={asset.id}
+                    onClick={
+                      eventType === 'news'
+                        ? () => setNews({ ...news, assets_id: asset.id })
+                        : () => setEvent({ ...event, assets_id: asset.id })
+                    }
+                  >
                     {asset.source}
                   </option>
                 ))}

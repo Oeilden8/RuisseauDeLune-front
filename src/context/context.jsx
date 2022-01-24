@@ -16,9 +16,13 @@ export const GlobalContextProvider = ({ children }) => {
     'Oups... Un message dalerte doit safficher'
   );
 
+  // type d'evenements
+  const [eventType, setEventType] = useState('atelier');
+
   // state formulaire evenements
   const [event, setEvent] = useState({
     title: '',
+    type: '',
     places: '',
     description: '',
     asset_id: '',
@@ -31,7 +35,7 @@ export const GlobalContextProvider = ({ children }) => {
     date_first: '',
     date_last: '',
     description: '',
-    asset_id: '',
+    assets_id: '',
   });
 
   return (
@@ -48,6 +52,8 @@ export const GlobalContextProvider = ({ children }) => {
         setEvent,
         news,
         setNews,
+        eventType,
+        setEventType,
       }}
     >
       {children}
