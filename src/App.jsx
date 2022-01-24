@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import GlobalContext from './context/context';
 import Admin from './components/admin/Admin';
 import Contact from './components/contact/Contact';
 import Sensibilisation from './components/sensibilisation/Sensibilisation';
@@ -10,30 +11,28 @@ import Login from './components/login/Login';
 import News from './components/news/News';
 import Shows from './components/shows/Shows';
 import Workshop from './components/workshop/Workshop';
+import Alert from './Alert';
 
 function App() {
-  // on crée le state qui recupère l'admin ID si elle existe et on le passe a tous les composants qui ont un accès admin
-  const [adminID, setAdminID] = useState();
+  const { alert } = useContext(GlobalContext);
+
   return (
     <div className="App">
       <Header />
+      {alert ? <Alert /> : null}
       <Routes>
-        <Route path="/" element={<Home adminID={adminID} />} />
-        <Route path="ateliers" element={<Workshop adminID={adminID} />} />
-        <Route path="spectacles" element={<Shows adminID={adminID} />} />
-        <Route
-          path="sensibilisation"
-          element={<Sensibilisation adminID={adminID} />}
-        />
-        <Route path="actualités" element={<News adminID={adminID} />} />
-        <Route path="contact" element={<Contact adminID={adminID} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="ateliers" element={<Workshop />} />
+        <Route path="spectacles" element={<Shows />} />
+        <Route path="sensibilisation" element={<Sensibilisation />} />
+        <Route path="actualites" element={<News />} />
+        <Route path="contact" element={<Contact />} />
 
         {/* pour le moment admin accessible sans login pendant le developpement */}
-        <Route path="admin" element={<Admin adminID={adminID} />} />
+        <Route path="admin" element={<Admin />} />
         {/* si adminId existe tu peux monter le composant admin */}
         {/* {adminID ? (
-          <Route path="admin" element={<Admin adminID={adminID} />} />
-        ) : (
+          <Route path="admin" element={<Admin /> : (
           <Route
             path="admin"
             element={
@@ -44,10 +43,7 @@ function App() {
             }
           />
         )} */}
-        <Route
-          path="login"
-          element={<Login adminID={adminID} setAdminID={setAdminID} />}
-        />
+        <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
     </div>
