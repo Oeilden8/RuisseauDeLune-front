@@ -1,12 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import GlobalContext from '../../context/context';
-import './Workshop.css';
 import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
 import kamishibai from '../../assets/Atelier-litterature-jeunesse/kamishibai.jpg';
+import './Workshop.css';
 
 function Workshop() {
   // const { adminID, event, setEvent, setAlert, setAlertMsg } = useContext(GlobalContext);
   const { adminID } = useContext(GlobalContext);
+  const [ateliers, setAteliers] = useState([]);
+
+  const getAteliers = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/events/type/atelier`)
+      .then((resp) => {
+        console.log(resp.data);
+        return setAteliers(resp.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getAteliers();
+  }, []);
 
   return (
     <div className="Workshop">
@@ -20,8 +36,9 @@ function Workshop() {
           <br /> <br /> Ce sont des moments de plaisir partagé.
         </p>
       </div>
-      <div className="rectangle">
-        <h3>Éveil Musical</h3>
+      {ateliers.map((atelier) => ( 
+        <div className="rectangle">
+        <h3>{atelier.title}</h3>
         <hr />
         <div className="rectangle_image_description">
           <div className="image_workshop">
@@ -35,8 +52,10 @@ function Workshop() {
               d&#39;aujourd&#39;hui, d&#39;ici et d&#39;ailleurs Jeux musicaux
               corporels.
             </p>
-          </div>
-        </div>
+          </div>         
+        </div> 
+        ))}
+       
         {adminID ? (
           <button className="delete_button" type="button">
             SUPPRIMER
@@ -58,17 +77,11 @@ function Workshop() {
             </p>
           </div>
         </div>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
-      </div>
-      <div className="buttons">
-        <button className="add_button" type="button">
-          AJOUTER
-        </button>
-        <button className="edit_button" type="button">
-          MODIFIER
-        </button>
+        {adminID ? (
+          <button className="delete_button" type="button">
+            SUPPRIMER
+          </button>
+        ) : null}
       </div>
     </div>
   );
