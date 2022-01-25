@@ -19,13 +19,16 @@ export const GlobalContextProvider = ({ children }) => {
   // type d'evenements
   const [eventType, setEventType] = useState('atelier');
 
+  // type d'action ajouter ou modifier
+  const [actionType, setActionType] = useState('ajouter');
+
   // state formulaire evenements
   const [event, setEvent] = useState({
     title: '',
     type: '',
     places: '',
     description: '',
-    asset_id: '',
+    assets_id: '',
   });
 
   // state formulaire si type actu
@@ -54,6 +57,8 @@ export const GlobalContextProvider = ({ children }) => {
         setNews,
         eventType,
         setEventType,
+        actionType,
+        setActionType,
       }}
     >
       {children}

@@ -14,12 +14,18 @@ function Admin() {
     setAlert,
     eventType,
     setEventType,
+    actionType,
+    setActionType,
   } = useContext(GlobalContext);
 
   // get admins
   const [admins, setAdmins] = useState([]);
   // get assets
   const [assets, setAssets] = useState([]);
+  // get events
+  const [eventList, setEventList] = useState([]);
+  // id de l'event à modifier
+  const [updateId, setUpdateId] = useState([]);
   // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
   // popup alerte suppression
@@ -31,14 +37,13 @@ function Admin() {
   });
   // message de confirmation pour delete-create
   const [status, setStatus] = useState('');
-  // const [assetId, setAssetId] = useState();
 
   // get all admins
   const getAdmins = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/admins`)
       .then((resp) => {
-        console.log(resp.data);
+        console.log('admins', resp.data);
         return setAdmins(resp.data);
       })
       .catch((err) => console.log(err.response.data));
@@ -49,15 +54,37 @@ function Admin() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/assets`)
       .then((resp) => {
-        console.log(resp.data);
+        console.log('assets', resp.data);
         return setAssets(resp.data);
       });
+  };
+
+  // get all events by type
+  const getAllEvents = () => {
+    if (eventType === 'news') {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/news`)
+        .then((resp) => {
+          console.log('news', resp.data);
+          return setEventList(resp.data);
+        });
+    } else {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/type/${eventType}`
+        )
+        .then((resp) => {
+          console.log('events', resp.data);
+          return setEventList(resp.data);
+        });
+    }
   };
 
   useEffect(() => {
     getAdmins();
     getAllAssets();
-  }, []);
+    getAllEvents();
+  }, [eventType]);
 
   // delete one admin => penser a ajouter le withcredentials pour obtenir req.cookies dans le back à chaque requete admin
   const handleDeleteAdmin = async () => {
@@ -118,9 +145,8 @@ function Admin() {
   // create event
   const handleEventSubmit = async (e) => {
     e.preventDefault();
-    console.log(eventType);
     setEvent({ ...event, type: eventType });
-    console.log(event);
+    console.log('event', event);
     if (!event.title) {
       setAlertMsg("Veuillez fournir un titre d'évènement");
       setAlert(true);
@@ -134,7 +160,7 @@ function Admin() {
             withCredentials: true,
           })
           .then((resp) => {
-            console.log(resp);
+            console.log('event', resp);
             setStatus('Evènement créé');
           });
       } catch (err) {
@@ -147,23 +173,47 @@ function Admin() {
   const handleNewsSubmit = async (e) => {
     e.preventDefault();
     console.log(news);
-    if (!news.title) {
-      setAlertMsg("Veuillez fournir un titre d'évènement");
-      setAlert(true);
-    } else {
+    if (actionType === 'ajouter') {
+      if (!news.title) {
+        setAlertMsg("Veuillez fournir un titre d'évènement");
+        setAlert(true);
+      } else {
+        try {
+          await axios
+            .post(`${process.env.REACT_APP_BACKEND_URL}/api/news`, news, {
+              withCredentials: true,
+            })
+            .then((resp) => {
+              console.log('news', resp);
+              setStatus('Actualité créée');
+            });
+        } catch (err) {
+          console.log(err.response.data);
+          setStatus('Erreur lors de la création de évènement');
+        }
+      }
+    } else if (actionType === 'modifier') {
+      console.log('update news', news);
       try {
         await axios
-          .post(`${process.env.REACT_APP_BACKEND_URL}/api/news`, news, {
-            withCredentials: true,
-          })
+          .put(
+            `${process.env.REACT_APP_BACKEND_URL}/api/news/${updateId}`,
+            news,
+            {
+              withCredentials: true,
+            }
+          )
           .then((resp) => {
-            console.log(resp);
-            setStatus('Actualité créée');
+            console.log('update', resp);
+            setStatus('Actualité modifiée');
           });
       } catch (err) {
-        console.log(err.response.data);
-        setStatus('Erreur lors de la création de évènement');
+        console.log('update', err.response.data);
+        setStatus('Erreur lors de la modification de évènement');
       }
+    } else {
+      setAlertMsg('Veuillez selectionner ajouter ou modifier');
+      setAlert(true);
     }
   };
 
@@ -171,7 +221,6 @@ function Admin() {
     <div>
       {/* partie gestion admin */}
       <h2>Administrateurs</h2>
-      {status ? <h3>{status}</h3> : null}
       <div className="Admin">
         {/* formulaire create admin */}
         <form className="new-admin" onSubmit={handleNewAdminSubmit}>
@@ -181,7 +230,7 @@ function Admin() {
               type="email"
               placeholder="MAIL"
               value={newAdmin.email}
-              // on rempli uniquement la valeur email en destructurant newAdmin
+              // on rempli uniquement la valeur email en destructurant le state newAdmin
               onChange={(e) =>
                 setNewAdmin({ ...newAdmin, email: e.target.value })
               }
@@ -248,30 +297,74 @@ function Admin() {
         ))}
       </div>
 
+      {/* si le state status est rempli, affiche ce state prévu pour afficher un message d'erreur ou de succès */}
+      {status ? <h5>{status}</h5> : null}
+
       {/* partie ajouter articles */}
-      <h2>AJOUTER</h2>
+      <h2>AJOUTER ou MODIFIER</h2>
       <div>
         {/* si le type est news on fait la fonction post news, sinon on fait la fonction post event */}
         <form
           className="add-form"
           onSubmit={eventType === 'news' ? handleNewsSubmit : handleEventSubmit}
         >
-          <label htmlFor="select-type">
-            <select name="type">
-              <option value={eventType} onClick={() => setEventType('atelier')}>
-                ATELIER
-              </option>
-              <option
-                value={eventType}
-                onClick={() => setEventType('spectacle')}
-              >
-                SPECTACLE
-              </option>
-              <option value={eventType} onClick={() => setEventType('news')}>
-                ACTUALITE
-              </option>
-            </select>
-          </label>
+          {/* les 2 selecteurs : ajout/modif et type d'event */}
+          <section className="selectors">
+            <label htmlFor="select-action">
+              <select name="action">
+                <option
+                  value={actionType}
+                  onClick={() => setActionType('ajouter')}
+                >
+                  AJOUTER
+                </option>
+                <option
+                  value={actionType}
+                  onClick={() => setActionType('modifier')}
+                >
+                  MODIFIER
+                </option>
+              </select>
+            </label>
+            <label htmlFor="select-type">
+              <select name="type">
+                <option
+                  value={eventType}
+                  onClick={() => setEventType('atelier')}
+                >
+                  ATELIER
+                </option>
+                <option
+                  value={eventType}
+                  onClick={() => setEventType('spectacle')}
+                >
+                  SPECTACLE
+                </option>
+                <option value={eventType} onClick={() => setEventType('news')}>
+                  ACTUALITE
+                </option>
+              </select>
+            </label>
+          </section>
+
+          {/* selecteur d'event a modifier présent seulement si action selectionnée "modifier" */}
+          {actionType === 'modifier' ? (
+            <label htmlFor="select-update">
+              <select name="update" id="update">
+                <option>Choisissez un article à modifier</option>
+                {/* on affiche les resultat du getallevent by type dans le selecteur, et on recup l'id de l'event au clic */}
+                {eventList.map((eventPut) => (
+                  <option
+                    value={eventPut.id}
+                    onClick={() => setUpdateId(eventPut.id)}
+                  >
+                    {eventPut.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
+
           <label htmlFor="title">
             {/* suivant le type selectionné on envoie les infos dans des state différents */}
             <input
@@ -358,7 +451,7 @@ function Admin() {
                         : () => setEvent({ ...event, assets_id: asset.id })
                     }
                   >
-                    {asset.source}
+                    {asset.asset_name}
                   </option>
                 ))}
               </select>
