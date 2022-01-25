@@ -9,6 +9,8 @@ function Workshop() {
   // const { adminID, event, setEvent, setAlert, setAlertMsg } = useContext(GlobalContext);
   const { adminID } = useContext(GlobalContext);
   const [ateliers, setAteliers] = useState([]);
+  const [atelierDelete, setAtelierDelete] = useState();
+  const [alertDelete, setAlertDelete] = useState(false);
 
   const getAteliers = () => {
     axios
@@ -24,6 +26,25 @@ function Workshop() {
     getAteliers();
   }, []);
 
+  const handleDeleteAtelier = async () => {
+    try {
+      await axios
+        .delete(
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/type/atelier${atelierDelete}`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((resp) => {
+          console.log(resp);
+          setAlertDelete(false);
+          getAteliers();
+        });
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
   return (
     <div className="Workshop">
       <h2>ATELIERS</h2>
@@ -36,53 +57,68 @@ function Workshop() {
           <br /> <br /> Ce sont des moments de plaisir partagé.
         </p>
       </div>
-      {ateliers.map((atelier) => ( 
-        <div className="rectangle">
-        <h3>{atelier.title}</h3>
-        <hr />
-        <div className="rectangle_image_description">
-          <div className="image_workshop">
-            <img src={guitare} alt="guitare" className="pictures_workshop" />
-          </div>
-          <div className="text_workshop">
-            <p>
-              Exploration musicale grâce à de multiples instruments : Guitare,
-              Balafon, Petites percussions, métallophone, ukulele, harmonica,
-              kazoo etc... Découverte de chansons d&#39;hier et
-              d&#39;aujourd&#39;hui, d&#39;ici et d&#39;ailleurs Jeux musicaux
-              corporels.
-            </p>
-          </div>         
-        </div> 
-        ))}
-       
-        {adminID ? (
-          <button className="delete_button" type="button">
-            SUPPRIMER
-          </button>
-        ) : null}
-      </div>
-      <div className="rectangle">
-        <h3>Autour du livre</h3>
-        <hr />
-        <div className="rectangle_image_description">
-          <div className="image_workshop">
-            <img src={kamishibai} alt="guitare" className="pictures_workshop" />
-          </div>
-          <div className="text_workshop">
-            <p>
-              Mille et une façons de raconter des histoires : kamishibaî,
-              raconte-robe, raconte-tapis, théâtre d&#39;ombres avec de nombreux
-              albums jeunesse.
-            </p>
-          </div>
+
+      {/* pop up alerte suppression */}
+      {alertDelete ? (
+        <div className="delete">
+          <section className="delete-alert">
+            Voulez vous supprimer cet atelier?
+            <button
+              type="button"
+              className="button-add"
+              onClick={handleDeleteAtelier}
+            >
+              VALIDER
+            </button>
+            <button
+              type="button"
+              className="button-add"
+              onClick={() => {
+                setAlertDelete(false);
+              }}
+            >
+              ANNULER
+            </button>
+          </section>
         </div>
-        {adminID ? (
-          <button className="delete_button" type="button">
-            SUPPRIMER
-          </button>
-        ) : null}
-      </div>
+      ) : null}
+
+      {/* liste atelier recupérée avec axios et décomposée avec .map */}
+      {ateliers.map((atelier) => (
+        <>
+          <div className="rectangle">
+            <h3>{atelier.title}</h3>
+            <hr />
+            <div className="rectangle_image_description">
+              <div className="image_workshop">
+                <img
+                  src={guitare}
+                  alt="guitare"
+                  className="pictures_workshop"
+                />
+              </div>
+              <div className="text_workshop">
+                <p>{atelier.description}</p>
+              </div>
+            </div>
+            {adminID ? (
+              <button
+                className="delete_button"
+                type="button"
+                onClick={() => {
+                  setAtelierDelete(atelier.id);
+                  console.log(
+                    `idAtelier recupérée ${atelierDelete} = ${atelier.ID}`
+                  );
+                  setAlertDelete(true);
+                }}
+              >
+                SUPPRIMER
+              </button>
+            ) : null}
+          </div>
+        </>
+      ))}
     </div>
   );
 }
