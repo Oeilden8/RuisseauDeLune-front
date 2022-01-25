@@ -1,39 +1,113 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import GlobalContext from '../../context/context';
-import './Shows.css';
 import ribambelle from '../../assets/Spectacle/Ribambelle.jpg';
+import './Shows.css';
 
 function Shows() {
-  const { adminID, event, setEvent, setAlert, setAlertMsg } =
-    useContext(GlobalContext);
-  console.log(adminID, event, setEvent, setAlert, setAlertMsg);
+  const { adminID } = useContext(GlobalContext);
+  const [spectacles, setSpectacles] = useState([]);
+  const [spectacleDelete, setSpectacleDelete] = useState();
+  const [alertDelete, setAlertDelete] = useState(false);
+
+  const getSpectacles = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/events/type/spectacle`)
+      .then((resp) => {
+        console.log(resp.data);
+        return setSpectacles(resp.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getSpectacles();
+  }, []);
+
+  const handleDeleteShow = async () => {
+    try {
+      await axios
+        .delete(
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/type/spectacle${spectacleDelete}`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((resp) => {
+          console.log(resp);
+          setAlertDelete(false);
+          getSpectacles();
+        });
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
   return (
     <div className="Shows">
       <h2>SPECTACLES</h2>
-      <div className="rectangle">
-        <h3>Goutte d&#39;eau</h3>
-        <hr />
-        <div className="rectangle_image_description">
-          <div className="image_show">
-            <img src={ribambelle} alt="guitare" className="pictures_show" />
-          </div>
-          <div className="text_show">
-            <p>
-              Durée : 30mn <br /> A partir de : 6 mois et jusqu&#39;à 5 ans.{' '}
-              <br /> <br />
-              L&#39;eau comme élément central est prétexte à un voyage onirique.
-              L&#39;enfant est invité à découvrir un univers sensoriel, composé
-              de musiques douces ou rythmées, de jeux d&#39;ombres, de chansons
-              originales et d&#39;effets visuels et sonores. L&#39;absence de
-              narration laisse le jeune spectateur libre dans son interprétation
-              et son imaginaire, le tout dans un décor épuré. <br /> <br />{' '}
-            </p>
-          </div>
+
+      {/* pop up alerte suppression */}
+      {alertDelete ? (
+        <div className="delete">
+          <section className="delete-alert">
+            Voulez vous supprimer cet atelier?
+            <button
+              type="button"
+              className="button-add"
+              onClick={handleDeleteShow}
+            >
+              VALIDER
+            </button>
+            <button
+              type="button"
+              className="button-add"
+              onClick={() => {
+                setAlertDelete(false);
+              }}
+            >
+              ANNULER
+            </button>
+          </section>
         </div>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
-      </div>
+      ) : null}
+
+      {/* liste spectacles recupérée avec axios et décomposée avec .map */}
+      {spectacles.map((spectacle) => (
+        <>
+          <div className="rectangle">
+            <h3>{spectacle.title}</h3>
+            <hr />
+            <div className="rectangle_image_description">
+              <div className="image_show">
+                <img src={ribambelle} alt="guitare" className="pictures_show" />
+              </div>
+              <div className="text_show">
+                <p>
+                  Durée : 30mn <br /> A partir de : 6 mois et jusqu&#39;à 5 ans.{' '}
+                  <br /> <br />
+                  {spectacle.description}
+                </p>
+              </div>
+            </div>
+            {adminID ? (
+              <button
+                className="delete_button"
+                type="button"
+                onClick={() => {
+                  setSpectacleDelete(spectacle.id);
+                  console.log(
+                    `idSpectacle recupérée ${spectacleDelete} = ${spectacle.ID}`
+                  );
+                  setAlertDelete(true);
+                }}
+              >
+                SUPPRIMER
+              </button>
+            ) : null}
+          </div>
+        </>
+      ))}
       <div className="rectangle">
         <h3>Précédents spectacles</h3>
         <hr />
@@ -70,14 +144,6 @@ function Shows() {
             </li>
           </div>
         </div>
-      </div>
-      <div className="buttons">
-        <button className="add_button" type="button">
-          AJOUTER
-        </button>
-        <button className="edit_button" type="button">
-          MODIFIER
-        </button>
       </div>
     </div>
   );
