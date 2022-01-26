@@ -1,137 +1,138 @@
 $backgroundColor: #d71494;
-$buttonColor: #d71494;
+$buttonColor: #f3acf4b3;
 $textColor: #f1ce64;
 $hoverColor: #fff;
-$caf: #1c4d92;
-$enfance: #61c5ec;
-$alter: #ea4335;
-$sncf: green;
-$pep28: red;
-$lcl: purple;
-$eurelien: brown;
-
-// body {
-//   font-family: 'Roboto';
-//   background-color: $backgroundColor;
-//   text-align: center;
-//   color: $textColor;
-//   font-size: 28px;
-// }
-
-// * {
-//   margin: 0;
-//   padding: 0;
-// }
 
 .Footer {
-  // probleme pour l'instant le footer chevauche parfois le body
-  // position: absolute;
-  // bottom: 0;
-  margin-top: 20px;
-  width: 100%;
   background: linear-gradient(
     91.93deg,
-    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(243, 172, 244, 0.702) 7.44%,
     rgba(181, 215, 248, 0.7) 94.63%
   );
   box-shadow: 0 1px 10px;
+  height: 120px;
 }
 
 #logo_footer {
-  width: 8vw;
+  width: 60%;
 }
 
 .share {
   display: flex;
-  justify-content: center;
-  border-radius: 80px;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  position: relative;
+  border-radius: 50%;
+  height: 100%;
+  box-sizing: border-box;
 
-  .button_share {
-    // width: 200px;
-    // line-height: 80px;
-    display: inline-block;
-    // font-weight: 700;
-    // text-transform: uppercase;
+  .nav_footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 15px;
     position: absolute;
-    margin: 25px 25px 25px 25px;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+    top: 0;
+    color: $textColor;
+    opacity: 0;
     pointer-events: none;
+    transition: all 0.3s ease-in-out;
+
+    &.footer_display {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+.footer_a {
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: $buttonColor;
+  transition: all 0.2s ease-in-out;
+  margin: 0 5px;
+  box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+
+  &:nth-child(1) {
+    margin-left: 0;
+
+    &:hover {
+      background-color: $buttonColor;
+    }
   }
 
-  // .footer_a:hover {
-  //   background-image: url(/home/sidney/projets/p3/front/public/caf.png) no-repeat;
-  // }
+  &:nth-child(2):hover {
+    background-color: $buttonColor;
+  }
 
-  // .nav_footer {
-  //   font-size: 0;
-  // }
+  &:nth-child(3):hover {
+    background-color: $buttonColor;
+  }
+
+  &:nth-child(4):hover {
+    background-color: $buttonColor;
+  }
+
+  &:nth-child(5):hover {
+    background-color: $buttonColor;
+  }
+
+  &:nth-child(6):hover {
+    background-color: $buttonColor;
+  }
+
+  &:nth-child(7) {
+    margin-right: 0;
+
+    &:hover {
+      background-color: $buttonColor;
+    }
+  }
+}
+
+.button_share,
+.button_fb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  background-color: $backgroundColor;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .footer_a {
+    height: 60px;
+    width: 60px;
+    margin: 0 5px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .button_share,
+  .button_fb {
+    height: 70px;
+    width: 70px;
+  }
 
   .footer_a {
-    line-height: 80px;
-    width: 80px;
-    display: inline-block;
-    background-color: $buttonColor;
-    color: $buttonColor;
-    // overflow: hidden;
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
-    margin: 0 -40px;
-    box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
-
-    &:nth-child(1) {
-      border-radius: 80px;
-      margin-left: 0;
-
-      &:hover {
-        background-color: $caf;
-      }
-    }
-
-    &:nth-child(2):hover {
-      background-color: $enfance;
-    }
-
-    &:nth-child(3):hover {
-      background-color: $alter;
-    }
-
-    &:nth-child(4):hover {
-      background-color: $sncf;
-    }
-
-    &:nth-child(5):hover {
-      background-color: $pep28;
-    }
-
-    &:nth-child(6):hover {
-      background-color: $lcl;
-    }
-
-    &:nth-child(7) {
-      margin-right: 0;
-
-      &:hover {
-        background-color: $eurelien;
-      }
-    }
+    height: 70px;
+    width: 70px;
+    margin: 0 5px;
   }
+}
 
-  &:hover,
-  &.hover {
-    .button_share {
-      opacity: 0;
-    }
-
-    .footer_a {
-      border-radius: 50%;
-      margin: 0 10px;
-      color: $textColor;
-      font-size: 25px;
-
-      &:hover {
-        color: $hoverColor;
-      }
-    }
+@media screen and (min-width: 1440px) {
+  .footer_a {
+    margin: 0 15px;
   }
 }
