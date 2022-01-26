@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import partenariat from '../../assets/Icons/partenariat.png';
 import alter from '../../assets/Icons/alter.png';
 import caf from '../../assets/Icons/caf.png';
@@ -7,53 +7,111 @@ import eurelien from '../../assets/Icons/eurelien.png';
 import lcl from '../../assets/Icons/lcl.png';
 import pep from '../../assets/Icons/pep.png';
 import sncf from '../../assets/Icons/sncf.png';
+import fb from '../../assets/Icons/facebook.png';
 import './Footer.scss';
 
 function Footer() {
+  const [navFooterIsDisplay, setNavFooterIsDisplay] = useState(false);
+
   return (
     <div className="Footer">
       <div className="share">
-        <span className="button_share">
+        <span
+          className="button_fb"
+          style={{ opacity: navFooterIsDisplay ? 0 : 1 }}
+        >
+          <a
+            href="https://www.facebook.com/ruisseaudelune"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={fb} alt="logo" id="logo_footer" />
+          </a>
+        </span>
+        <span
+          className="button_share"
+          style={{ opacity: navFooterIsDisplay ? 0 : 1 }}
+          onMouseEnter={() => setNavFooterIsDisplay(true)}
+          onClick={() => setNavFooterIsDisplay(true)}
+        >
           <img src={partenariat} alt="logo" id="logo_footer" />
         </span>
-        <nav className="nav_footer">
-          <a className="footer_a" id="test" href="https://www.caf.fr/">
-            <i className="fa fa-caf">
+        <nav
+          className={
+            !navFooterIsDisplay ? 'nav_footer' : 'nav_footer footer_display'
+          }
+          onMouseLeave={() => setNavFooterIsDisplay(false)}
+          onClick={() => setNavFooterIsDisplay(false)}
+        >
+          <a
+            className="footer_a"
+            href="https://www.caf.fr/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
               <img src={caf} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
-          <a className="footer_a" href="https://www.enfancemusique.asso.fr/">
-            <i className="fa_fa-enfance">
+          <a
+            className="footer_a"
+            href="https://www.enfancemusique.asso.fr/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
               <img src={enfance} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
-          <a className="footer_a" href="https://www.alterincub.coop/">
-            <i className="fa fa-alter">
+          <a
+            className="footer_a"
+            href="https://www.alterincub.coop/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
               <img src={alter} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
           <a
             className="footer_a"
             href="https://www.sncf.com/fr/engagements/fondation-sncf"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <i className="fa fa-sncf">
+            <span>
               <img src={sncf} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
-          <a className="footer_a" href="https://www.lespep28.org/">
-            <i className="fa fa-pep28">
+          <a
+            className="footer_a"
+            href="https://www.lespep28.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
               <img src={pep} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
-          <a className="footer_a" href="https://www.lcl.fr/fondation-lcl">
-            <i className="fa fa-lcl">
+          <a
+            className="footer_a"
+            href="https://www.lcl.fr/fondation-lcl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
               <img src={lcl} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
-          <a className="footer_a" href="https://www.eurelien.fr/">
-            <i className="fa fa-eurelien">
+          <a
+            className="footer_a"
+            href="https://www.eurelien.fr/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
               <img src={eurelien} alt="logo" id="logo_footer" />
-            </i>
+            </span>
           </a>
         </nav>
       </div>
