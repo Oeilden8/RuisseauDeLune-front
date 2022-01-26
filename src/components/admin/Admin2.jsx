@@ -4,15 +4,12 @@ import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import GlobalContext from '../../context/context';
 import './Admin.css';
-import ContactForm from './ContactForm';
 import EventForm from './EventForm';
 import NewsForm from './NewsForm';
 
 function Admin() {
   const {
     adminID,
-    actionType,
-    setActionType,
     news,
     setNews,
     event,
@@ -21,12 +18,14 @@ function Admin() {
     setContact,
     setAlertMsg,
     setAlert,
+    eventType,
+    setEventType,
+    actionType,
+    setActionType,
     alertDelete,
     setAlertDelete,
   } = useContext(GlobalContext);
 
-  // type d'evenements
-  const [eventType, setEventType] = useState('atelier');
   // get admins
   const [admins, setAdmins] = useState([]);
   // get assets
@@ -38,8 +37,7 @@ function Admin() {
   // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
   // id de l'asset selectionné
-  const [assetId, setAssetId] = useState();
-  // state formulaire create admin
+  const [assetId, setAssetId] = useState(); // state formulaire create admin
   const [newAdmin, setNewAdmin] = useState({
     email: '',
     password: '',
@@ -86,8 +84,7 @@ function Admin() {
           console.log('contact', resp.data);
           setEventList(resp.data);
         });
-    }
-    if (eventType === 'atelier' || eventType === 'spectacle') {
+    } else {
       // sinon on appelle la table event sur la route getEventByType avec le param type stocké dans le state eventType : on recupère que les ateliers ou que les spectacles
       axios
         .get(
@@ -140,7 +137,6 @@ function Admin() {
 
   // stocke l'asset ds le bon state
   const handleAssetChoice = () => {
-    console.log('assetid', assetId);
     if (eventType === 'news') {
       setNews({ ...news, assets_id: assetId });
     } else if (eventType === 'contact') {
@@ -516,7 +512,7 @@ function Admin() {
           {(() => {
             switch (eventType) {
               case 'contact':
-                return <ContactForm />;
+                return <div>Contact</div>;
               case 'news':
                 return <NewsForm />;
               case 'spectacle':
@@ -528,14 +524,14 @@ function Admin() {
           })()}
 
           {/* on ne peut changer l'asset que si l'admin modifie une news ou un contact */}
-          {(actionType === 'modifier' && eventType === 'atelier') ||
-          (actionType === 'modifier' && eventType === 'spectacle') ? (
+          {(actionType === 'modifier' && eventType !== 'news') ||
+          eventType !== 'contact' ? (
             <p>Vous ne pouvez pas modifier l&#39;image ou la vidéo</p>
           ) : (
             <p>Ajouter une image ou une vidéo</p>
           )}
-          {(actionType === 'modifier' && eventType === 'atelier') ||
-          (actionType === 'modifier' && eventType === 'spectacle') ? null : (
+          {(actionType === 'modifier' && eventType !== 'news') ||
+          eventType !== 'contact' ? null : (
             <section className="add-assets">
               <button className="button-admin" type="button">
                 NOUVELLE
@@ -547,8 +543,8 @@ function Admin() {
                   {assets.map((asset) => (
                     <option
                       value={asset.id}
-                      onClick={(e) => {
-                        setAssetId(e.target.value);
+                      onClick={() => {
+                        setAssetId(asset.id);
                         handleAssetChoice();
                       }}
                     >
