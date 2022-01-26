@@ -1,85 +1,124 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
 import GlobalContext from '../../context/context';
 import './News.css';
-import kamishibai from '../../assets/Atelier-litterature-jeunesse/kamishibai.jpg';
-import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
 
 function News() {
-  const { adminID, news, setNews, setAlert, setAlertMsg } =
-    useContext(GlobalContext);
-  console.log(adminID, news, setNews, setAlert, setAlertMsg);
+  const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
+  console.log(adminID, setAlert, setAlertMsg);
+
+  const [Actus, setActus] = useState([]);
+  // get assets
+  // const [assets, setAssets] = useState([]);
+  // id de l'admin a supprimer
+  const [newsDelete, setNewsDelete] = useState();
+  // popup alerte suppression
+  const [alertDelete, setAlertDelete] = useState(false);
+  // message de confirmation pour delete
+  // const [status, setStatus] = useState('');
+  // const [assetId, setAssetId] = useState();
+
+  // get all News
+  const getNews = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/news`)
+      .then((resp) => {
+        console.log(resp.data);
+        return setActus(resp.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // // get all assets
+  // const getAllAssets = () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_BACKEND_URL}/api/assets`)
+  //     .then((resp) => {
+  //       console.log(resp.data);
+
+  //       return setAssets(resp.data);
+  //     });
+  // };
+
+  useEffect(() => {
+    getNews();
+    // getAllAssets();
+  }, []);
+
+  const handleDeleteNews = async () => {
+    try {
+      await axios
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/api/news/${newsDelete}`, {
+          withCredentials: true,
+        })
+        .then((resp) => {
+          console.log(resp);
+          setAlertDelete(false);
+          getNews();
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="News">
       <h2>ACTUALITÉS</h2>
-      <div className="rectangle_news">
-        <h3> Nom du spectacle </h3>
-        <hr />
-        <div className="rectangle_content_news">
-          <img src={kamishibai} alt="test" className="picture_news" />
-          <div className="rectangle_content_text">
-            <p>Lieu :</p>
-            <p>Spectacle joué du [....] au [....]</p>
-            <p>
-              Auteur-compositeur, chanteur et guitariste au sein de plusieurs
-              groupes musicaux. Animateur Musicien intervenant dans des
-              structures accueillant de jeunes enfants ( crèches, Relais Petite
-              Enfance, ALSH, Hopital de jour etc…)
-            </p>
+      {Actus.map((news) => (
+        <div className="rectangle_news">
+          <h3> {news.title} </h3>
+          <hr />
+          <div className="rectangle_content_news">
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/${news.source}`}
+              alt={news.asset_name}
+              className="picture_news"
+            />
+
+            <div className="rectangle_content_text">
+              <p>Lieu : {news.places}</p>
+              <p>
+                Spectacle joué du {news.date_first} au {news.date_last}
+              </p>
+              <p>{news.description}</p>
+            </div>
           </div>
+          {/* pop up alerte suppression */}
+          {alertDelete ? (
+            <div className="delete">
+              <section className="delete-alert">
+                Voulez vous supprimer cette actualité?
+                <button
+                  type="button"
+                  className="button-add"
+                  onClick={handleDeleteNews}
+                >
+                  VALIDER
+                </button>
+                <button
+                  type="button"
+                  className="button-add"
+                  onClick={() => {
+                    setAlertDelete(false);
+                  }}
+                >
+                  ANNULER
+                </button>
+              </section>
+            </div>
+          ) : null}
+          <button
+            className="button-admin"
+            type="button"
+            onClick={() => {
+              setNewsDelete(news.id);
+              setAlertDelete(true);
+            }}
+          >
+            SUPPRIMER
+          </button>
         </div>
-      </div>
-      <div className="rectangle_news">
-        <h3> Nom du spectacle </h3>
-        <hr />
-        <div className="rectangle_content_news">
-          <img src={guitare} alt="test" className="picture_news" />
-          <div className="rectangle_content_text">
-            <p>Lieu :</p>
-            <p>Spectacle joué du [....] au [....]</p>
-            <p>
-              Auteur-compositeur, chanteur et guitariste au sein de plusieurs
-              groupes musicaux. Animateur Musicien intervenant dans des
-              structures accueillant de jeunes enfants ( crèches, Relais Petite
-              Enfance, ALSH, Hopital de jour etc…)
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="rectangle_news">
-        <h3> Nom du spectacle </h3>
-        <hr />
-        <div className="rectangle_content_news">
-          <img src={guitare} alt="test" className="picture_news" />
-          <div className="rectangle_content_text">
-            <p>Lieu :</p>
-            <p>Spectacle joué du [....] au [....]</p>
-            <p>
-              Auteur-compositeur, chanteur et guitariste au sein de plusieurs
-              groupes musicaux. Animateur Musicien intervenant dans des
-              structures accueillant de jeunes enfants ( crèches, Relais Petite
-              Enfance, ALSH, Hopital de jour etc…)
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="rectangle_news">
-        <h3> Nom du spectacle </h3>
-        <hr />
-        <div className="rectangle_content_news">
-          <img src={kamishibai} alt="test" className="picture_news" />
-          <div className="rectangle_content_text">
-            <p>Lieu :</p>
-            <p>Spectacle joué du [....] au [....]</p>
-            <p>
-              Auteur-compositeur, chanteur et guitariste au sein de plusieurs
-              groupes musicaux. Animateur Musicien intervenant dans des
-              structures accueillant de jeunes enfants ( crèches, Relais Petite
-              Enfance, ALSH, Hopital de jour etc…)
-            </p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
