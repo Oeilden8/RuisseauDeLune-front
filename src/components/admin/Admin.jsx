@@ -1,7 +1,11 @@
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import GlobalContext from '../../context/context';
 import './Admin.css';
+import EventForm from './EventForm';
+import NewsForm from './NewsForm';
 
 function Admin() {
   const {
@@ -10,12 +14,16 @@ function Admin() {
     setNews,
     event,
     setEvent,
+    contact,
+    setContact,
     setAlertMsg,
     setAlert,
     eventType,
     setEventType,
     actionType,
     setActionType,
+    alertDelete,
+    setAlertDelete,
   } = useContext(GlobalContext);
 
   // get admins
@@ -28,8 +36,6 @@ function Admin() {
   const [updateId, setUpdateId] = useState([]);
   // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
-  // popup alerte suppression
-  const [alertDelete, setAlertDelete] = useState(false);
   // state formulaire create admin
   const [newAdmin, setNewAdmin] = useState({
     email: '',
@@ -61,25 +67,36 @@ function Admin() {
 
   // get all events by type
   const getAllEvents = () => {
+    // si le type d'event selectionné est news, on appelle la table news
     if (eventType === 'news') {
       axios
         .get(`${process.env.REACT_APP_BACKEND_URL}/api/news`)
         .then((resp) => {
           console.log('news', resp.data);
-          return setEventList(resp.data);
+          setEventList(resp.data);
+        });
+    }
+    if (eventType === 'contact') {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/contact`)
+        .then((resp) => {
+          console.log('contact', resp.data);
+          setEventList(resp.data);
         });
     } else {
+      // sinon on appelle la table event sur la route getEventByType avec le param type stocké dans le state eventType : on recupère que les ateliers ou que les spectacles
       axios
         .get(
           `${process.env.REACT_APP_BACKEND_URL}/api/events/type/${eventType}`
         )
         .then((resp) => {
           console.log('events', resp.data);
-          return setEventList(resp.data);
+          setEventList(resp.data);
         });
     }
   };
 
+  // on passe l'argument eventType au useEffect, a chaque fois que la selection du type change il re render le composant pour afficher la bonne liste
   useEffect(() => {
     getAdmins();
     getAllAssets();
@@ -90,6 +107,7 @@ function Admin() {
   const handleDeleteAdmin = async () => {
     // si admin.id recupérée par axios.get = adminId recupérée lors du login pas supprimer (car c'est l'admin actif)
     if (adminDelete === adminID) {
+      // je fais apparaitre l'alerte avec le message
       setAlertMsg(
         "Vous ne pouvez pas supprimer l'administrateur actuellement connecté"
       );
@@ -103,6 +121,7 @@ function Admin() {
               withCredentials: true,
             }
           )
+          // on ferme le popup alerte avec le state false et on affiche le status OK, on refais un getAdmin pour actualiser la liste -admin supprimé
           .then((resp) => {
             console.log(resp);
             setAlertDelete(false);
@@ -118,6 +137,7 @@ function Admin() {
   // create admin
   const handleNewAdminSubmit = async (e) => {
     e.preventDefault();
+    // on vérifie que les champs sont remplis
     if (!newAdmin.email) {
       setAlertMsg('Veuillez remplir le champ mail');
       setAlert(true);
@@ -132,48 +152,84 @@ function Admin() {
           })
           .then((resp) => {
             console.log(resp);
+            // on actualise la liste d'admin avec le nouveau
             getAdmins();
             setStatus('Admin créé');
           });
       } catch (err) {
         console.log(err.response.data);
-        setStatus('Erreur lors de la création de Admin');
+        setStatus(`Errreur : ${err.response.data}`);
       }
     }
   };
 
   // create event
-  const handleEventSubmit = async (e) => {
-    e.preventDefault();
+  const handleEventSubmit = async () => {
+    // on rempli le state event avec le type selectionné
     setEvent({ ...event, type: eventType });
     console.log('event', event);
-    if (!event.title) {
-      setAlertMsg("Veuillez fournir un titre d'évènement");
-      setAlert(true);
-    } else if (eventType !== 'spectacle' && eventType !== 'atelier') {
-      setAlertMsg("Le type d'évènement n'est pas bien renseigné");
-      setAlert(true);
-    } else {
+
+    // si l'action selectionnée est ajouter on fait un post
+    if (actionType === 'ajouter') {
+      // on vérifie que les champs obligatoires sont remplis
+      if (!event.title) {
+        setAlertMsg("Veuillez fournir un titre d'évènement");
+        setAlert(true);
+      } else if (
+        !event.type ||
+        event.type === 'news' ||
+        event.type === 'contact'
+      ) {
+        setAlertMsg("Le type d'évènement n'est pas bien renseigné");
+        setAlert(true);
+      } else {
+        try {
+          await axios
+            .post(`${process.env.REACT_APP_BACKEND_URL}/api/events`, event, {
+              withCredentials: true,
+            })
+            .then((resp) => {
+              console.log('event', resp);
+              getAllEvents();
+              setStatus('Evènement créé');
+            });
+        } catch (err) {
+          console.log(err.response.data);
+          setStatus('Erreur lors de la création de l&#39;évènement');
+        }
+      }
+      // si l'action selectionnée est modifier on fait un put
+    } else if (actionType === 'modifier') {
+      setEvent({ ...event, type: eventType, assets_id: '' });
+      console.log('update event', event, updateId);
       try {
         await axios
-          .post(`${process.env.REACT_APP_BACKEND_URL}/api/events`, event, {
-            withCredentials: true,
-          })
+          .put(
+            `${process.env.REACT_APP_BACKEND_URL}/api/events/${updateId}`,
+            event,
+            {
+              withCredentials: true,
+            }
+          )
           .then((resp) => {
-            console.log('event', resp);
-            setStatus('Evènement créé');
+            console.log('update', resp);
+            setStatus('Evènement modifié');
           });
       } catch (err) {
-        console.log(err.response.data);
-        setStatus('Erreur lors de la création de évènement');
+        console.log('update', err.response.data);
+        setStatus('Erreur lors de la modification de l&#39;évènement');
       }
+    } else {
+      setAlertMsg('Veuillez selectionner ajouter ou modifier');
+      setAlert(true);
     }
   };
 
-  const handleNewsSubmit = async (e) => {
-    e.preventDefault();
+  const handleNewsSubmit = async () => {
     console.log(news);
+    // si l'action selectionnée est ajouter on fait un post
     if (actionType === 'ajouter') {
+      // on vérifie que les champs obligatoires sont remplis
       if (!news.title) {
         setAlertMsg("Veuillez fournir un titre d'évènement");
         setAlert(true);
@@ -186,14 +242,17 @@ function Admin() {
             .then((resp) => {
               console.log('news', resp);
               setStatus('Actualité créée');
+              // on actualise la liste avec la nouvelle news
+              getAllEvents();
             });
         } catch (err) {
           console.log(err.response.data);
-          setStatus('Erreur lors de la création de évènement');
+          setStatus('Erreur lors de la création de l&#39;évènement');
         }
       }
+      // si l'action selectionnée est modifier on fait un put
     } else if (actionType === 'modifier') {
-      console.log('update news', news);
+      console.log('update news', news, updateId);
       try {
         await axios
           .put(
@@ -213,6 +272,73 @@ function Admin() {
       }
     } else {
       setAlertMsg('Veuillez selectionner ajouter ou modifier');
+      setAlert(true);
+    }
+  };
+
+  // contact
+  const handleContactSubmit = async () => {
+    console.log(contact);
+    // si l'action selectionnée est ajouter on fait un post
+    if (actionType === 'ajouter') {
+      // on vérifie que les champs obligatoires sont remplis
+      if (!contact.firstname_lastname) {
+        setAlertMsg('Veuillez fournir le nom du contact');
+        setAlert(true);
+      } else {
+        try {
+          await axios
+            .post(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, contact, {
+              withCredentials: true,
+            })
+            .then((resp) => {
+              console.log('contact', resp);
+              setStatus('Contact créé');
+              // on actualise la liste avec le nouveau contact
+              getAllEvents();
+            });
+        } catch (err) {
+          console.log(err.response.data);
+          setStatus('Erreur lors de la création du contact');
+        }
+      }
+      // si l'action selectionnée est modifier on fait un put
+    } else if (actionType === 'modifier') {
+      console.log('update contact', contact, updateId);
+      try {
+        await axios
+          .put(
+            `${process.env.REACT_APP_BACKEND_URL}/api/contact/${updateId}`,
+            contact,
+            {
+              withCredentials: true,
+            }
+          )
+          .then((resp) => {
+            console.log('update', resp);
+            setStatus('Contact modifié');
+          });
+      } catch (err) {
+        console.log('update', err.response.data);
+        setStatus('Erreur lors de la modification du contact');
+      }
+    } else {
+      setAlertMsg('Veuillez selectionner ajouter ou modifier');
+      setAlert(true);
+    }
+  };
+
+  // choix de la fonction a utiliser en fonction du type d'evenement choisi
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (eventType === 'news') {
+      handleNewsSubmit();
+    } else if (eventType === 'atelier' || eventType === 'spectacle') {
+      handleEventSubmit();
+    } else if (eventType === 'contact') {
+      handleContactSubmit();
+    } else {
+      setAlertMsg("L'élément à modifier n'est pas bien renseigné");
       setAlert(true);
     }
   };
@@ -300,15 +426,11 @@ function Admin() {
       {/* si le state status est rempli, affiche ce state prévu pour afficher un message d'erreur ou de succès */}
       {status ? <h5>{status}</h5> : null}
 
-      {/* partie ajouter articles */}
+      {/* partie ajouter ou modifier */}
       <h2>AJOUTER ou MODIFIER</h2>
       <div>
-        {/* si le type est news on fait la fonction post news, sinon on fait la fonction post event */}
-        <form
-          className="add-form"
-          onSubmit={eventType === 'news' ? handleNewsSubmit : handleEventSubmit}
-        >
-          {/* les 2 selecteurs : ajout/modif et type d'event */}
+        <form className="add-form" onSubmit={handleSubmit}>
+          {/* les 2 selecteurs : ajout/modif et type d'article */}
           <section className="selectors">
             <label htmlFor="select-action">
               <select name="action">
@@ -343,6 +465,12 @@ function Admin() {
                 <option value={eventType} onClick={() => setEventType('news')}>
                   ACTUALITE
                 </option>
+                <option
+                  value={eventType}
+                  onClick={() => setEventType('contact')}
+                >
+                  CONTACT
+                </option>
               </select>
             </label>
           </section>
@@ -358,105 +486,61 @@ function Admin() {
                     value={eventPut.id}
                     onClick={() => setUpdateId(eventPut.id)}
                   >
-                    {eventPut.title}
+                    {eventPut.title || eventPut.firstname_lastname}
                   </option>
                 ))}
               </select>
             </label>
           ) : null}
 
-          <label htmlFor="title">
-            {/* suivant le type selectionné on envoie les infos dans des state différents */}
-            <input
-              type="text"
-              placeholder="TITRE"
-              value={eventType === 'news' ? news.title : event.title}
-              onChange={
-                eventType === 'news'
-                  ? (e) => setNews({ ...news, title: e.target.value })
-                  : (e) => setEvent({ ...event, title: e.target.value })
-              }
-            />
-          </label>
+          {/* le formulaire change en fonction du type d'evenement selectionné */}
+          {(() => {
+            switch (eventType) {
+              case 'contact':
+                return <div>Contact</div>;
+              case 'news':
+                return <NewsForm />;
+              case 'spectacle':
+              case 'atelier':
+                return <EventForm />;
+              default:
+                return null;
+            }
+          })()}
 
-          {/* le formulaire change suivant le type selectionné plus haut */}
-          {eventType === 'spectacle' || eventType === 'news' ? (
-            <label htmlFor="places">
-              <input
-                type="text"
-                placeholder="LIEU"
-                value={eventType === 'news' ? news.places : event.places}
-                onChange={
-                  eventType === 'news'
-                    ? (e) => setNews({ ...news, places: e.target.value })
-                    : (e) => setEvent({ ...event, places: e.target.value })
-                }
-              />
-            </label>
-          ) : null}
-
-          {eventType === 'news' ? (
-            <section className="dates">
-              <label htmlFor="date-first">
-                DATE DE DEBUT :
-                <input
-                  type="date"
-                  value={news.date_first}
-                  onChange={(e) =>
-                    setNews({ ...news, date_first: e.target.value })
-                  }
-                />
-              </label>
-              <label htmlFor="date-last">
-                DATE DE FIN :
-                <input
-                  type="date"
-                  value={news.date_last}
-                  onChange={(e) =>
-                    setNews({ ...news, date_last: e.target.value })
-                  }
-                />
+          {/* on ne peut changer l'asset que si l'admin modifie une news ou un contact */}
+          {(actionType === 'modifier' && eventType !== 'news') ||
+          eventType !== 'contact' ? (
+            <p>Vous ne pouvez pas modifier l&#39;image ou la vidéo</p>
+          ) : (
+            <p>Ajouter une image ou une vidéo</p>
+          )}
+          {(actionType === 'modifier' && eventType !== 'news') ||
+          eventType !== 'contact' ? null : (
+            <section className="add-assets">
+              <button className="button-admin" type="button">
+                NOUVELLE
+              </button>
+              <label htmlFor="select-asset">
+                <select name="asset">
+                  <option>Choisir une image</option>
+                  {assets.map((asset) => (
+                    <option
+                      value={asset.id}
+                      onClick={
+                        eventType === 'news'
+                          ? () => setNews({ ...news, assets_id: asset.id })
+                          : () => setEvent({ ...event, assets_id: asset.id })
+                      }
+                    >
+                      {asset.asset_name}
+                    </option>
+                  ))}
+                </select>
               </label>
             </section>
-          ) : null}
+          )}
 
-          <label htmlFor="description">
-            <textarea
-              name="description"
-              placeholder="DESCRIPTION"
-              value={
-                eventType === 'news' ? news.description : event.description
-              }
-              onChange={
-                eventType === 'news'
-                  ? (e) => setNews({ ...news, description: e.target.value })
-                  : (e) => setEvent({ ...event, description: e.target.value })
-              }
-            />
-          </label>
-          <p>Ajouter une image ou une vidéo</p>
-          <section className="add-assets">
-            <button className="button-admin" type="button">
-              NOUVELLE
-            </button>
-            <label htmlFor="select-asset">
-              <select name="asset">
-                <option>Choisir une image</option>
-                {assets.map((asset) => (
-                  <option
-                    value={asset.id}
-                    onClick={
-                      eventType === 'news'
-                        ? () => setNews({ ...news, assets_id: asset.id })
-                        : () => setEvent({ ...event, assets_id: asset.id })
-                    }
-                  >
-                    {asset.asset_name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </section>
           <button type="submit" className="button-add">
             VALIDER
           </button>

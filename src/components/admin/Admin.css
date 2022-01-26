@@ -171,6 +171,7 @@ h5 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: auto;
   width: 70vw;
   max-width: 750px;
 }

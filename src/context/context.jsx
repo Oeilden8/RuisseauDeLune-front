@@ -13,8 +13,11 @@ export const GlobalContextProvider = ({ children }) => {
   // state pour l'ouverture des alertes et le message
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState(
-    'Oups... Un message dalerte doit safficher'
+    'Oups... Un message dalerte doit s&#39;afficher'
   );
+
+  // popup alerte suppression
+  const [alertDelete, setAlertDelete] = useState(false);
 
   // type d'evenements
   const [eventType, setEventType] = useState('atelier');
@@ -41,6 +44,15 @@ export const GlobalContextProvider = ({ children }) => {
     assets_id: '',
   });
 
+  // state formulaire contact
+  const [contact, setContact] = useState({
+    firstname_lastname: '',
+    presentation: '',
+    phone: '',
+    diplomes: '',
+    assets_id: '',
+  });
+
   return (
     // on crée le provider qui va entourer App et on lui passe les valeurs
     <GlobalContext.Provider
@@ -59,6 +71,10 @@ export const GlobalContextProvider = ({ children }) => {
         setEventType,
         actionType,
         setActionType,
+        alertDelete,
+        setAlertDelete,
+        contact,
+        setContact,
       }}
     >
       {children}
