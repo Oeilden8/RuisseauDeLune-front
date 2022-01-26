@@ -21,55 +21,128 @@
   text-shadow: none;
 }
 
-.home-buttons {
+.home a {
+  width: fit-content;
+}
+
+a .home-buttons {
   width: 75vw;
   max-width: 320px;
   height: 90px;
   text-shadow: 3px 3px 1.5px var(--grey-color);
 }
 
-.atelier {
+a.actu {
   align-self: flex-start;
-  background-image: url(../../assets/Accueil/ateliers.png);
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: auto 90px;
-}
-
-.spectacle {
-  align-self: flex-end;
-  background-image: url(../../assets/Accueil/spectacles.png);
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: auto 90px;
-}
-
-.sensi {
-  align-self: flex-start;
-  background-image: url(../../assets/Accueil/sensibilisation.png);
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: auto 90px;
-}
-
-.actu {
-  align-self: flex-end;
   background-image: url(../../assets/Accueil/actualites.png);
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: right;
   background-size: auto 90px;
+  animation: right 1s linear;
 }
 
-.contact {
+/* ANIMATION ACTU */
+@keyframes right {
+  0% {
+    transform: translate3d(-250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.atelier {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/ateliers.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+  animation: left-1 1.5s linear;
+}
+
+/* ANIMATION ATELIERS */
+@keyframes left-1 {
+  0% {
+    transform: translate3d(250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.spectacle {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/spectacles.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+  animation: right-1 2s linear;
+}
+
+/* ANIMATION SPECTACLES*/
+@keyframes right-1 {
+  0% {
+    transform: translate3d(-250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.sensi {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/sensibilisation.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+  animation: left-2 2.5s linear;
+}
+
+/* ANIMATION SENSI */
+.home a {
+  width: fit-content;
+}
+@keyframes left-2 {
+  0% {
+    transform: translate3d(250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.contact {
   align-self: flex-start;
   background-image: url(../../assets/Accueil/contact.png);
   background-repeat: no-repeat;
   background-position: right;
   background-size: auto 90px;
+  animation: left-3 3s linear;
+}
+
+/* ANIMATION ACTU */
+@keyframes left-3 {
+  0% {
+    transform: translate3d(-250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
 }
 
 .places {
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  animation: bottom 3.5s linear;
+}
+
+@keyframes bottom {
+  0% {
+    transform: translate3d(250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -85,6 +158,14 @@
     font-size: 24px;
   }
 
+  a.actu,
+  a.atelier,
+  a.spectacle,
+  a.sensi,
+  a.contact {
+    align-self: center;
+  }
+
   .button-container {
     display: flex;
     flex-flow: row wrap;
@@ -96,10 +177,9 @@
     margin: 20px auto 20px auto;
   }
 
-  .home-buttons {
+  a .home-buttons {
     max-width: 350px;
     height: 110px;
-    align-self: center;
     background-position: center;
     background-size: contain;
   }
@@ -120,29 +200,34 @@
     color: white;
   }
 
-  .home-buttons {
+  a .home-buttons {
     max-width: 600px;
     height: 180px;
   }
 
-  .atelier {
+  a.atelier {
     background-image: url(../../assets/Accueil/ateliers-pc.png);
+    background-size: contain;
   }
 
-  .spectacle {
+  a.spectacle {
     background-image: url(../../assets/Accueil/spectales-pc.png);
+    background-size: contain;
   }
 
-  .sensi {
+  a.sensi {
     background-image: url(../../assets/Accueil/sensibilisation-pc.png);
+    background-size: contain;
   }
 
-  .actu {
+  a.actu {
     background-image: url(../../assets/Accueil/actualites-pc.png);
+    background-size: contain;
   }
 
-  .contact {
+  a.contact {
     background-image: url(../../assets/Accueil/contact-pc.png);
+    background-size: contain;
   }
 
   .places {

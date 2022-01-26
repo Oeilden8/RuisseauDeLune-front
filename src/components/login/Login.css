@@ -3,7 +3,7 @@
   background-image: url(../../assets/Accueil/logo-background.png);
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-size: 40vw;
+  background-size: 100%;
 }
 
 .login-container {
@@ -51,14 +51,30 @@
   margin-top: 30px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .login {
-    background-size: 60vw;
+    background-size: 100%;
+  }
+
+  .login-container {
+    margin: 120px auto 0px auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login {
+    background-size: 80%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .login {
+    background-size: 70%;
   }
 }
 
 @media screen and (min-width: 1900px) {
   .login {
-    background-size: 30vw;
+    background-size: 50%;
   }
 }
