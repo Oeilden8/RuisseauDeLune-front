@@ -83,11 +83,7 @@ function Shows() {
                 <img src={ribambelle} alt="guitare" className="pictures_show" />
               </div>
               <div className="text_show">
-                <p>
-                  Durée : 30mn <br /> A partir de : 6 mois et jusqu&#39;à 5 ans.{' '}
-                  <br /> <br />
-                  {spectacle.description}
-                </p>
+                <p>{spectacle.description}</p>
               </div>
             </div>
             {adminID ? (
