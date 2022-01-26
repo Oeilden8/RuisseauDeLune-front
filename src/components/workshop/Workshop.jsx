@@ -2,11 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import GlobalContext from '../../context/context';
 import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
-import kamishibai from '../../assets/Atelier-litterature-jeunesse/kamishibai.jpg';
 import './Workshop.css';
 
 function Workshop() {
-  // const { adminID, event, setEvent, setAlert, setAlertMsg } = useContext(GlobalContext);
   const { adminID } = useContext(GlobalContext);
   const [ateliers, setAteliers] = useState([]);
   const [atelierDelete, setAtelierDelete] = useState();
@@ -83,7 +81,7 @@ function Workshop() {
         </div>
       ) : null}
 
-      {/* liste atelier recupérée avec axios et décomposée avec .map */}
+      {/* liste ateliers recupérée avec axios et décomposée avec .map */}
       {ateliers.map((atelier) => (
         <>
           <div className="rectangle">
