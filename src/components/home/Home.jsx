@@ -19,6 +19,9 @@ function Home() {
           </p>
         </div>
         <section className="button-container">
+          <button type="button" className="home-buttons actu">
+            <NavLink to="/actualites">ACTUALITÉS</NavLink>
+          </button>
           <button type="button" className="home-buttons atelier">
             <NavLink to="/ateliers">ATELIERS</NavLink>
           </button>
@@ -27,9 +30,6 @@ function Home() {
           </button>
           <button type="button" className="home-buttons sensi">
             <NavLink to="/sensibilisation">SENSIBILISATION</NavLink>
-          </button>
-          <button type="button" className="home-buttons actu">
-            <NavLink to="/actualites">ACTUALITÉS</NavLink>
           </button>
           <button type="button" className="home-buttons contact">
             <NavLink to="/contact">CONTACTEZ-NOUS</NavLink>

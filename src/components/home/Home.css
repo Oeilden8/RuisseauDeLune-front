@@ -29,6 +29,11 @@
 }
 
 .atelier {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/actualites.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
   align-self: flex-start;
   background-image: url(../../assets/Accueil/ateliers.png);
   background-repeat: no-repeat;
