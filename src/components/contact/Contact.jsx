@@ -77,7 +77,7 @@ function Contact() {
           {alertDelete ? (
             <div className="delete">
               <section className="delete-alert">
-                Voulez vous supprimer cet contact?
+                Voulez vous supprimer ce contact?
                 <button
                   type="button"
                   className="button-add"
@@ -109,6 +109,10 @@ function Contact() {
           </button>
         </div>
       ))}
+      <p>
+        Nous avons créé la compagnie Ruisseau de Lune avec Lorenzo (guitariste)
+        en 2017.
+      </p>
     </div>
   );
 }
