@@ -13,15 +13,25 @@ export const GlobalContextProvider = ({ children }) => {
   // state pour l'ouverture des alertes et le message
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState(
-    'Oups... Un message dalerte doit safficher'
+    'Oups... Un message dalerte doit s&#39;afficher'
   );
+
+  // popup alerte suppression
+  const [alertDelete, setAlertDelete] = useState(false);
+
+  // type d'evenements
+  const [eventType, setEventType] = useState('atelier');
+
+  // type d'action ajouter ou modifier
+  const [actionType, setActionType] = useState('ajouter');
 
   // state formulaire evenements
   const [event, setEvent] = useState({
     title: '',
+    type: '',
     places: '',
     description: '',
-    asset_id: '',
+    assets_id: '',
   });
 
   // state formulaire si type actu
@@ -31,7 +41,16 @@ export const GlobalContextProvider = ({ children }) => {
     date_first: '',
     date_last: '',
     description: '',
-    asset_id: '',
+    assets_id: '',
+  });
+
+  // state formulaire contact
+  const [contact, setContact] = useState({
+    firstname_lastname: '',
+    presentation: '',
+    phone: '',
+    diplomes: '',
+    assets_id: '',
   });
 
   return (
@@ -48,6 +67,14 @@ export const GlobalContextProvider = ({ children }) => {
         setEvent,
         news,
         setNews,
+        eventType,
+        setEventType,
+        actionType,
+        setActionType,
+        alertDelete,
+        setAlertDelete,
+        contact,
+        setContact,
       }}
     >
       {children}

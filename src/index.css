@@ -69,9 +69,9 @@ a {
 /* CSS DU POPUP ALERTE */
 .alert {
   width: 100vw;
-  height: 250px;
+  height: 500px;
   position: absolute;
-  top: 150px;
+  top: 30%;
   left: 0;
   z-index: 50;
   background-color: rgba(243, 172, 244, 0.842);
@@ -86,13 +86,13 @@ a {
   height: 200px;
   background: linear-gradient(
     91.93deg,
-    rgba(243, 172, 244, 0.7) 7.44%,
-    rgba(181, 215, 248, 0.7) 94.63%
+    rgb(243, 172, 244) 7.44%,
+    rgb(181, 215, 248) 94.63%
   );
   border-radius: 25px;
   padding: 10px;
   box-sizing: border-box;
-  margin: 25px auto;
+  margin: 150px auto;
   box-shadow: -3px 3px 1.5px var(--grey-color);
 }
 
