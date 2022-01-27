@@ -214,7 +214,7 @@ function Admin() {
             });
         } catch (err) {
           console.log(err.response.data);
-          setStatus('Erreur lors de la création de l&#39;évènement');
+          setStatus("Erreur lors de la création de l'évènement");
         }
       }
       // si l'action selectionnée est modifier on fait un put
@@ -236,7 +236,7 @@ function Admin() {
           });
       } catch (err) {
         console.log('update', err.response.data);
-        setStatus('Erreur lors de la modification de l&#39;évènement');
+        setStatus("Erreur lors de la création de l'évènement");
       }
     } else {
       setAlertMsg('Veuillez selectionner ajouter ou modifier');
