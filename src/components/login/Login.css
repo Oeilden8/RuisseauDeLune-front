@@ -72,23 +72,3 @@
     background-size: 70%;
   }
 }
-
-@media screen and (min-width: 1024px) {
-  .login {
-    background-size: 50%;
-  }
-}
-
-/* @media screen and (min-width: 1900px) {
-  .login {
-    min-height: 75vh;
-    background-image: url(../../assets/Accueil/logo-background.png);
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: 55vw;
-  }
-
-  .login {
-    background-size: 30vw;
-  }
-} */

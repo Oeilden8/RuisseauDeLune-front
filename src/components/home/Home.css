@@ -119,9 +119,6 @@ a.sensi {
 }
 
 /* ANIMATION SENSI */
-.home a {
-  width: fit-content;
-}
 @keyframes left-2 {
   0% {
     transform: translate3d(250%, 0, 0);
