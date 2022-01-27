@@ -12,7 +12,7 @@ function Alert() {
     <div className="alert">
       <section className="alert-box">
         {alertMsg}
-        <button type="button" className="add_button" onClick={handleAlert}>
+        <button type="button" className="button-add" onClick={handleAlert}>
           ANNULER
         </button>
       </section>

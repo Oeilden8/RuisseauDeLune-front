@@ -61,12 +61,13 @@ function Contact() {
           <h2>{contact.firstname_lastname}</h2>
           <hr />
           <div className="presentation">
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/${contact.source}`}
-              alt={contact.asset_name}
-              className="picture"
-            />
-
+            <div className="container_picture_contact">
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/${contact.source}`}
+                alt={contact.asset_name}
+                className="picture_contact"
+              />
+            </div>
             <p>{contact.presentation}</p>
           </div>
           <div className="diplomes">
