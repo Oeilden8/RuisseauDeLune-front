@@ -1,76 +1,118 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
 import GlobalContext from '../../context/context';
 import './Contact.css';
-import Bruno from '../../assets/Contact/Bruno.jpeg';
-import Martine from '../../assets/Contact/Martine.jpeg';
 
 function Contact() {
   const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
   console.log(adminID, setAlert, setAlertMsg);
 
+  // get contacts
+  const [contacts, setContacts] = useState([]);
+
+  // popup alerte suppression
+  const [alertDelete, setAlertDelete] = useState(false);
+
+  // id du contact a supprimer
+  const [contactDelete, setContactDelete] = useState();
+
+  // get all contacts
+  const getContacts = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/contact`)
+      .then((resp) => {
+        console.log(resp.data);
+        return setContacts(resp.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getContacts();
+  }, []);
+
+  // delete one admin => penser a ajouter le withcredentials pour obtenir req.cookies dans le back à chaque requete admin
+  const handleDeleteContact = async () => {
+    try {
+      await axios
+        .delete(
+          `${process.env.REACT_APP_BACKEND_URL}/api/contact/${contactDelete}`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((resp) => {
+          console.log(resp);
+          setAlertDelete(false);
+          getContacts();
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="Contact">
       <h2>CONTACTS</h2>
       <div className="intro">
         <h2 className="mail">ruisseaudelune@outlook.com</h2>
       </div>
-      <div className="rectangle">
-        <h2>Bruno</h2>
-        <hr />
-        <div className="presentation">
-          <img src={Bruno} alt="Bruno" className="picture" />
+      {contacts.map((contact) => (
+        <div className="rectangle">
+          <h2>{contact.firstname_lastname}</h2>
+          <hr />
+          <div className="presentation">
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/${contact.source}`}
+              alt={contact.asset_name}
+              className="picture"
+            />
 
-          <p>
-            Auteur-compositeur, chanteur et guitariste au sein de plusieurs
-            groupes musicaux. Animateur Musicien intervenant dans des structures
-            accueillant de jeunes enfants ( crèches, Relais Petite Enfance,
-            ALSH, Hopital de jour etc…)
-          </p>
+            <p>{contact.presentation}</p>
+          </div>
+          <div className="diplomes">
+            <p>{contact.diplomes}</p>
+          </div>
+          <h4>{contact.phone}</h4>
+          {/* pop up alerte suppression */}
+          {alertDelete ? (
+            <div className="delete">
+              <section className="delete-alert">
+                Voulez vous supprimer ce contact?
+                <button
+                  type="button"
+                  className="button-add"
+                  onClick={handleDeleteContact}
+                >
+                  VALIDER
+                </button>
+                <button
+                  type="button"
+                  className="button-add"
+                  onClick={() => {
+                    setAlertDelete(false);
+                  }}
+                >
+                  ANNULER
+                </button>
+              </section>
+            </div>
+          ) : null}
+          <button
+            className="button-admin"
+            type="button"
+            onClick={() => {
+              setContactDelete(contact.id);
+              setAlertDelete(true);
+            }}
+          >
+            SUPPRIMER
+          </button>
         </div>
-        <div className="diplomes">
-          <p>
-            Diplomé universitaire intitulé « la musique et le tout-petit, la
-            musique et l’enfant en situation de handicap » au CFMI de
-            Tours-Fondettes.
-          </p>
-        </div>
-        <h4>07 81 39 71 45</h4>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
-      </div>
-
-      <div className="rectangle">
-        <h2>Martine</h2>
-        <hr />
-        <div className="presentation">
-          <img src={Martine} alt="Martine" className="picture" />
-          <p>
-            Educatrice de Jeunes Enfants depuis de nombreuses années en
-            multi-Accueil. A suivi différentes formations avec « Enfance et
-            Musique » (autour de la musique, du chant, de la danse etc…)
-          </p>
-        </div>
-        <div className="diplomes">
-          <p>
-            Diplomé universitaire intitulé « la musique et le tout-petit, la
-            musique et l’enfant en situation de handicap » au CFMI de
-            Tours-Fondettes.
-          </p>
-        </div>
-        <h4>06 22 02 24 58</h4>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
-      </div>
-      <div className="buttons">
-        <button className="add_button" type="button">
-          AJOUTER
-        </button>
-        <button className="edit_button" type="button">
-          MODIFIER
-        </button>
-      </div>
+      ))}
+      <p>
+        Nous avons créé la compagnie Ruisseau de Lune avec Lorenzo (guitariste)
+        en 2017.
+      </p>
     </div>
   );
 }

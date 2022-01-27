@@ -150,37 +150,6 @@ a {
   font-family: 'Itim';
 }
 
-/* BOUTON AJOUTER */
-.add_button {
-  padding: 8px;
-  background-color: var(--purple-color);
-  border-radius: 25px;
-  color: white;
-  width: 110px;
-  border-style: none;
-  cursor: pointer;
-  font-family: 'Itim';
-}
-
-/* BOUTON MODIFIER */
-.edit_button {
-  padding: 8px;
-  background-color: var(--purple-color);
-  border-radius: 25px;
-  color: white;
-  width: 110px;
-  border-style: none;
-  cursor: pointer;
-  font-family: 'Itim';
-}
-
-/* DIV BOUTONS AJOUTER ET MODIFIER PLACEMENT */
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px;
-}
-
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 1.8em;
