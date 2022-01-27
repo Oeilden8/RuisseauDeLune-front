@@ -19,21 +19,35 @@ function Home() {
           </p>
         </div>
         <section className="button-container">
-          <button type="button" className="home-buttons actu">
-            <NavLink to="/actualites">ACTUALITÉS</NavLink>
-          </button>
-          <button type="button" className="home-buttons atelier">
-            <NavLink to="/ateliers">ATELIERS</NavLink>
-          </button>
-          <button type="button" className="home-buttons spectacle">
-            <NavLink to="/spectacles">SPECTACLES</NavLink>
-          </button>
-          <button type="button" className="home-buttons sensi">
-            <NavLink to="/sensibilisation">SENSIBILISATION</NavLink>
-          </button>
-          <button type="button" className="home-buttons contact">
-            <NavLink to="/contact">CONTACTEZ-NOUS</NavLink>
-          </button>
+          <NavLink to="/actualites" className="actu">
+            <button type="button" className="home-buttons">
+              ACTUALITÉS
+            </button>
+          </NavLink>
+
+          <NavLink to="/ateliers" className="atelier">
+            <button type="button" className="home-buttons">
+              ATELIERS
+            </button>
+          </NavLink>
+
+          <NavLink to="/spectacles" className="spectacle">
+            <button type="button" className="home-buttons ">
+              SPECTACLES
+            </button>
+          </NavLink>
+
+          <NavLink to="/sensibilisation" className="sensi">
+            <button type="button" className="home-buttons">
+              SENSIBILISATION
+            </button>
+          </NavLink>
+
+          <NavLink to="/contact" className=" contact">
+            <button type="button" className="home-buttons">
+              CONTACTEZ-NOUS
+            </button>
+          </NavLink>
         </section>
       </div>
       <p className="places">

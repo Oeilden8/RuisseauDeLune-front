@@ -69,18 +69,29 @@ function News() {
           <h3> {news.title} </h3>
           <hr />
           <div className="rectangle_content_news">
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/${news.source}`}
-              alt={news.asset_name}
-              className="picture_news"
-            />
-
+            <div className="container_picture_news">
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/${news.source}`}
+                alt={news.asset_name}
+                className="picture_news"
+              />
+            </div>
             <div className="rectangle_content_text">
               <p>Lieu : {news.places}</p>
               <p>
                 Spectacle joué du {news.date_first} au {news.date_last}
               </p>
               <p>{news.description}</p>
+              <button
+                className="delete_button"
+                type="button"
+                onClick={() => {
+                  setNewsDelete(news.id);
+                  setAlertDelete(true);
+                }}
+              >
+                SUPPRIMER
+              </button>
             </div>
           </div>
           {/* pop up alerte suppression */}
@@ -107,16 +118,6 @@ function News() {
               </section>
             </div>
           ) : null}
-          <button
-            className="button-admin"
-            type="button"
-            onClick={() => {
-              setNewsDelete(news.id);
-              setAlertDelete(true);
-            }}
-          >
-            SUPPRIMER
-          </button>
         </div>
       ))}
     </div>

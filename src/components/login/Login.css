@@ -3,7 +3,6 @@
   background-image: url(../../assets/Accueil/logo-background.png);
   background-repeat: no-repeat;
   background-position: bottom center;
-  /* background-size: 55vw; */
   background-size: 100%;
 }
 
@@ -53,25 +52,29 @@
 }
 
 @media screen and (min-width: 768px) {
-  .login-container {
-    margin: 100px auto 0 auto;
+  .login {
+    background-size: 100%;
   }
 
-  .login {
-    /* background-size: 60vw; */
-    background-size: 100%;
+  .login-container {
+    margin: 120px auto 0px auto;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .login {
-    background-size: 75%;
+    background-size: 80%;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .login {
-    /* background-size: 40vw; */
+    background-size: 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login {
     background-size: 50%;
   }
 }
