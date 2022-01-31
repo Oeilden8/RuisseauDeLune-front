@@ -1,7 +1,7 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import GlobalContext from '../../context/context';
 import './BurgerContent.css';
-import { useContext } from 'react';
 
 function BurgerContent({ handleClick }) {
   const { adminID } = useContext(GlobalContext);
