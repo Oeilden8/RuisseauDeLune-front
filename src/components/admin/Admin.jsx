@@ -6,6 +6,7 @@ import GlobalContext from '../../context/context';
 import './Admin.css';
 import ContactForm from './ContactForm';
 import EventForm from './EventForm';
+import WorkshopForm from './WorkshopForm';
 import NewsForm from './NewsForm';
 
 function Admin() {
@@ -27,6 +28,8 @@ function Admin() {
 
   // type d'evenements
   const [eventType, setEventType] = useState('atelier');
+  // gere submit all form ou juste submit un nouvel asset
+  const [submitType, setSubmitType] = useState('');
   // get admins
   const [admins, setAdmins] = useState([]);
   // get assets
@@ -37,8 +40,8 @@ function Admin() {
   const [updateId, setUpdateId] = useState([]);
   // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
-  // id de l'asset selectionné
-  const [assetId, setAssetId] = useState();
+  // state upload image
+  const [assetFile, setAssetFile] = useState();
   // state formulaire create admin
   const [newAdmin, setNewAdmin] = useState({
     email: '',
@@ -139,17 +142,71 @@ function Admin() {
   };
 
   // stocke l'asset ds le bon state
-  const handleAssetChoice = () => {
-    console.log('assetid', assetId);
+  const handleAssetChoice = (e) => {
+    console.log('assetid', e.target.value);
     if (eventType === 'news') {
-      setNews({ ...news, assets_id: assetId });
+      setNews({ ...news, assets_id: e.target.value });
     } else if (eventType === 'contact') {
-      setContact({ ...contact, assets_id: assetId });
+      setContact({ ...contact, assets_id: e.target.value });
     } else if (eventType === 'spectacle' || eventType === 'atelier') {
-      setEvent({ ...event, assets_id: assetId });
+      setEvent({ ...event, assets_id: e.target.value });
+    } else if (!eventType) {
+      setAlertMsg("Erreur en choisissant le type d'évènement");
+      setAlert(true);
     } else {
       setAlertMsg("Erreur en enregistrant l'image");
       setAlert(true);
+    }
+  };
+
+  // récupère le nouvel asset
+  const handleNewAsset = (e) => {
+    console.log(e.target.files[0]);
+    const selectedAsset = e.target.files[0];
+    const { type } = selectedAsset;
+    if (
+      type !== 'image/png' &&
+      type !== 'image/jpg' &&
+      type !== 'image/jpeg' &&
+      type !== 'video/mp4'
+    ) {
+      setAssetFile();
+      setAlertMsg(
+        'Veuillez selectionner une image .png ou .jpeg ou une video .mp4'
+      );
+      setAlert(true);
+    } else {
+      setAssetFile(e.target.files[0]);
+      console.log(assetFile);
+    }
+  };
+
+  // envoie le nouvel asset au back
+  const handleAssetSubmit = async () => {
+    // FormData est un objet dispo ds le navigateur avec les données du formulaire
+    const data = new FormData();
+    // on y ajoute le nouveau fichier asset
+    data.append('asset', assetFile);
+    // on l'envoie au back avec axios
+    const type = assetFile.type === 'video/mp4' ? 'videos' : 'images';
+    try {
+      await axios
+        .post(
+          `${process.env.REACT_APP_BACKEND_URL}/api/assets/upload?type=${type}`,
+          data,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((resp) => {
+          console.log(resp);
+          // on actualise la liste d'admin avec le nouveau
+          getAllAssets();
+          setStatus('nouvel asset créé');
+        });
+    } catch (err) {
+      console.log(err);
+      // setStatus(`Erreur : ${err.response.data}`);
     }
   };
 
@@ -177,15 +234,15 @@ function Admin() {
           });
       } catch (err) {
         console.log(err.response.data);
-        setStatus(`Errreur : ${err.response.data}`);
+        setStatus(`Erreur : ${err.response.data}`);
       }
     }
   };
 
   // create event
   const handleEventSubmit = async () => {
-    // on rempli le state event avec le type selectionné
-    setEvent({ ...event, type: eventType });
+    // on rempli le state event avec le type selectionné -> mis direct dans le onclick du formulaire
+    // setEvent({ ...event, type: eventType });
     console.log('event', event);
 
     // si l'action selectionnée est ajouter on fait un post
@@ -214,12 +271,12 @@ function Admin() {
             });
         } catch (err) {
           console.log(err.response.data);
-          setStatus('Erreur lors de la création de l&#39;évènement');
+          setStatus("Erreur lors de la création de l'évènement");
         }
       }
       // si l'action selectionnée est modifier on fait un put
     } else if (actionType === 'modifier') {
-      setEvent({ ...event, type: eventType, assets_id: '' });
+      setEvent({ ...event, assets_id: '' });
       console.log('update event', event, updateId);
       try {
         await axios
@@ -236,7 +293,7 @@ function Admin() {
           });
       } catch (err) {
         console.log('update', err.response.data);
-        setStatus('Erreur lors de la modification de l&#39;évènement');
+        setStatus("Erreur lors de la création de l'évènement");
       }
     } else {
       setAlertMsg('Veuillez selectionner ajouter ou modifier');
@@ -350,14 +407,23 @@ function Admin() {
   // choix de la fonction a utiliser en fonction du type d'evenement choisi
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (eventType === 'news') {
-      handleNewsSubmit();
-    } else if (eventType === 'atelier' || eventType === 'spectacle') {
-      handleEventSubmit();
-    } else if (eventType === 'contact') {
-      handleContactSubmit();
+    console.log(submitType);
+    if (submitType === 'form') {
+      if (eventType === 'news') {
+        handleNewsSubmit();
+      } else if (eventType === 'atelier' || eventType === 'spectacle') {
+        handleEventSubmit();
+      } else if (eventType === 'contact') {
+        handleContactSubmit();
+      } else {
+        setAlertMsg("L'élément à modifier n'est pas bien renseigné");
+        setAlert(true);
+      }
+    }
+    if (submitType === 'asset') {
+      handleAssetSubmit();
     } else {
-      setAlertMsg("L'élément à modifier n'est pas bien renseigné");
+      setAlertMsg("erreur lors de l'envoi du formulaire");
       setAlert(true);
     }
   };
@@ -471,22 +537,41 @@ function Admin() {
               <select name="type">
                 <option
                   value={eventType}
-                  onClick={() => setEventType('atelier')}
+                  onClick={() => {
+                    setEventType('atelier');
+                    setEvent({ ...event, type: 'atelier' });
+                    console.log('click atelier', eventType);
+                  }}
                 >
                   ATELIER
                 </option>
                 <option
                   value={eventType}
-                  onClick={() => setEventType('spectacle')}
+                  onClick={() => {
+                    setEventType('spectacle');
+                    setEvent({ ...event, type: 'spectacle' });
+                    console.log('click spectacle', eventType);
+                  }}
                 >
                   SPECTACLE
                 </option>
-                <option value={eventType} onClick={() => setEventType('news')}>
+                <option
+                  value={eventType}
+                  onClick={() => {
+                    setEventType('news');
+                    setEvent({ ...event, type: 'news' });
+                    console.log('click news', eventType);
+                  }}
+                >
                   ACTUALITE
                 </option>
                 <option
                   value={eventType}
-                  onClick={() => setEventType('contact')}
+                  onClick={() => {
+                    setEventType('contact');
+                    setEvent({ ...event, type: 'contact' });
+                    console.log('click contact', eventType);
+                  }}
                 >
                   CONTACT
                 </option>
@@ -520,6 +605,7 @@ function Admin() {
               case 'news':
                 return <NewsForm />;
               case 'spectacle':
+                return <WorkshopForm />;
               case 'atelier':
                 return <EventForm />;
               default:
@@ -532,14 +618,24 @@ function Admin() {
           (actionType === 'modifier' && eventType === 'spectacle') ? (
             <p>Vous ne pouvez pas modifier l&#39;image ou la vidéo</p>
           ) : (
-            <p>Ajouter une image ou une vidéo</p>
+            <p>
+              Ajouter une nouvelle image ou vidéo ou sélectionner dans la liste
+            </p>
           )}
           {(actionType === 'modifier' && eventType === 'atelier') ||
           (actionType === 'modifier' && eventType === 'spectacle') ? null : (
             <section className="add-assets">
-              <button className="button-admin" type="button">
-                NOUVELLE
+              <label htmlFor="asset">
+                <input type="file" name="assetFile" onChange={handleNewAsset} />
+              </label>
+              <button
+                className="button-admin"
+                type="submit"
+                onClick={() => setSubmitType('asset')}
+              >
+                ENVOYER
               </button>
+
               <label htmlFor="select-asset">
                 <select name="asset">
                   <option>Choisir une image</option>
@@ -548,8 +644,7 @@ function Admin() {
                     <option
                       value={asset.id}
                       onClick={(e) => {
-                        setAssetId(e.target.value);
-                        handleAssetChoice();
+                        handleAssetChoice(e);
                       }}
                     >
                       {asset.asset_name}
@@ -560,7 +655,11 @@ function Admin() {
             </section>
           )}
 
-          <button type="submit" className="button-add">
+          <button
+            type="submit"
+            className="button-add"
+            onClick={() => setSubmitType('form')}
+          >
             VALIDER
           </button>
         </form>

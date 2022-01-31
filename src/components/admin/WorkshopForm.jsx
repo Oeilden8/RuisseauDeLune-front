@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import GlobalContext from '../../context/context';
 import './Admin.css';
 
-function EventForm() {
+function WorkshopForm() {
   const { event, setEvent } = useContext(GlobalContext);
 
   return (
@@ -13,6 +13,15 @@ function EventForm() {
           placeholder="TITRE"
           value={event.title}
           onChange={(e) => setEvent({ ...event, title: e.target.value })}
+        />
+      </label>
+
+      <label htmlFor="places">
+        <input
+          type="text"
+          placeholder="LIEU"
+          value={event.places}
+          onChange={(e) => setEvent({ ...event, places: e.target.value })}
         />
       </label>
 
@@ -28,4 +37,4 @@ function EventForm() {
   );
 }
 
-export default EventForm;
+export default WorkshopForm;
