@@ -88,12 +88,8 @@ function Workshop() {
             <h3>{atelier.title}</h3>
             <hr />
             <div className="rectangle_image_description">
-              <div className="image_workshop">
-                <img
-                  src={guitare}
-                  alt="guitare"
-                  className="pictures_workshop"
-                />
+              <div className="container_picture_workshop">
+                <img src={guitare} alt="guitare" className="picture_workshop" />
               </div>
               <div className="text_workshop">
                 <p>{atelier.description}</p>

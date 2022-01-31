@@ -79,10 +79,11 @@ function Shows() {
             <h3>{spectacle.title}</h3>
             <hr />
             <div className="rectangle_image_description">
-              <div className="image_show">
-                <img src={ribambelle} alt="guitare" className="pictures_show" />
+              <div className="container_picture_show">
+                <img src={ribambelle} alt="guitare" className="picture_show" />
               </div>
               <div className="text_show">
+                <h6>{spectacle.places}</h6>
                 <p>{spectacle.description}</p>
               </div>
             </div>

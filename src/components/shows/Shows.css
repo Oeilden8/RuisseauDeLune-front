@@ -1,5 +1,10 @@
-.pictures_show {
-  max-width: 80%;
+.container_picture_show {
+  display: flex;
+  justify-content: center;
+}
+
+.picture_show {
+  width: 70vw;
   border-radius: 15px;
 }
 
@@ -15,16 +20,34 @@
   .text_show {
     margin-top: 5px;
   }
+
+  .picture_show {
+    width: 55vw;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .list_show li {
     padding: 15px;
   }
+
+  .picture_show {
+    width: 50vw;
+  }
 }
 
 @media screen and (min-width: 1440px) {
+  .picture_show {
+    width: 40vw;
+  }
+
   .text_show {
     margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .picture_show {
+    width: 35vw;
   }
 }
