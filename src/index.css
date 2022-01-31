@@ -1,3 +1,286 @@
+@font-face {
+  font-family: 'Handlee';
+  src: local('Handlee'),
+    url(./assets/Fonts/Handlee-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Itim';
+  src: local('Itim'), url(./assets/Fonts/Itim-Regular.ttf) format('truetype');
+}
+
+:root {
+  --purple-color: #d71494;
+  --grey-color: #606067;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  font-family: 'Itim', sans-serif;
+  color: var(--grey-color);
+  text-align: center;
+  background-color: #ffffff;
+}
+
+h2 {
+  padding: 5px;
+  color: var(--grey-color);
+  margin: 0;
+  font-weight: lighter;
+  font-size: 1.6em;
+  color: var(--purple-color);
+  margin: 20px 5px 20px 5px;
+}
+
+h3 {
+  margin: 5px 0 5px 0;
+  color: var(--purple-color);
+  font-size: 1.3em;
+}
+
+h4 {
+  color: var(--purple-color);
+  font-size: 1.2em;
+}
+
+h6 {
+  font-size: 1em;
+  color: var(--grey-color);
+  margin: 0;
+}
+
+hr {
+  color: white;
+}
+
+p,
+li {
+  font-size: 0.9em;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* CSS DU POPUP ALERTE */
+.alert {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 400px;
+  position: fixed;
+  top: 25%;
+  z-index: 50;
+  background-color: rgba(243, 172, 244, 0.842);
+}
+
+.alert-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  height: 250px;
+  background: linear-gradient(
+    91.93deg,
+    rgb(243, 172, 244) 7.44%,
+    rgb(181, 215, 248) 94.63%
+  );
+  border-radius: 25px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 150px auto;
+  box-shadow: -1px 2px 1.5px var(--grey-color);
+}
+
+.button-add {
+  background-color: var(--grey-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  padding: 8px;
+  transition: 0.5s ease;
+}
+
+.button-add:hover {
+  transform: scale(1.09);
+}
+
+/* INTRO DEBUT DE PAGE + BACKGROUND */
+.intro {
+  display: flex;
+  justify-content: center;
+  min-height: 130px;
+  background-image: url(assets/Accueil/bulles-mobi.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 570px;
+}
+
+/* TEXTE INTRO DEBUT DE PAGE */
+.intro p {
+  width: 90vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* RECTANGLE BASIQUE */
+.rectangle {
+  margin: 25px;
+  padding: 15px;
+  background: linear-gradient(
+    91.93deg,
+    rgba(243, 172, 244, 0.7) 7.44%,
+    rgba(181, 215, 248, 0.7) 94.63%
+  );
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* CONTENU DU RECTANGLE IMAGE + TEXTE */
+.rectangle_image_description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+/* BOUTON SUPPRIMER AVEC PLACEMENT POUR RECTANGLE  */
+.delete_button {
+  display: flex;
+  justify-content: center;
+  float: right;
+  margin-right: 15px;
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+  transition: 0.5s ease;
+}
+
+.delete_button:hover {
+  transform: scale(1.09);
+}
+
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 1.8em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.4em;
+  }
+
+  h6 {
+    font-size: 1.2em;
+  }
+
+  p,
+  li,
+  h6 {
+    font-size: 1.2em;
+    color: var(--grey-color);
+  }
+
+  .intro {
+    background-image: url(assets/Accueil/bulles-pc.png);
+    min-height: 180px;
+    background-size: 900px;
+  }
+
+  .intro p {
+    width: 550px;
+  }
+
+  .rectangle {
+    margin: 40px 80px 40px 80px;
+    padding: 10px;
+  }
+
+  .rectangle_image_description {
+    margin: 25px 20px 20px 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.6em;
+  }
+
+  p,
+  li,
+  h6 {
+    font-size: 1.3em;
+  }
+
+  .intro {
+    background-image: url(assets/Accueil/bulles-pc.png);
+    min-height: 180px;
+    background-size: 1200px;
+  }
+
+  .rectangle {
+    margin: 50px 100px 50px 100px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  h2 {
+    font-size: 2.2em;
+  }
+
+  h3 {
+    font-size: 1.8em;
+  }
+
+  p,
+  li,
+  h6 {
+    font-size: 1.4em;
+  }
+
+  .intro {
+    min-height: 350px;
+    background-size: 2200px;
+  }
+
+  .intro p {
+    width: 900px;
+  }
+
+  .rectangle {
+    margin: 50px 380px 50px 380px;
+    padding: 25px;
+  }
+
+  .rectangle_image_description {
+    padding: 15px;
+  }
 }

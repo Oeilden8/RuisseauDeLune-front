@@ -1,0 +1,49 @@
+.container_picture_workshop {
+  display: flex;
+  justify-content: center;
+}
+
+.picture_workshop {
+  width: 70vw;
+  border-radius: 15px;
+}
+
+.text_workshop {
+  padding: 5px;
+}
+
+hr {
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .text_workshop {
+    margin-top: 5px;
+  }
+
+  .picture_workshop {
+    width: 55vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .picture_workshop {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .picture_workshop {
+    width: 40vw;
+  }
+
+  .text_workshop {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .picture_workshop {
+    width: 35vw;
+  }
+}

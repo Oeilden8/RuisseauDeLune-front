@@ -1,0 +1,275 @@
+.eveil {
+  color: var(--purple-color);
+  font-family: 'Handlee', cursive;
+  font-size: 18px;
+  margin: 20px 5px 20px 5px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 600px;
+  font-size: 24px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button-container :hover {
+  color: var(--purple-color);
+  text-shadow: none;
+}
+
+.home a {
+  width: fit-content;
+}
+
+a .home-buttons {
+  width: 75vw;
+  max-width: 320px;
+  height: 90px;
+  text-shadow: 3px 3px 1.5px var(--grey-color);
+}
+
+a.actu {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/actualites.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+  animation: right 1s linear;
+  transition: 0.5s ease;
+}
+
+.actu:hover {
+  transform: scale(1.09);
+}
+
+/* ANIMATION ACTU */
+@keyframes right {
+  0% {
+    transform: translate3d(-250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.atelier {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/ateliers.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+  animation: left-1 1.5s linear;
+  transition: 0.5s ease;
+}
+
+.atelier:hover {
+  transform: scale(1.09);
+}
+
+/* ANIMATION ATELIERS */
+@keyframes left-1 {
+  0% {
+    transform: translate3d(250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.spectacle {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/spectacles.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+  animation: right-1 2s linear;
+  transition: 0.5s ease;
+}
+
+.spectacle:hover {
+  transform: scale(1.09);
+}
+
+/* ANIMATION SPECTACLES*/
+@keyframes right-1 {
+  0% {
+    transform: translate3d(-250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.sensi {
+  align-self: flex-end;
+  background-image: url(../../assets/Accueil/sensibilisation.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: auto 90px;
+  animation: left-2 2.5s linear;
+  transition: 0.5s ease;
+}
+
+.sensi:hover {
+  transform: scale(1.09);
+}
+
+/* ANIMATION SENSI */
+@keyframes left-2 {
+  0% {
+    transform: translate3d(250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+a.contact {
+  align-self: flex-start;
+  background-image: url(../../assets/Accueil/contact.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: auto 90px;
+  animation: left-3 3s linear;
+  transition: 0.5s ease;
+}
+
+.contact:hover {
+  transform: scale(1.09);
+}
+
+/* ANIMATION ACTU */
+@keyframes left-3 {
+  0% {
+    transform: translate3d(-250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.places {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  animation: bottom 3.5s linear;
+}
+
+@keyframes bottom {
+  0% {
+    transform: translate3d(250%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home {
+    min-height: 80vh;
+    background-image: url(../../assets/Accueil/logo-background.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 90%;
+  }
+
+  .eveil {
+    font-size: 24px;
+  }
+
+  a.actu,
+  a.atelier,
+  a.spectacle,
+  a.sensi,
+  a.contact {
+    align-self: center;
+  }
+
+  .button-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 95vw;
+    height: 400px;
+    font-size: 24px;
+    color: white;
+    margin: 20px auto 20px auto;
+  }
+
+  a .home-buttons {
+    max-width: 350px;
+    height: 110px;
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home {
+    background-size: 70%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .eveil {
+    font-size: 30px;
+  }
+
+  .intro p {
+    width: 680px;
+  }
+
+  .button-container {
+    height: 600px;
+    font-size: 40px;
+    color: white;
+  }
+
+  a .home-buttons {
+    max-width: 600px;
+    height: 180px;
+  }
+
+  a.atelier {
+    background-image: url(../../assets/Accueil/ateliers-pc.png);
+    background-size: contain;
+  }
+
+  a.spectacle {
+    background-image: url(../../assets/Accueil/spectales-pc.png);
+    background-size: contain;
+  }
+
+  a.sensi {
+    background-image: url(../../assets/Accueil/sensibilisation-pc.png);
+    background-size: contain;
+  }
+
+  a.actu {
+    background-image: url(../../assets/Accueil/actualites-pc.png);
+    background-size: contain;
+  }
+
+  a.contact {
+    background-image: url(../../assets/Accueil/contact-pc.png);
+    background-size: contain;
+  }
+
+  .places {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .home {
+    background-size: 50%;
+  }
+
+  .button-container {
+    width: 75vw;
+    height: 600px;
+  }
+}

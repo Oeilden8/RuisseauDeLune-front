@@ -1,0 +1,51 @@
+.presentation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.presentation p {
+  text-align: start;
+}
+
+.container_picture_contact {
+  display: flex;
+  justify-content: center;
+}
+
+.picture_contact {
+  margin: 8px;
+  width: 35vw;
+  border-radius: 15px;
+}
+
+.mail {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: var(--grey-color);
+}
+
+@media screen and (min-width: 768px) {
+  .picture_contact {
+    width: 28vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .picture_contact {
+    width: 22vw;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .picture_contact {
+    width: 18vw;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .picture_contact {
+    width: 15vw;
+  }
+}

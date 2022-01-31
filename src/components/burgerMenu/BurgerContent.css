@@ -1,0 +1,55 @@
+.nav {
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  margin-right: 15px;
+  margin-top: 15px;
+  padding: 15px 0 0 15px;
+  background: linear-gradient(179.35deg, #f3acf4 0.56%, #b5d7f8 99.47%);
+  border-radius: 15px;
+  position: absolute;
+  top: 0;
+  right: -15px;
+}
+
+.nav li {
+  margin-bottom: 15px;
+  color: #606067;
+  text-align: justify;
+  font-size: 1.2rem;
+  width: 100%;
+  font-family: 'Itim', cursive;
+  padding-right: 15px;
+}
+
+.navLink-burgerMenu {
+  text-decoration: none;
+  color: #606067;
+}
+
+.nav li :hover {
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    padding: 25px 0 0 25px;
+    width: 180px;
+  }
+
+  .nav li {
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .nav {
+    padding: 20px 0 0 20px;
+    width: 220px;
+  }
+
+  .nav li {
+    font-size: 1.5rem;
+  }
+}
