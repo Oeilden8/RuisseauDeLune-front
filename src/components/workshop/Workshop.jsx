@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import GlobalContext from '../../context/context';
-import guitare from '../../assets/Atelier-eveil-musical/guitare.png';
 import './Workshop.css';
 
 function Workshop() {
@@ -88,12 +87,14 @@ function Workshop() {
             <h3>{atelier.title}</h3>
             <hr />
             <div className="rectangle_image_description">
-              <div className="image_workshop">
-                <img
-                  src={guitare}
-                  alt="guitare"
-                  className="pictures_workshop"
-                />
+              <div className="container_picture_workshop">
+                {atelier.assets[0].source && (
+                  <img
+                    src={`${process.env.REACT_APP_BACKEND_URL}/${atelier.assets[0].source}`}
+                    alt={`atelier: ${atelier.title}`}
+                    className="picture_workshop"
+                  />
+                )}
               </div>
               <div className="text_workshop">
                 <p>{atelier.description}</p>

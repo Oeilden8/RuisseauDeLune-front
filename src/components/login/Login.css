@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin: 50px auto 0px auto;
+  margin: 50px auto 0 auto;
   width: 80vw;
   max-width: 400px;
   height: 250px;
@@ -49,6 +49,11 @@
   height: 40px;
   border-style: none;
   margin-top: 30px;
+  transition: 0.5s ease;
+}
+
+.button-login:hover {
+  transform: scale(1.09);
 }
 
 @media screen and (min-width: 768px) {
@@ -70,11 +75,5 @@
 @media screen and (min-width: 1440px) {
   .login {
     background-size: 70%;
-  }
-}
-
-@media screen and (min-width: 1900px) {
-  .login {
-    background-size: 50%;
   }
 }

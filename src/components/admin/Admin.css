@@ -8,10 +8,12 @@
 }
 
 .delete {
+  display: flex;
+  align-items: center;
   width: 100vw;
-  height: 250px;
-  position: absolute;
-  top: 150px;
+  height: 400px;
+  position: fixed;
+  top: 25%;
   left: 0;
   z-index: 50;
   background-color: rgba(243, 172, 244, 0.842);
@@ -19,21 +21,30 @@
 
 .delete-alert {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 300px;
-  height: 200px;
+  height: 250px;
   background: linear-gradient(
     91.93deg,
     rgba(243, 172, 244, 0.7) 7.44%,
     rgba(181, 215, 248, 0.7) 94.63%
   );
   border-radius: 25px;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
-  margin: 25px auto;
-  box-shadow: -3px 3px 1.5px var(--grey-color);
+  margin: 150px auto;
+  box-shadow: -1px 2px 1.5px var(--grey-color);
+}
+
+h5 {
+  padding-top: 10px;
+  color: white;
+  font-size: 1.4em;
+  width: 100vw;
+  height: 40px;
+  background-color: var(--purple-color);
 }
 
 h5 {
@@ -109,6 +120,11 @@ h5 {
   border-style: none;
   margin: 0;
   padding: 5px;
+  transition: 0.5s ease;
+}
+
+.button-admin:hover {
+  transform: scale(1.09);
 }
 
 /* container formulaire ajout */
@@ -213,16 +229,4 @@ h5 {
   width: 70vw;
   max-width: 750px;
   justify-content: space-between;
-}
-
-.button-add {
-  background-color: var(--grey-color);
-  border-radius: 25px;
-  font-family: 'Itim', sans-serif;
-  color: white;
-  width: 130px;
-  height: 40px;
-  border-style: none;
-  margin: 0;
-  padding: 5px;
 }

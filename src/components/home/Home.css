@@ -5,6 +5,10 @@
   margin: 20px 5px 20px 5px;
 }
 
+#size {
+  font-size: 1.3em;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -39,6 +43,11 @@ a.actu {
   background-position: right;
   background-size: auto 90px;
   animation: right 1s linear;
+  transition: 0.5s ease;
+}
+
+.actu:hover {
+  transform: scale(1.09);
 }
 
 /* ANIMATION ACTU */
@@ -58,6 +67,11 @@ a.atelier {
   background-position: left;
   background-size: auto 90px;
   animation: left-1 1.5s linear;
+  transition: 0.5s ease;
+}
+
+.atelier:hover {
+  transform: scale(1.09);
 }
 
 /* ANIMATION ATELIERS */
@@ -77,6 +91,11 @@ a.spectacle {
   background-position: right;
   background-size: auto 90px;
   animation: right-1 2s linear;
+  transition: 0.5s ease;
+}
+
+.spectacle:hover {
+  transform: scale(1.09);
 }
 
 /* ANIMATION SPECTACLES*/
@@ -96,12 +115,14 @@ a.sensi {
   background-position: left;
   background-size: auto 90px;
   animation: left-2 2.5s linear;
+  transition: 0.5s ease;
+}
+
+.sensi:hover {
+  transform: scale(1.09);
 }
 
 /* ANIMATION SENSI */
-.home a {
-  width: fit-content;
-}
 @keyframes left-2 {
   0% {
     transform: translate3d(250%, 0, 0);
@@ -118,6 +139,11 @@ a.contact {
   background-position: right;
   background-size: auto 90px;
   animation: left-3 3s linear;
+  transition: 0.5s ease;
+}
+
+.contact:hover {
+  transform: scale(1.09);
 }
 
 /* ANIMATION ACTU */
@@ -151,7 +177,7 @@ a.contact {
     background-image: url(../../assets/Accueil/logo-background.png);
     background-repeat: no-repeat;
     background-position: bottom center;
-    background-size: 40vw;
+    background-size: 90%;
   }
 
   .eveil {
@@ -182,6 +208,12 @@ a.contact {
     height: 110px;
     background-position: center;
     background-size: contain;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home {
+    background-size: 70%;
   }
 }
 
@@ -236,6 +268,14 @@ a.contact {
 }
 
 @media screen and (min-width: 1900px) {
+  #size {
+    font-size: 1.4em;
+  }
+
+  .home {
+    background-size: 50%;
+  }
+
   .button-container {
     width: 75vw;
     height: 600px;

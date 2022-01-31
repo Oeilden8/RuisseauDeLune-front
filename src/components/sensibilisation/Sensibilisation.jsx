@@ -20,7 +20,6 @@ function Sensibilisation() {
       <div className="rectangle">
         <h3>Sensibilisation Eveil Musical</h3>
         <hr />
-        <br />
         <div className="rectangle_image_description">
           <div className="list_show_sensibilisation">
             <li>
@@ -41,14 +40,10 @@ function Sensibilisation() {
             <br />
           </div>
         </div>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
       </div>
       <div className="rectangle">
         <h3>Sensibilisation Autour du Livre</h3>
         <hr />
-        <br />
         <div className="rectangle_image_description">
           <div className="list_show_sensibilisation">
             <li>
@@ -76,17 +71,6 @@ function Sensibilisation() {
             <br />
           </div>
         </div>
-        <button className="delete_button" type="button">
-          SUPPRIMER
-        </button>
-      </div>
-      <div className="buttons">
-        <button className="add_button" type="button">
-          AJOUTER
-        </button>
-        <button className="edit_button" type="button">
-          MODIFIER
-        </button>
       </div>
     </div>
   );

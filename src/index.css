@@ -25,6 +25,8 @@ body {
 
 h2 {
   padding: 5px;
+  color: var(--grey-color);
+  margin: 0;
   font-weight: lighter;
   font-size: 1.6em;
   color: var(--purple-color);
@@ -34,12 +36,18 @@ h2 {
 h3 {
   margin: 5px 0 5px 0;
   color: var(--purple-color);
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 h4 {
   color: var(--purple-color);
   font-size: 1.2em;
+}
+
+h6 {
+  font-size: 1em;
+  color: var(--grey-color);
+  margin: 0;
 }
 
 hr {
@@ -68,32 +76,46 @@ a {
 
 /* CSS DU POPUP ALERTE */
 .alert {
+  display: flex;
+  align-items: center;
   width: 100vw;
-  height: 500px;
-  position: absolute;
-  top: 30%;
-  left: 0;
+  height: 400px;
+  position: fixed;
+  top: 25%;
   z-index: 50;
   background-color: rgba(243, 172, 244, 0.842);
 }
 
 .alert-box {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 300px;
-  height: 200px;
+  height: 250px;
   background: linear-gradient(
     91.93deg,
     rgb(243, 172, 244) 7.44%,
     rgb(181, 215, 248) 94.63%
   );
   border-radius: 25px;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
   margin: 150px auto;
-  box-shadow: -3px 3px 1.5px var(--grey-color);
+  box-shadow: -1px 2px 1.5px var(--grey-color);
+}
+
+.button-add {
+  background-color: var(--grey-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  padding: 8px;
+  transition: 0.5s ease;
+}
+
+.button-add:hover {
+  transform: scale(1.09);
 }
 
 /* INTRO DEBUT DE PAGE + BACKGROUND */
@@ -131,7 +153,7 @@ a {
 .rectangle_image_description {
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  margin-top: 15px;
 }
 
 /* BOUTON SUPPRIMER AVEC PLACEMENT POUR RECTANGLE  */
@@ -139,7 +161,7 @@ a {
   display: flex;
   justify-content: center;
   float: right;
-  margin: -20px 15px 0 0;
+  margin-right: 15px;
   padding: 8px;
   background-color: var(--purple-color);
   border-radius: 25px;
@@ -148,6 +170,11 @@ a {
   border-style: none;
   cursor: pointer;
   font-family: 'Itim';
+  transition: 0.5s ease;
+}
+
+.delete_button:hover {
+  transform: scale(1.09);
 }
 
 @media screen and (min-width: 768px) {
@@ -163,8 +190,13 @@ a {
     font-size: 1.4em;
   }
 
+  h6 {
+    font-size: 1.2em;
+  }
+
   p,
-  li {
+  li,
+  h6 {
     font-size: 1.2em;
     color: var(--grey-color);
   }
@@ -181,11 +213,11 @@ a {
 
   .rectangle {
     margin: 40px 80px 40px 80px;
-    padding: 30px;
+    padding: 10px;
   }
 
   .rectangle_image_description {
-    margin: 5px 20px 20px 20px;
+    margin: 25px 20px 20px 20px;
   }
 }
 
@@ -203,7 +235,8 @@ a {
   }
 
   p,
-  li {
+  li,
+  h6 {
     font-size: 1.3em;
   }
 
@@ -228,7 +261,8 @@ a {
   }
 
   p,
-  li {
+  li,
+  h6 {
     font-size: 1.4em;
   }
 
@@ -242,7 +276,7 @@ a {
   }
 
   .rectangle {
-    margin: 50px 400px 50px 400px;
+    margin: 50px 380px 50px 380px;
     padding: 25px;
   }
 

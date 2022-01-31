@@ -20,6 +20,11 @@
   width: 100%;
   font-family: 'Itim', cursive;
   padding-right: 15px;
+  transition: 0.3s ease;
+}
+
+.nav li:hover {
+  transform: scale(1.09);
 }
 
 .navLink-burgerMenu {
@@ -29,4 +34,27 @@
 
 .nav li :hover {
   color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    padding: 25px 0 0 25px;
+    width: 180px;
+  }
+
+  .nav li {
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .nav {
+    padding: 20px 0 0 20px;
+    width: 220px;
+  }
+
+  .nav li {
+    font-size: 1.5rem;
+  }
 }
