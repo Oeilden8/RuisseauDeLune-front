@@ -96,6 +96,30 @@ a {
   box-shadow: -3px 3px 1.5px var(--grey-color);
 }
 
+/* BOUTON AJOUTER */
+.add_button {
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
+/* BOUTON MODIFIER */
+.edit_button {
+  padding: 8px;
+  background-color: var(--purple-color);
+  border-radius: 25px;
+  color: white;
+  width: 110px;
+  border-style: none;
+  cursor: pointer;
+  font-family: 'Itim';
+}
+
 /* INTRO DEBUT DE PAGE + BACKGROUND */
 .intro {
   display: flex;
