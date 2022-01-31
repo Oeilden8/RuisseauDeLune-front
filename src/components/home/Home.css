@@ -5,6 +5,10 @@
   margin: 20px 5px 20px 5px;
 }
 
+#size {
+  font-size: 1.3em;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -264,6 +268,10 @@ a.contact {
 }
 
 @media screen and (min-width: 1900px) {
+  #size {
+    font-size: 1.4em;
+  }
+
   .home {
     background-size: 50%;
   }

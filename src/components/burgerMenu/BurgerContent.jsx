@@ -1,8 +1,10 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import GlobalContext from '../../context/context';
 import './BurgerContent.css';
+import { useContext } from 'react';
 
 function BurgerContent({ handleClick }) {
+  const { adminID } = useContext(GlobalContext);
   return (
     <div className="burger">
       <ul className="nav">
@@ -12,6 +14,7 @@ function BurgerContent({ handleClick }) {
             Accueil
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to="/actualites"
@@ -21,6 +24,7 @@ function BurgerContent({ handleClick }) {
             Actualités
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to="/ateliers"
@@ -30,6 +34,7 @@ function BurgerContent({ handleClick }) {
             Ateliers
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to="/spectacles"
@@ -39,6 +44,7 @@ function BurgerContent({ handleClick }) {
             Spectacles
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to="/sensibilisation"
@@ -58,15 +64,30 @@ function BurgerContent({ handleClick }) {
             Contactez-nous
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/login"
-            className="navLink-burgerMenu"
-            onClick={handleClick}
-          >
-            Connectez-vous
-          </NavLink>
-        </li>
+
+        {adminID ? null : (
+          <li>
+            <NavLink
+              to="/login"
+              className="navLink-burgerMenu"
+              onClick={handleClick}
+            >
+              Connectez-vous
+            </NavLink>
+          </li>
+        )}
+
+        {adminID ? (
+          <li>
+            <NavLink
+              to="/admin"
+              className="navLink-burgerMenu"
+              onClick={handleClick}
+            >
+              Administrateur
+            </NavLink>
+          </li>
+        ) : null}
       </ul>
     </div>
   );
