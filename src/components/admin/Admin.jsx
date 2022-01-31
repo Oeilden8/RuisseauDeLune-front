@@ -6,6 +6,7 @@ import GlobalContext from '../../context/context';
 import './Admin.css';
 import ContactForm from './ContactForm';
 import EventForm from './EventForm';
+import WorkshopForm from './WorkshopForm';
 import NewsForm from './NewsForm';
 
 function Admin() {
@@ -39,8 +40,6 @@ function Admin() {
   const [updateId, setUpdateId] = useState([]);
   // id de l'admin a supprimer
   const [adminDelete, setAdminDelete] = useState();
-  // id de l'asset selectionné
-  const [assetId, setAssetId] = useState();
   // state upload image
   const [assetFile, setAssetFile] = useState();
   // state formulaire create admin
@@ -143,23 +142,16 @@ function Admin() {
   };
 
   // stocke l'asset ds le bon state
-  const handleAssetChoice = () => {
-    console.log('assetid', assetId);
+  const handleAssetChoice = (e) => {
+    console.log('assetid', e.target.value);
     if (eventType === 'news') {
-      setNews({ ...news, assets_id: assetId });
-    }
-    if (eventType === 'contact') {
-      setContact({ ...contact, assets_id: assetId });
-    }
-    if (eventType === 'spectacle' || eventType === 'atelier') {
-      setEvent({ ...event, assets_id: assetId });
-    }
-    if (!eventType) {
+      setNews({ ...news, assets_id: e.target.value });
+    } else if (eventType === 'contact') {
+      setContact({ ...contact, assets_id: e.target.value });
+    } else if (eventType === 'spectacle' || eventType === 'atelier') {
+      setEvent({ ...event, assets_id: e.target.value });
+    } else if (!eventType) {
       setAlertMsg("Erreur en choisissant le type d'évènement");
-      setAlert(true);
-    }
-    if (!assetId) {
-      setAlertMsg("Erreur en choisissant l'image");
       setAlert(true);
     } else {
       setAlertMsg("Erreur en enregistrant l'image");
@@ -196,11 +188,16 @@ function Admin() {
     // on y ajoute le nouveau fichier asset
     data.append('asset', assetFile);
     // on l'envoie au back avec axios
+    const type = assetFile.type === 'video/mp4' ? 'videos' : 'images';
     try {
       await axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}/api/assets/upload`, data, {
-          withCredentials: true,
-        })
+        .post(
+          `${process.env.REACT_APP_BACKEND_URL}/api/assets/upload?type=${type}`,
+          data,
+          {
+            withCredentials: true,
+          }
+        )
         .then((resp) => {
           console.log(resp);
           // on actualise la liste d'admin avec le nouveau
@@ -244,8 +241,8 @@ function Admin() {
 
   // create event
   const handleEventSubmit = async () => {
-    // on rempli le state event avec le type selectionné
-    setEvent({ ...event, type: eventType });
+    // on rempli le state event avec le type selectionné -> mis direct dans le onclick du formulaire
+    // setEvent({ ...event, type: eventType });
     console.log('event', event);
 
     // si l'action selectionnée est ajouter on fait un post
@@ -279,7 +276,7 @@ function Admin() {
       }
       // si l'action selectionnée est modifier on fait un put
     } else if (actionType === 'modifier') {
-      setEvent({ ...event, type: eventType, assets_id: '' });
+      setEvent({ ...event, assets_id: '' });
       console.log('update event', event, updateId);
       try {
         await axios
@@ -540,22 +537,41 @@ function Admin() {
               <select name="type">
                 <option
                   value={eventType}
-                  onClick={() => setEventType('atelier')}
+                  onClick={() => {
+                    setEventType('atelier');
+                    setEvent({ ...event, type: 'atelier' });
+                    console.log('click atelier', eventType);
+                  }}
                 >
                   ATELIER
                 </option>
                 <option
                   value={eventType}
-                  onClick={() => setEventType('spectacle')}
+                  onClick={() => {
+                    setEventType('spectacle');
+                    setEvent({ ...event, type: 'spectacle' });
+                    console.log('click spectacle', eventType);
+                  }}
                 >
                   SPECTACLE
                 </option>
-                <option value={eventType} onClick={() => setEventType('news')}>
+                <option
+                  value={eventType}
+                  onClick={() => {
+                    setEventType('news');
+                    setEvent({ ...event, type: 'news' });
+                    console.log('click news', eventType);
+                  }}
+                >
                   ACTUALITE
                 </option>
                 <option
                   value={eventType}
-                  onClick={() => setEventType('contact')}
+                  onClick={() => {
+                    setEventType('contact');
+                    setEvent({ ...event, type: 'contact' });
+                    console.log('click contact', eventType);
+                  }}
                 >
                   CONTACT
                 </option>
@@ -589,6 +605,7 @@ function Admin() {
               case 'news':
                 return <NewsForm />;
               case 'spectacle':
+                return <WorkshopForm />;
               case 'atelier':
                 return <EventForm />;
               default:
@@ -627,8 +644,7 @@ function Admin() {
                     <option
                       value={asset.id}
                       onClick={(e) => {
-                        setAssetId(e.target.value);
-                        handleAssetChoice();
+                        handleAssetChoice(e);
                       }}
                     >
                       {asset.asset_name}
