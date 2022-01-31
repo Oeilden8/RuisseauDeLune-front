@@ -98,16 +98,18 @@ function Contact() {
               </section>
             </div>
           ) : null}
-          <button
-            className="button-admin"
-            type="button"
-            onClick={() => {
-              setContactDelete(contact.id);
-              setAlertDelete(true);
-            }}
-          >
-            SUPPRIMER
-          </button>
+          {adminID ? (
+            <button
+              className="button-admin"
+              type="button"
+              onClick={() => {
+                setContactDelete(contact.id);
+                setAlertDelete(true);
+              }}
+            >
+              SUPPRIMER
+            </button>
+          ) : null}
         </div>
       ))}
       <p>
