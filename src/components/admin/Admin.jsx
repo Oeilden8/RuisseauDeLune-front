@@ -419,8 +419,7 @@ function Admin() {
         setAlertMsg("L'élément à modifier n'est pas bien renseigné");
         setAlert(true);
       }
-    }
-    if (submitType === 'asset') {
+    } else if (submitType === 'asset') {
       handleAssetSubmit();
     } else {
       setAlertMsg("erreur lors de l'envoi du formulaire");

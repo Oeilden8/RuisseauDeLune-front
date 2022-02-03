@@ -28,7 +28,7 @@ function Shows() {
     try {
       await axios
         .delete(
-          `${process.env.REACT_APP_BACKEND_URL}/api/events/type/spectacle${spectacleDelete}`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/${spectacleDelete}`,
           {
             withCredentials: true,
           }
