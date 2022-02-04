@@ -27,7 +27,7 @@ function Workshop() {
     try {
       await axios
         .delete(
-          `${process.env.REACT_APP_BACKEND_URL}/api/events/type/atelier${atelierDelete}`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/events/${atelierDelete}`,
           {
             withCredentials: true,
           }

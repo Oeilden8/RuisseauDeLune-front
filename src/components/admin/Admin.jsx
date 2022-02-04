@@ -309,6 +309,9 @@ function Admin() {
       if (!news.title) {
         setAlertMsg("Veuillez fournir un titre d'évènement");
         setAlert(true);
+      } else if (!news.date_first || !news.date_last) {
+        setAlertMsg('Veuillez fournir des dates');
+        setAlert(true);
       } else {
         try {
           await axios
@@ -323,7 +326,7 @@ function Admin() {
             });
         } catch (err) {
           console.log(err.response.data);
-          setStatus('Erreur lors de la création de l&#39;évènement');
+          setStatus("Erreur lors de la modification de l'évènement");
         }
       }
       // si l'action selectionnée est modifier on fait un put
@@ -344,7 +347,7 @@ function Admin() {
           });
       } catch (err) {
         console.log('update', err.response.data);
-        setStatus('Erreur lors de la modification de évènement');
+        setStatus("Erreur lors de la modification de l'évènement");
       }
     } else {
       setAlertMsg('Veuillez selectionner ajouter ou modifier');
@@ -419,8 +422,7 @@ function Admin() {
         setAlertMsg("L'élément à modifier n'est pas bien renseigné");
         setAlert(true);
       }
-    }
-    if (submitType === 'asset') {
+    } else if (submitType === 'asset') {
       handleAssetSubmit();
     } else {
       setAlertMsg("erreur lors de l'envoi du formulaire");
@@ -538,9 +540,8 @@ function Admin() {
                 <option
                   value={eventType}
                   onClick={() => {
-                    setEventType('atelier');
                     setEvent({ ...event, type: 'atelier' });
-                    console.log('click atelier', eventType);
+                    setEventType('atelier');
                   }}
                 >
                   ATELIER
@@ -548,9 +549,8 @@ function Admin() {
                 <option
                   value={eventType}
                   onClick={() => {
-                    setEventType('spectacle');
                     setEvent({ ...event, type: 'spectacle' });
-                    console.log('click spectacle', eventType);
+                    setEventType('spectacle');
                   }}
                 >
                   SPECTACLE
@@ -558,9 +558,8 @@ function Admin() {
                 <option
                   value={eventType}
                   onClick={() => {
-                    setEventType('news');
                     setEvent({ ...event, type: 'news' });
-                    console.log('click news', eventType);
+                    setEventType('news');
                   }}
                 >
                   ACTUALITE
@@ -568,9 +567,8 @@ function Admin() {
                 <option
                   value={eventType}
                   onClick={() => {
-                    setEventType('contact');
                     setEvent({ ...event, type: 'contact' });
-                    console.log('click contact', eventType);
+                    setEventType('contact');
                   }}
                 >
                   CONTACT
