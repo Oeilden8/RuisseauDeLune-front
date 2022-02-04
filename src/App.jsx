@@ -14,7 +14,7 @@ import Workshop from './components/workshop/Workshop';
 import Alert from './Alert';
 
 function App() {
-  const { alert } = useContext(GlobalContext);
+  const { alert, adminID } = useContext(GlobalContext);
 
   return (
     <div className="App">
@@ -28,11 +28,11 @@ function App() {
         <Route path="actualites" element={<News />} />
         <Route path="contact" element={<Contact />} />
 
-        {/* pour le moment admin accessible sans login pendant le developpement */}
-        <Route path="admin" element={<Admin />} />
+        {/* <Route path="admin" element={<Admin />} /> */}
         {/* si adminId existe tu peux monter le composant admin */}
-        {/* {adminID ? (
-          <Route path="admin" element={<Admin /> : (
+        {adminID ? (
+          <Route path="admin" element={<Admin />} />
+        ) : (
           <Route
             path="admin"
             element={
@@ -42,7 +42,7 @@ function App() {
               </h2>
             }
           />
-        )} */}
+        )}
         <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
