@@ -33,3 +33,5 @@ yarn-error.log*
 
 # vs code
 .vscode
+
+src/assets/clip.mp4
