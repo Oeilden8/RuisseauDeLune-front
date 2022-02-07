@@ -75,13 +75,16 @@ function News() {
           <h3> {news.title} </h3>
           <hr />
           <div className="rectangle_content_news">
-            <div className="container_picture_news">
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/${news.source}`}
-                alt={news.asset_name}
-                className="picture_news"
-              />
-            </div>
+            {news.source ? (
+              <div className="container_picture_news">
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/${news.source}`}
+                  alt={news.asset_name}
+                  className="picture_news"
+                />
+              </div>
+            ) : null}
+
             <div className="rectangle_content_text">
               <p>Lieu : {news.places}</p>
               <p>

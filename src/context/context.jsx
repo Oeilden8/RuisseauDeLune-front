@@ -41,7 +41,7 @@ export const GlobalContextProvider = ({ children }) => {
     date_first: '',
     date_last: '',
     description: '',
-    assets_id: '',
+    // assets_id: null,
   });
 
   // state formulaire contact

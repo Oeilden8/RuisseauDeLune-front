@@ -24,6 +24,9 @@
 
 .picture_news {
   width: 70vw;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: top;
   border-radius: 15px;
 }
 
