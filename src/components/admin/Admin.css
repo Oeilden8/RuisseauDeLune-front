@@ -135,7 +135,7 @@ h5 {
   align-items: center;
   margin: 0px auto 0px auto;
   width: 85vw;
-  height: 730px;
+  height: 780px;
   max-width: 800px;
   background: linear-gradient(
     91.93deg,
@@ -226,6 +226,7 @@ h5 {
 
 .add-assets {
   display: flex;
+  flex-wrap: wrap;
   width: 70vw;
   max-width: 750px;
   justify-content: space-between;
