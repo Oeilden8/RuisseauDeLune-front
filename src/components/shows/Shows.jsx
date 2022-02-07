@@ -5,7 +5,7 @@ import GlobalContext from '../../context/context';
 import './Shows.css';
 
 function Shows() {
-  const { adminID } = useContext(GlobalContext);
+  const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
   const [spectacles, setSpectacles] = useState([]);
   const [spectacleDelete, setSpectacleDelete] = useState();
   const [alertDelete, setAlertDelete] = useState(false);
@@ -14,10 +14,9 @@ function Shows() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/events/type/spectacle`)
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         return setSpectacles(resp.data);
-      })
-      .catch((err) => console.log(err));
+      });
   };
 
   useEffect(() => {
@@ -33,13 +32,14 @@ function Shows() {
             withCredentials: true,
           }
         )
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
+          // console.log(resp);
           setAlertDelete(false);
           getSpectacles();
         });
     } catch (err) {
-      console.log(err.response.data);
+      setAlertMsg('erreur lors de la suppression');
+      setAlert(true);
     }
   };
 
@@ -106,9 +106,6 @@ function Shows() {
                 type="button"
                 onClick={() => {
                   setSpectacleDelete(spectacle.id);
-                  console.log(
-                    `idSpectacle recupérée ${spectacleDelete} = ${spectacle.ID}`
-                  );
                   setAlertDelete(true);
                 }}
               >

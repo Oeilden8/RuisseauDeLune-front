@@ -5,7 +5,6 @@ import './Contact.css';
 
 function Contact() {
   const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
-  console.log(adminID, setAlert, setAlertMsg);
 
   // get contacts
   const [contacts, setContacts] = useState([]);
@@ -21,10 +20,9 @@ function Contact() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/contact`)
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         return setContacts(resp.data);
-      })
-      .catch((err) => console.log(err));
+      });
   };
 
   useEffect(() => {
@@ -41,13 +39,15 @@ function Contact() {
             withCredentials: true,
           }
         )
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
+          // console.log(resp);
           setAlertDelete(false);
           getContacts();
         });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
+      setAlertMsg('erreur lors de la suppression');
+      setAlert(true);
     }
   };
   return (

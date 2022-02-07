@@ -5,8 +5,7 @@ import GlobalContext from '../../context/context';
 import './Login.css';
 
 function Login() {
-  const { adminID, setAdminID, setAlert, setAlertMsg } =
-    useContext(GlobalContext);
+  const { setAdminID, setAlert, setAlertMsg } = useContext(GlobalContext);
   const navigate = useNavigate();
   // state avec un objet prédéfini
   const [login, setLogin] = useState({
@@ -31,15 +30,16 @@ function Login() {
           })
           .then((resp) => {
             setAdminID(resp.data.id);
-            console.log(adminID);
-            console.log(resp.data);
+            // console.log(adminID);
+            // console.log(resp.data);
           })
           .then(() => {
             navigate('../admin', { replace: true });
           });
       } catch (err) {
-        console.log(err.response.data);
-        alert(err.response.data);
+        // console.log(err.response.data);
+        setAlertMsg(`Erreur : ${err.response.data}`);
+        setAlert(true);
       }
     }
     // .then useNavigate

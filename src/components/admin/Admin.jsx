@@ -55,10 +55,9 @@ function Admin() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/admins`)
       .then((resp) => {
-        console.log('admins', resp.data);
+        // console.log('admins', resp.data);
         return setAdmins(resp.data);
-      })
-      .catch((err) => console.log(err.response.data));
+      });
   };
 
   // get all assets
@@ -66,7 +65,7 @@ function Admin() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/assets`)
       .then((resp) => {
-        console.log('assets', resp.data);
+        // console.log('assets', resp.data);
         return setAssets(resp.data);
       });
   };
@@ -78,7 +77,7 @@ function Admin() {
       axios
         .get(`${process.env.REACT_APP_BACKEND_URL}/api/news`)
         .then((resp) => {
-          console.log('news', resp.data);
+          // console.log('news', resp.data);
           setEventList(resp.data);
         });
     }
@@ -86,7 +85,7 @@ function Admin() {
       axios
         .get(`${process.env.REACT_APP_BACKEND_URL}/api/contact`)
         .then((resp) => {
-          console.log('contact', resp.data);
+          // console.log('contact', resp.data);
           setEventList(resp.data);
         });
     }
@@ -97,7 +96,7 @@ function Admin() {
           `${process.env.REACT_APP_BACKEND_URL}/api/events/type/${eventType}`
         )
         .then((resp) => {
-          console.log('events', resp.data);
+          // console.log('events', resp.data);
           setEventList(resp.data);
         });
     }
@@ -129,21 +128,21 @@ function Admin() {
             }
           )
           // on ferme le popup alerte avec le state false et on affiche le status OK, on refais un getAdmin pour actualiser la liste -admin supprimé
-          .then((resp) => {
-            console.log(resp);
+          .then(() => {
+            // console.log(resp);
             setAlertDelete(false);
             getAdmins();
             setStatus('Admin supprimé');
           });
       } catch (err) {
-        console.log(err.response.data);
+        setStatus("une erreur s'est produite");
       }
     }
   };
 
   // stocke l'asset ds le bon state
   const handleAssetChoice = (e) => {
-    console.log('assetid', e.target.value);
+    // console.log('assetid', e.target.value);
     if (eventType === 'news') {
       setNews({ ...news, assets_id: e.target.value });
     } else if (eventType === 'contact') {
@@ -161,7 +160,7 @@ function Admin() {
 
   // récupère le nouvel asset
   const handleNewAsset = (e) => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     const selectedAsset = e.target.files[0];
     const { type } = selectedAsset;
     if (
@@ -177,7 +176,7 @@ function Admin() {
       setAlert(true);
     } else {
       setAssetFile(e.target.files[0]);
-      console.log(assetFile);
+      // console.log(assetFile);
     }
   };
 
@@ -198,15 +197,14 @@ function Admin() {
             withCredentials: true,
           }
         )
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
+          // console.log(resp);
           // on actualise la liste d'admin avec le nouveau
           getAllAssets();
           setStatus('nouvel asset créé');
         });
     } catch (err) {
-      console.log(err);
-      // setStatus(`Erreur : ${err.response.data}`);
+      setStatus(`Erreur : ${err.response.data}`);
     }
   };
 
@@ -226,14 +224,14 @@ function Admin() {
           .post(`${process.env.REACT_APP_BACKEND_URL}/api/admins`, newAdmin, {
             withCredentials: true,
           })
-          .then((resp) => {
-            console.log(resp);
+          .then(() => {
+            // console.log(resp);
             // on actualise la liste d'admin avec le nouveau
             getAdmins();
             setStatus('Admin créé');
           });
       } catch (err) {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         setStatus(`Erreur : ${err.response.data}`);
       }
     }
@@ -241,10 +239,7 @@ function Admin() {
 
   // create event
   const handleEventSubmit = async () => {
-    // on rempli le state event avec le type selectionné -> mis direct dans le onclick du formulaire
-    // setEvent({ ...event, type: eventType });
-    console.log('event', event);
-
+    // console.log('event', event);
     // si l'action selectionnée est ajouter on fait un post
     if (actionType === 'ajouter') {
       // on vérifie que les champs obligatoires sont remplis
@@ -264,20 +259,20 @@ function Admin() {
             .post(`${process.env.REACT_APP_BACKEND_URL}/api/events`, event, {
               withCredentials: true,
             })
-            .then((resp) => {
-              console.log('event', resp);
+            .then(() => {
+              // console.log('event', resp);
               getAllEvents();
               setStatus('Evènement créé');
             });
         } catch (err) {
-          console.log(err.response.data);
+          // console.log(err.response.data);
           setStatus("Erreur lors de la création de l'évènement");
         }
       }
       // si l'action selectionnée est modifier on fait un put
     } else if (actionType === 'modifier') {
       setEvent({ ...event, assets_id: '' });
-      console.log('update event', event, updateId);
+      // console.log('update event', event, updateId);
       try {
         await axios
           .put(
@@ -287,12 +282,12 @@ function Admin() {
               withCredentials: true,
             }
           )
-          .then((resp) => {
-            console.log('update', resp);
+          .then(() => {
+            // console.log('update', resp);
             setStatus('Evènement modifié');
           });
       } catch (err) {
-        console.log('update', err.response.data);
+        // console.log('update', err.response.data);
         setStatus("Erreur lors de la création de l'évènement");
       }
     } else {
@@ -302,7 +297,7 @@ function Admin() {
   };
 
   const handleNewsSubmit = async () => {
-    console.log(news);
+    // console.log(news);
     // si l'action selectionnée est ajouter on fait un post
     if (actionType === 'ajouter') {
       // on vérifie que les champs obligatoires sont remplis
@@ -318,24 +313,20 @@ function Admin() {
             .post(`${process.env.REACT_APP_BACKEND_URL}/api/news`, news, {
               withCredentials: true,
             })
-            .then((resp) => {
-              console.log('news', resp);
+            .then(() => {
+              // console.log('news', resp);
               setStatus('Actualité créée');
               // on actualise la liste avec la nouvelle news
               getAllEvents();
             });
         } catch (err) {
-          console.log(err.response);
-          if (err.response.status === 404) {
-            setStatus('Actualité créée');
-          } else {
-            setStatus("Erreur lors de la création de l'actualité");
-          }
+          // console.log(err.response);
+          setStatus("Erreur lors de la création de l'actualité");
         }
       }
       // si l'action selectionnée est modifier on fait un put
     } else if (actionType === 'modifier') {
-      console.log('update news', news, updateId);
+      // console.log('update news', news, updateId);
       try {
         await axios
           .put(
@@ -345,12 +336,12 @@ function Admin() {
               withCredentials: true,
             }
           )
-          .then((resp) => {
-            console.log('update', resp);
+          .then(() => {
+            // console.log('update', resp);
             setStatus('Actualité modifiée');
           });
       } catch (err) {
-        console.log('update', err.response.data);
+        // console.log('update', err.response.data);
         setStatus("Erreur lors de la modification de l'évènement");
       }
     } else {
@@ -361,7 +352,7 @@ function Admin() {
 
   // contact
   const handleContactSubmit = async () => {
-    console.log(contact);
+    // console.log(contact);
     // si l'action selectionnée est ajouter on fait un post
     if (actionType === 'ajouter') {
       // on vérifie que les champs obligatoires sont remplis
@@ -374,20 +365,20 @@ function Admin() {
             .post(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, contact, {
               withCredentials: true,
             })
-            .then((resp) => {
-              console.log('contact', resp);
+            .then(() => {
+              // console.log('contact', resp);
               setStatus('Contact créé');
               // on actualise la liste avec le nouveau contact
               getAllEvents();
             });
         } catch (err) {
-          console.log(err.response.data);
+          // console.log(err.response.data);
           setStatus('Erreur lors de la création du contact');
         }
       }
       // si l'action selectionnée est modifier on fait un put
     } else if (actionType === 'modifier') {
-      console.log('update contact', contact, updateId);
+      // console.log('update contact', contact, updateId);
       try {
         await axios
           .put(
@@ -397,12 +388,12 @@ function Admin() {
               withCredentials: true,
             }
           )
-          .then((resp) => {
-            console.log('update', resp);
+          .then(() => {
+            // console.log('update', resp);
             setStatus('Contact modifié');
           });
       } catch (err) {
-        console.log('update', err.response.data);
+        // console.log('update', err.response.data);
         setStatus('Erreur lors de la modification du contact');
       }
     } else {
@@ -414,7 +405,7 @@ function Admin() {
   // choix de la fonction a utiliser en fonction du type d'evenement choisi
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(submitType);
+    // console.log(submitType);
     if (submitType === 'form') {
       if (eventType === 'news') {
         handleNewsSubmit();
@@ -503,7 +494,6 @@ function Admin() {
                 type="button"
                 onClick={() => {
                   setAdminDelete(admin.id);
-                  console.log(`idAdmin recupérée ${adminDelete} = ${adminID}`);
                   setAlertDelete(true);
                 }}
               >
