@@ -17,6 +17,9 @@
     "linebreak-style": ["error", "unix"],
     "react/jsx-props-no-spreading": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "jsx-ally/click-events-have-key-events": "off",
+    "jsx-ally/no-static-element-interactions": "off",
+    "jsx-ally/no-noninteractive-element-interactions": "off"
   }
 }

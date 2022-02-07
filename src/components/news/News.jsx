@@ -45,6 +45,12 @@ function News() {
     // getAllAssets();
   }, []);
 
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
   const handleDeleteNews = async () => {
     try {
       await axios
@@ -79,7 +85,9 @@ function News() {
             <div className="rectangle_content_text">
               <p>Lieu : {news.places}</p>
               <p>
-                Spectacle joué du {news.date_first} au {news.date_last}
+                Spectacle joué du{' '}
+                {new Date(news.date_first).toLocaleString('fr-FR', options)} au{' '}
+                {new Date(news.date_last).toLocaleString('fr-FR', options)}
               </p>
               <p>{news.description}</p>
               <button
