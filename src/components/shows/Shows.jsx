@@ -79,16 +79,21 @@ function Shows() {
             <h3>{spectacle.title}</h3>
             <hr />
             <div className="rectangle_image_description">
-              <div className="container_picture_show">
-                {spectacle.assets[0].type === 'video' ? (
-                  <Video source={spectacle.assets[0].source} />
-                ) : null}
-                <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/${spectacle.assets[0].source}`}
-                  alt={`spectacle: ${spectacle.title}`}
-                  className="picture_show"
-                />
-              </div>
+              {spectacle.assets[0] ? (
+                <div className="container_picture_show">
+                  {spectacle.assets[0].type === 'video' ? (
+                    <Video
+                      source={`${process.env.REACT_APP_BACKEND_URL}/${spectacle.assets[0].source}`}
+                    />
+                  ) : (
+                    <img
+                      src={`${process.env.REACT_APP_BACKEND_URL}/${spectacle.assets[0].source}`}
+                      alt={`spectacle: ${spectacle.title}`}
+                      className="picture_show"
+                    />
+                  )}
+                </div>
+              ) : null}
 
               <div className="text_show">
                 <h6>{spectacle.places}</h6>

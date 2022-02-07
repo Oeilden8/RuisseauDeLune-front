@@ -325,8 +325,12 @@ function Admin() {
               getAllEvents();
             });
         } catch (err) {
-          console.log(err.response.data);
-          setStatus("Erreur lors de la modification de l'évènement");
+          console.log(err.response);
+          if (err.response.status === 404) {
+            setStatus('Actualité créée');
+          } else {
+            setStatus("Erreur lors de la création de l'actualité");
+          }
         }
       }
       // si l'action selectionnée est modifier on fait un put
