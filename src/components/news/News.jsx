@@ -5,7 +5,6 @@ import './News.css';
 
 function News() {
   const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
-  console.log(adminID, setAlert, setAlertMsg);
 
   const [Actus, setActus] = useState([]);
   // get assets
@@ -20,29 +19,14 @@ function News() {
 
   // get all News
   const getNews = () => {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/api/news`)
-      .then((resp) => {
-        console.log(resp.data);
-        return setActus(resp.data);
-      })
-      .catch((err) => console.log(err));
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/news`).then((resp) => {
+      // console.log(resp.data);
+      return setActus(resp.data);
+    });
   };
-
-  // // get all assets
-  // const getAllAssets = () => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_BACKEND_URL}/api/assets`)
-  //     .then((resp) => {
-  //       console.log(resp.data);
-
-  //       return setAssets(resp.data);
-  //     });
-  // };
 
   useEffect(() => {
     getNews();
-    // getAllAssets();
   }, []);
 
   const options = {
@@ -57,13 +41,14 @@ function News() {
         .delete(`${process.env.REACT_APP_BACKEND_URL}/api/news/${newsDelete}`, {
           withCredentials: true,
         })
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
+          // console.log(resp);
           setAlertDelete(false);
           getNews();
         });
     } catch (err) {
-      console.log(err);
+      setAlertMsg('erreur lors de la suppression');
+      setAlert(true);
     }
   };
 

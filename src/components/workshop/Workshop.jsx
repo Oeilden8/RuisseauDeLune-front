@@ -6,7 +6,7 @@ import GlobalContext from '../../context/context';
 import './Workshop.css';
 
 function Workshop() {
-  const { adminID } = useContext(GlobalContext);
+  const { adminID, setAlert, setAlertMsg } = useContext(GlobalContext);
   const [ateliers, setAteliers] = useState([]);
   const [atelierDelete, setAtelierDelete] = useState();
   const [alertDelete, setAlertDelete] = useState(false);
@@ -15,10 +15,9 @@ function Workshop() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/api/events/type/atelier`)
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         return setAteliers(resp.data);
-      })
-      .catch((err) => console.log(err));
+      });
   };
 
   useEffect(() => {
@@ -34,13 +33,14 @@ function Workshop() {
             withCredentials: true,
           }
         )
-        .then((resp) => {
-          console.log(resp);
+        .then(() => {
+          // console.log(resp);
           setAlertDelete(false);
           getAteliers();
         });
     } catch (err) {
-      console.log(err.response.data);
+      setAlertMsg('erreur lors de la suppression');
+      setAlert(true);
     }
   };
 
@@ -115,9 +115,6 @@ function Workshop() {
                 type="button"
                 onClick={() => {
                   setAtelierDelete(atelier.id);
-                  console.log(
-                    `idAtelier recupérée ${atelierDelete} = ${atelier.ID}`
-                  );
                   setAlertDelete(true);
                 }}
               >
