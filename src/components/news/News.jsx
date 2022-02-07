@@ -90,16 +90,18 @@ function News() {
                 {new Date(news.date_last).toLocaleString('fr-FR', options)}
               </p>
               <p>{news.description}</p>
-              <button
-                className="delete_button"
-                type="button"
-                onClick={() => {
-                  setNewsDelete(news.id);
-                  setAlertDelete(true);
-                }}
-              >
-                SUPPRIMER
-              </button>
+              {adminID ? (
+                <button
+                  className="delete_button"
+                  type="button"
+                  onClick={() => {
+                    setNewsDelete(news.id);
+                    setAlertDelete(true);
+                  }}
+                >
+                  SUPPRIMER
+                </button>
+              ) : null}
             </div>
           </div>
           {/* pop up alerte suppression */}

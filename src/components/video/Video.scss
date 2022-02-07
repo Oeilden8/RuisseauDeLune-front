@@ -1,0 +1,29 @@
+@import '~video-react/styles/scss/video-react';
+
+.video {
+  width: 70vw;
+}
+
+@media screen and (min-width: 768px) {
+  .video {
+    width: 55vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .video {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .video {
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .video {
+    width: 35vw;
+  }
+}
