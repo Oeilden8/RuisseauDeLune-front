@@ -630,8 +630,8 @@ function Admin() {
 
               <label htmlFor="select-asset">
                 <select name="asset">
-                  <option>Choisir une fichier</option>
-                  {/* on enregistre l'id de l'asset cliquéeds le state assetId et on utilise la fonction handle.. pour la stocker dans event, news ou contact */}
+                  <option>Choisir un fichier</option>
+                  {/* on enregistre l'id de l'asset cliquée ds le state assetId et on utilise la fonction handle.. pour la stocker dans event, news ou contact */}
                   {assets.map((asset) => (
                     <option
                       value={asset.id}
