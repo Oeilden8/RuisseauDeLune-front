@@ -8,6 +8,7 @@
   background: linear-gradient(179.35deg, #f3acf4 0.56%, #b5d7f8 99.47%);
   border-radius: 15px;
   position: absolute;
+  z-index: 1000;
   top: 0;
   right: -15px;
 }

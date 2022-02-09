@@ -8,6 +8,7 @@ import lcl from '../../assets/Icons/lcl.png';
 import pep from '../../assets/Icons/pep.png';
 import sncf from '../../assets/Icons/sncf.png';
 import fb from '../../assets/Icons/facebook.png';
+import wild from '../../assets/Icons/wild.png';
 import './Footer.scss';
 
 function Footer() {
@@ -111,6 +112,16 @@ function Footer() {
           >
             <span>
               <img src={eurelien} alt="logo" id="logo_footer" />
+            </span>
+          </a>
+          <a
+            className="footer_a"
+            href="https://www.wildcodeschool.com/fr-FR"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <img src={wild} alt="logo" id="logo_footer" />
             </span>
           </a>
         </nav>
