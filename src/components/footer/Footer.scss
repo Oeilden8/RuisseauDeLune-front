@@ -89,7 +89,11 @@ $hoverColor: #fff;
     background-color: $buttonColor;
   }
 
-  &:nth-child(7) {
+  &:nth-child(7):hover {
+    background-color: $buttonColor;
+  }
+
+  &:nth-child(8) {
     margin-right: 0;
 
     &:hover {
