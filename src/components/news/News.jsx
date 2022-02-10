@@ -73,7 +73,7 @@ function News() {
             <div className="rectangle_content_text">
               <p>Lieu : {news.places}</p>
               <p>
-                Spectacle joué du{' '}
+                Joué du{' '}
                 {new Date(news.date_first).toLocaleString('fr-FR', options)} au{' '}
                 {new Date(news.date_last).toLocaleString('fr-FR', options)}
               </p>
