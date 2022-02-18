@@ -141,14 +141,14 @@ function Admin() {
   };
 
   // stocke l'asset ds le bon state
-  const handleAssetChoice = (e) => {
+  const handleAssetChoice = (id) => {
     // console.log('assetid', e.target.value);
     if (eventType === 'news') {
-      setNews({ ...news, assets_id: e.target.value });
+      setNews({ ...news, assets_id: id });
     } else if (eventType === 'contact') {
-      setContact({ ...contact, assets_id: e.target.value });
+      setContact({ ...contact, assets_id: id });
     } else if (eventType === 'spectacle' || eventType === 'atelier') {
-      setEvent({ ...event, assets_id: e.target.value });
+      setEvent({ ...event, assets_id: id });
     } else if (!eventType) {
       setAlertMsg("Erreur en choisissant le type d'évènement");
       setAlert(true);
@@ -514,59 +514,28 @@ function Admin() {
           {/* les 2 selecteurs : ajout/modif et type d'article */}
           <section className="selectors">
             <label htmlFor="select-action">
-              <select name="action">
-                <option
-                  value={actionType}
-                  onClick={() => setActionType('ajouter')}
-                >
-                  AJOUTER
-                </option>
-                <option
-                  value={actionType}
-                  onClick={() => setActionType('modifier')}
-                >
-                  MODIFIER
-                </option>
+              <select
+                name="action"
+                onChange={(e) => {
+                  setActionType(e.target.value);
+                }}
+              >
+                <option value="ajouter">AJOUTER</option>
+                <option value="modifier">MODIFIER</option>
               </select>
             </label>
             <label htmlFor="select-type">
-              <select name="type">
-                <option
-                  value={eventType}
-                  onClick={() => {
-                    setEvent({ ...event, type: 'atelier' });
-                    setEventType('atelier');
-                  }}
-                >
-                  ATELIER
-                </option>
-                <option
-                  value={eventType}
-                  onClick={() => {
-                    setEvent({ ...event, type: 'spectacle' });
-                    setEventType('spectacle');
-                  }}
-                >
-                  SPECTACLE
-                </option>
-                <option
-                  value={eventType}
-                  onClick={() => {
-                    setEvent({ ...event, type: 'news' });
-                    setEventType('news');
-                  }}
-                >
-                  ACTUALITE
-                </option>
-                <option
-                  value={eventType}
-                  onClick={() => {
-                    setEvent({ ...event, type: 'contact' });
-                    setEventType('contact');
-                  }}
-                >
-                  CONTACT
-                </option>
+              <select
+                name="type"
+                onChange={(e) => {
+                  setEvent({ ...event, type: e.target.value });
+                  setEventType(e.target.value);
+                }}
+              >
+                <option value="atelier">ATELIER</option>
+                <option value="spectacle">SPECTACLE</option>
+                <option value="news">ACTUALITE</option>
+                <option value="contact">CONTACT</option>
               </select>
             </label>
           </section>
@@ -574,36 +543,30 @@ function Admin() {
           {/* selecteur d'event a modifier présent seulement si action selectionnée "modifier" */}
           {actionType === 'modifier' ? (
             <label htmlFor="select-update">
-              <select name="update" id="update">
-                <option>Choisissez un article à modifier</option>
-                {/* on affiche les resultat du getallevent by type dans le selecteur, et on recup l'id de l'event au clic */}
-                {eventList.map((eventPut) => (
-                  <option
-                    value={eventPut.id}
-                    onClick={() => setUpdateId(eventPut.id)}
-                  >
-                    {eventPut.title || eventPut.firstname_lastname}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <select name="update" id="update"  onChange={(e) => 
+                setUpdateId(e.target.value)
+              }>
+              <option>Choisissez un article à modifier</option>
+               {/* on affiche les resultat du getallevent by type dans le selecteur, et on recup l'id de l'event au clic  */}
+              {eventList.map((eventPut) => (
+                <option
+                  value={eventPut.id}
+                >
+                  {eventPut.title || eventPut.firstname_lastname}
+                </option>
+              ))}
+            </select>
+          </label>
           ) : null}
 
-          {/* le formulaire change en fonction du type d'evenement selectionné */}
-          {(() => {
-            switch (eventType) {
-              case 'contact':
-                return <ContactForm />;
-              case 'news':
-                return <NewsForm />;
-              case 'spectacle':
-                return <WorkshopForm />;
-              case 'atelier':
-                return <EventForm />;
-              default:
-                return null;
-            }
-          })()}
+          {
+            {
+              contact: <ContactForm />,
+              news: <NewsForm />,
+              spectacle: <WorkshopForm />,
+              atelier: <EventForm />,
+            }[eventType]
+          }
 
           {/* on ne peut changer l'asset que si l'admin modifie une news ou un contact */}
           {(actionType === 'modifier' && eventType === 'atelier') ||
@@ -629,15 +592,13 @@ function Admin() {
               </button>
 
               <label htmlFor="select-asset">
-                <select name="asset">
+              <select name="asset" onChange={(e) => 
+                  handleAssetChoice(e.target.value)}>
                   <option>Choisir un fichier</option>
-                  {/* on enregistre l'id de l'asset cliquée ds le state assetId et on utilise la fonction handle.. pour la stocker dans event, news ou contact */}
+                   {/* on enregistre l'id de l'asset cliquée ds le state assetId et on utilise la fonction handle.. pour la stocker dans event, news ou contact */}
                   {assets.map((asset) => (
                     <option
                       value={asset.id}
-                      onClick={(e) => {
-                        handleAssetChoice(e);
-                      }}
                     >
                       {asset.asset_name}
                     </option>
