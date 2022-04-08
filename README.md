@@ -1,74 +1,15 @@
-# React Simple Boilerplate
+# Ruisseau de lune - front-end
 
-Already intalled and configured:
-* ESLint (airbnb)
-* Prettier
-* Stylelint (standard)
-* Husky with lint-staged
+This is the back-end repository of my first group project with real clients.
 
-Install with `npm install` or `yarn install`
+# Project
 
-Run with `npm start` or `yarn start`
+This website is for an association who works with young children and their parents to introduce them to music. They wanted the website to present the association and show their news, activities and members. They also needed an administrator page to be able to manage this content : create, update or delete an article and add images or videos.
+They asked for a simple design with pastel colors from childhood, and a homepage with a soft animation.
+Since they are not confortable with a computer we decided the admin part would be a simple form changing with their choices.
+(for example the form would not be the same if they choose "modifying" or "create").
 
-Lint with `npm run lint` or `yarn run lint`
+# Tools
 
-# Configure git (only for Windows)
-
-Force git to use LF end of line everywhere:
-
-```bash
-git config --global core.eol lf
-git config --global core.autocrlf input
-```
-
-If you've already cloned this repository, remove it and clone it again.
-
-# Configure Visual Studio Code
-
-## Install ESLint
-
-1. In Visual Studio Code go to View -> Extensions
-2. Search for `eslint`: [EsLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-3. Click Install
-
-## Install Prettier
-
-1. In Visual Studio Code go to View -> Extensions
-2. Search for `prettier code formatter`: [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-3. Click Install
-
-## Install Stylelint
-
-1. In Visual Studio Code go to View -> Extensions
-2. Search for `stylelint`: [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-3. Click Install
-
-## Visual Studio Code Settings
-
-1. Go to File -> Preferences -> Settings.
-2. On the top right corner, click on the file icon `Open Settings (JSON)`.
-3. Add the code below before the last closing curly brace:
-
-```js
-{
-  /* existing configurations... */
-
-  /* began to copy setting from here */
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
-  },
-  "files.eol": "\n",
-  "editor.tabSize": 2,
-  /* do not copy after here */
-}
-```
-
-You might have to close and reopen Visual Studio Code after the plugins install and setting changes.
-
-## Configure husky
-``` bash
-rm -rf .husky
-npx husky install
-npx husky add .husky/pre-commit "npx lint-staged"
-```
+We begun with Figma to do our wireframe, then the project was developped with React. We used React Context to provide states to different components, React Router for the navigation and Axios for fetching data.
+As usual Eslint and Prettier helped us for the formatting.
