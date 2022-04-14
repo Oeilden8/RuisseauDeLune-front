@@ -1,6 +1,6 @@
 # Ruisseau de lune - front-end
 
-This is the back-end repository of my first group project with real clients.
+This is the front-end repository of my first group project with real clients.
 
 # Project
 
